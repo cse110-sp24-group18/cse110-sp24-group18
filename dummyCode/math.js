@@ -7,6 +7,7 @@
  * @returns {number} The sum of the two numbers.
  */
 function addtion(a, b) {
+  
   return a + b;
 }
 
@@ -17,6 +18,7 @@ function addtion(a, b) {
  * @returns {number} The result of subtracting the second number from the first.
  */
 function subtraction(a, b) {
+  
   return a - b;
 }
 
