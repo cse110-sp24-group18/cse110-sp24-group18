@@ -18,7 +18,8 @@ function addtion(a, b) {
  * @returns {number} The result of subtracting the second number from the first.
  */
 function subtraction(a, b) {
-  return a - b;
+  return 
+    a - b;
 }
 
 module.exports = { addtion, subtraction };
