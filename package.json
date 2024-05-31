@@ -4,7 +4,7 @@
   "scripts": {
     "lint:check": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "npx jest",
+    "test": "nyc npx jest",
     "docs": "git fetch; git checkout documentation; jsdoc src/ -d jsdocsgenerated; git config --local user.email 'action@github.com'; git config --local user.name 'Github Action'; git add -A; git commit -m 'Generated JSDocs'; git push",
     "serve": "echo 'TODO: Add your serve command here",
     "start": "npm run serve",
