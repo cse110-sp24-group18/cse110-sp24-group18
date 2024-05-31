@@ -29,6 +29,7 @@ export function widgetButtonListeners() {
           targetWidget.style.right = '-30em';
           btn.style.filter = 'brightness(1)';
         }
+        
       }
     });
   });
