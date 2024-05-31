@@ -23,14 +23,14 @@
     <script src="assets/scripts/fileSys.js" type="module"></script>
     <script src="assets/scripts/journalNav.js" type="module"></script>
     <script src="assets/scripts/textEditor.js" type="module"></script>
-    <script src="assets/scripts/splashScreen.js" type="module"></script>
+    <!-- <script src="assets/scripts/splashScreen.js" type="module"></script> -->
     <script src="assets/scripts/widgets.js" type="module"></script>
     <script src="assets/summary-widget/summary.js" type="module"></script>
 
     <!-- Lock scroll during splash screen -->
-    <style id="splashScreenLock">
+    <!-- <style id="splashScreenLock">
         html, body {margin: 0; height: 100%; overflow: hidden}
-    </style>
+    </style> -->
 </head>
 <body>
     <div id="splash-container"><p class="tracking-in-expand" id="splashtext">{ DevDiary }</p></div>
@@ -288,55 +288,53 @@
         <div id="widget-popouts">
             <div id="sleep-toggle" class="widget">
                 <div id="sleep-widget">
-                    <!-- <div class="container-sleep-widget"> -->
-                        <h3> How would you rate your sleep quality?</h3>
-                        <div class="slider-container">
-                           <div class="labels-container">
-                              <div class="label">
-                                 <p>Excellent</p>
-                                 <div class="time">
-                                    <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
-                                    <span>7-9 HOURS</span>
-                                 </div>
-                              </div>
-                              <div class="label">
-                                 <p>Good</p>
-                                 <div class="time">
-                                    <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
-                                    <span>6-7 HOURS</span>
-                                 </div>
-                              </div>
-                              <div class="label">
-                                 <p>Fair</p>
-                                 <div class="time">
-                                    <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
-                                    <span>5 HOURS</span>
-                                 </div>
-                              </div>
-                              <div class="label">
-                                 <p>Poor</p>
-                                 <div class="time">
-                                    <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
-                                    <span>3-4 HOURS</span>
-                                 </div>
-                              </div>
-                              <div class="label">
-                                 <p>Worst</p>
-                                 <div class="time">
-                                    <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
-                                    <span>&lt; 3 HOURS</span>
-                                 </div>
-                              </div>
-                           </div>
-                            <input class="slider" type="range" min="1" max="5" value="3">    
-                            <div class="emojis-container">
-                              <img src="assets/sleep-widget/media/faceAmazing.png" alt="Excellent" width="75px">
-                              <img src="assets/sleep-widget/media/faceGood.png" alt="Good" width="75px">
-                              <img src="assets/sleep-widget/media/faceMeh.png" alt="Fair" width="75px">
-                              <img src="assets/sleep-widget/media/faceSad.png" alt="Poor" width="75px">
-                              <img src="assets/sleep-widget/media/faceMiserable.png" alt="Worst" width="75px">
-                            </div>   
-                        <!-- </div> -->
+                    <h3> How would you rate your sleep quality?</h3>
+                    <div class="slider-container">
+                        <div class="labels-container">
+                            <div class="label">
+                                <p>Excellent</p>
+                                <div class="time">
+                                <img src="assets/sleep-widget/media/clock.png" alt="Best" width="15px">
+                                <span>7-9 HOURS</span>
+                                </div>
+                            </div>
+                            <div class="label">
+                                <p>Good</p>
+                                <div class="time">
+                                <img src="assets/sleep-widget/media/clock.png" alt="Good" width="15px">
+                                <span>6-7 HOURS</span>
+                                </div>
+                            </div>
+                            <div class="label">
+                                <p>Fair</p>
+                                <div class="time">
+                                <img src="assets/sleep-widget/media/clock.png" alt="Middle" width="15px">
+                                <span>5 HOURS</span>
+                                </div>
+                            </div>
+                            <div class="label">
+                                <p>Poor</p>
+                                <div class="time">
+                                <img src="assets/sleep-widget/media/clock.png" alt="Bad" width="15px">
+                                <span>3-4 HOURS</span>
+                                </div>
+                            </div>
+                            <div class="label">
+                                <p>Worst</p>
+                                <div class="time">
+                                <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
+                                <span>&lt; 3 HOURS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input class="slider" type="range" min="1" max="5" value="3">    
+                        <div class="emojis-container">
+                            <img src="assets/sleep-widget/media/faceAmazing.png" alt="Excellent">
+                            <img src="assets/sleep-widget/media/faceGood.png" alt="Good">
+                            <img src="assets/sleep-widget/media/faceMeh.png" alt="Fair">
+                            <img src="assets/sleep-widget/media/faceSad.png" alt="Poor">
+                            <img src="assets/sleep-widget/media/faceMiserable.png" alt="Worst">
+                        </div>
                     </div>
                 </div>
             </div>
