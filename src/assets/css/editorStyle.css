@@ -186,7 +186,10 @@
   right: -20em;
   width: 25em;
   margin-top: 8em;
-  margin-left: -27em;
+  margin-left: -30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .widget {
@@ -198,8 +201,8 @@
   padding: 2em 2em 2em 2em;
   
   right: -45em;
-  height: 46em;
-  width: 30em;
+  height: 70vh;
+  width: 55vh;
   /* z-index: -1; */
   color: white;
   display: none;
@@ -223,20 +226,13 @@
 }
 
 
-
-
-
-
-
-
-
-
+/* Sleep Widget */
 
 h3 {
   padding-bottom: 10%;
   text-align: center;
 }
-.container-sleep-widget {
+.sleep-widget {
   width: 80%;
   padding: 20px;
   margin: auto;
@@ -249,19 +245,19 @@ h3 {
 .slider-container {
   justify-content: center;
   display: flex;
-  height: 450px; 
+  height: 50vh; 
 }
 
 .slider {
   appearance: none; 
-  margin-left: -140px;
-  margin-right: -120px;
-  width: 450px;
-  height: 18px;
+  margin-left: -20vh;
+  margin-right: -20vh;
+  width: 50vh;
+  height: 4vh;
   background: #1CB6F0;
   outline: none; 
-  border-radius: 50px; 
-  margin-top: 225px; /*half size of width*/
+  border-radius: 50vh; 
+  margin-top: 23vh;
   transform: rotate(270deg); 
   box-shadow: 1px 1px 90px rgba(188, 188, 188, 0.25);
 }
@@ -272,8 +268,8 @@ h3 {
 
 .slider::-webkit-slider-thumb {
   appearance: none; 
-  width: 55px; 
-  height: 55px; 
+  width: 5em; 
+  height: 5em; 
   border-radius: 50%; 
   background: #1CB6F0;
   cursor: pointer;
@@ -284,10 +280,11 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
-  font-size: 15px;
+  font-size: auto;
   color: #e6e6e6;
   font-weight: 900;
+  position: relative;
+  right: 8vh;
 }
 
 .labels-container div {
@@ -300,11 +297,17 @@ h3 {
   justify-content: space-between;
   height: 100%;
   position: relative;
-  left: -15px;
+  left: 8vh;
+}
+
+.emojis-container img{
+  width: 9vh;
+  height: auto;
+  object-fit: contain;
 }
 
 .time img {
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 
 .time span {
