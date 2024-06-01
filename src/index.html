@@ -366,7 +366,9 @@
             <!-- LINES OF CODE WIDGET -->
 
             <div id="code-line-toggle" class="widget">
-                    <div class="lines-widget-content">                      
+                    <div class="lines-widget-content">
+
+                      
                         <div class="widget-header-text">
                             How many lines have you coded today?
                         </div>
@@ -375,8 +377,13 @@
                             <button onclick="decrement()">-</button>
                             <input type="number" id="number" class="number" value="5" oninput="updateNumber()">
                             <button onclick="increment()">+</button>
-                        </div>                       
+                        </div>
+                        <button class="confirm-btn" onclick="confirm()">Confirm</button>
                     </div>
+                    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+
+                    <script src="assets/lines-of-code-widget/lines-of-code-script.js"></script>
+
             </div>
 
 
