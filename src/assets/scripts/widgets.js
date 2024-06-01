@@ -1,3 +1,5 @@
+import { returnChecked, writeFile, readFile } from "./fileSys.js";
+
 export function widgetButtonListeners() {
   const widgetButtons = document.querySelectorAll('.widget-btn');
 
@@ -8,6 +10,7 @@ export function widgetButtonListeners() {
 
     btn.addEventListener('click', () => {
       const targetWidget = document.getElementById(btn.dataset.target);
+      console.log(targetWidget.id);
 
       if (targetWidget) {
         // If widget is closed, open
@@ -29,8 +32,33 @@ export function widgetButtonListeners() {
           targetWidget.style.right = '-30em';
           btn.style.filter = 'brightness(1)';
         }
-        
+
       }
     });
   });
+}
+
+export function updateChecked(widget, value) {
+  const journalDate = returnChecked();
+  console.log(journalDate);
+  let journalEntry = readFile(journalDate);
+
+  switch (widget) {
+    case 'emotion':
+      console.log('emotion widget set', value);
+      journalEntry['mood'] = value;
+      break;
+    case 'sleep':
+      console.log('sleep widget set', value);
+      journalEntry['sleep'] = value;
+      break;
+    case 'linesCoded':
+      console.log('lines coded widget set', value);
+      break;
+    default:
+      console.log('error, defaulting on widget', value);
+      break;
+  }
+  
+  writeFile(journalEntry, journalDate);
 }

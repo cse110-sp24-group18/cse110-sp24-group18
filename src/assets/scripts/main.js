@@ -2,6 +2,7 @@ import { generateExample, generateToday, filterButtons } from './journalNav.js';
 import { textEditorListeners, setDate } from './textEditor.js';
 import { attatchSplashListener } from './splashScreen.js';
 import { widgetButtonListeners } from './widgets.js';
+import { getEmotion } from './emotion-widget.js';
 
 window.addEventListener('DOMContentLoaded', init); // set init to run on document load
 
@@ -19,4 +20,5 @@ function init() {
   attatchSplashListener();
 
   widgetButtonListeners();
+  console.log(getEmotion());
 }
