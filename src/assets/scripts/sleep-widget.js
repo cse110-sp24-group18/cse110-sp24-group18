@@ -30,6 +30,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 export function setSleep(currentSleep) {
   // for taiki, make this set the sleep gauge state based on sleep input 'currentSleep' which is a string e.g. 'Excellent'
+  
+  //set slider position
+  const slider = document.querySelector('.slider');
+  var sliderValue = sleepToValue(currentSleep);
+  slider.value = sliderValue;  
+
+  //change background color of the slider.
+  var percentage = (sliderValue - 1) * 25;
+  slider.style.background = `linear-gradient(to right, #FF5C35 0%, #FF5C35 ${percentage}%, #e5dedb ${percentage}%, #e5dedb 100%)`;
+
+  //change the selected label color
+  const condition_labels = document.querySelectorAll('.label p');
+  const time_labels = document.querySelectorAll('.label span');
+  condition_labels.forEach(label => {
+    label.classList.remove('highlight-color');
+  });
+  time_labels.forEach(label => {
+    label.classList.remove('highlight-color');
+  });
+  condition_labels[5 -sliderValue].classList.add('highlight-color');
+  time_labels[5 - sliderValue].classList.add('highlight-color');
 }
 
 function sleepToValue(val) {
