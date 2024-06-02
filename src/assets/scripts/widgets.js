@@ -20,7 +20,7 @@ export function widgetButtonListeners() {
           widgetButtons.forEach((i) => {
             const widgetTemp = document.getElementById(i.dataset.target);
             widgetTemp.style.display = 'none';
-            widgetTemp.style.right = '-30em';
+            widgetTemp.style.right = '-17em';
             i.style.filter = 'brightness(1)';
           }); 
           targetWidget.style.display = 'flex';
@@ -30,7 +30,7 @@ export function widgetButtonListeners() {
 
         else {
           targetWidget.style.display = 'none';
-          targetWidget.style.right = '-30em';
+          targetWidget.style.right = '-17em';
           btn.style.filter = 'brightness(1)';
         }
 

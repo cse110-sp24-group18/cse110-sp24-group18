@@ -184,9 +184,9 @@
 #widget-popouts {
   position: relative;
   right: -20em;
-  width: 25em;
+  width: 25vh;
   margin-top: 8em;
-  margin-left: -30vh;
+  margin-left: -17em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -233,7 +233,7 @@ h3 {
   text-align: center;
 }
 .sleep-widget {
-  width: 80%;
+  width: 25vh;
   padding: 20px;
   margin: auto;
   text-align: center;
