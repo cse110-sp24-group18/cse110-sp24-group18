@@ -281,7 +281,7 @@ h3 {
   flex-direction: column;
   justify-content: space-between;
   font-size: auto;
-  color: #e6e6e6;
+  color: hsl(0, 1%, 67%);
   font-weight: 900;
   position: relative;
   right: 8vh;
@@ -316,7 +316,7 @@ h3 {
 }
 
 .highlight-color {
-  color: #4f4b49;  
+  color: #ededed; 
 }
 
 

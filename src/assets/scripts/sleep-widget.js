@@ -1,35 +1,51 @@
 import { updateChecked } from "./widgets.js";
 
-document.addEventListener('DOMContentLoaded', function() {
-  const slider = document.querySelector('.slider');
-  slider.oninput = function() {
-    const percentage = (this.value - this.min) / (this.max - this.min) * 100;
-    this.style.background = `linear-gradient(to right, #FF5C35 0%, #FF5C35 ${percentage}%, #e5dedb ${percentage}%, #e5dedb 100%)`;
-  };
-  slider.value = 3;  
-  slider.dispatchEvent(new Event('input')); 
-  
-  
-  //chanage a label color
-  const condition_labels = document.querySelectorAll('.label p');
-  const time_labels = document.querySelectorAll('.label span');
-  function updateLabelColor() {
-    condition_labels.forEach(label => {
-      label.classList.remove('highlight-color');
-    });
-    time_labels.forEach(label => {
-      label.classList.remove('highlight-color');
-    });
-    condition_labels[5 - (slider.value)].classList.add('highlight-color');
-    updateChecked('sleep', condition_labels[5 - (slider.value)].textContent);
-    time_labels[5 - (slider.value)].classList.add('highlight-color');
-  }
-  updateLabelColor();
-  slider.addEventListener('input', updateLabelColor);
+const slider = document.querySelector('.slider');
+const condition_labels = document.querySelectorAll('.label p');
+const time_labels = document.querySelectorAll('.label span');
+slider.value = 3;  
+
+slider.addEventListener('input', (event) => {
+  var currentSleep = valueToSleep(slider.value)
+  setSleep(currentSleep)
 });
 
 export function setSleep(currentSleep) {
-  // for taiki, make this set the sleep gauge state based on sleep input 'currentSleep' which is a string e.g. 'Excellent'
+  //change background color of the slider.
+  var sliderValue = sleepToValue(currentSleep);
+  var percentage = (sliderValue - 1) * 25;
+  slider.style.background = `linear-gradient(to right, #FF5C35 0%, #FF5C35 ${percentage}%, #e5dedb ${percentage}%, #e5dedb 100%)`;
+
+  //change selected label color
+  condition_labels.forEach(label => {
+    label.classList.remove('highlight-color');
+  });
+  time_labels.forEach(label => {
+    label.classList.remove('highlight-color');
+  });
+  condition_labels[5 -sliderValue].classList.add('highlight-color');
+  time_labels[5 - sliderValue].classList.add('highlight-color');
+
+  //update checked
+  updateChecked('sleep', sliderValue)
+}
+
+
+function valueToSleep(val) {
+  switch (val) {
+    case '5':
+      return 'Excellent';
+    case '4':
+      return 'Good';
+    case '3':
+      return 'Fair';
+    case '2':
+      return 'Poor';
+    case '1':
+      return 'Worst';
+    default:
+        return 'Fair';
+  }
 }
 
 function sleepToValue(val) {
