@@ -3,7 +3,7 @@ import { getJournals } from "./fileSys.js";
 document.addEventListener('DOMContentLoaded', (event) => { // Event listener for when the DOM content is fully loaded
     document.querySelector('.dropbtn').addEventListener('click', function() { // Add a click event listener to the dropdown button
       arrayToBarGraph(getLinesCodedArray(getMostRecent(7)), 'lines-coded-summary');
-      arrayToBarGraph(getSleepArray(getMostRecent(7)), 'sleep-summary');
+      arrayToBarGraph(getSleepArray(getMostRecent(7)), 'sleep-summary', 5);
       document.querySelector('.dropdown-content').classList.toggle('show'); // Toggle the 'show' class on the dropdown content when the button is clicked
     });
 
