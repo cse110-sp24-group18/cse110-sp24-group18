@@ -1,4 +1,5 @@
 import { returnChecked, writeFile, readFile } from "./fileSys.js";
+import { linesOfCodeListeners } from './lines-of-code-script.js';
 
 export function widgetButtonListeners() {
   const widgetButtons = document.querySelectorAll('.widget-btn');
@@ -36,6 +37,8 @@ export function widgetButtonListeners() {
       }
     });
   });
+
+  linesOfCodeListeners();
 }
 
 export function updateChecked(widget, value) {
@@ -54,6 +57,7 @@ export function updateChecked(widget, value) {
       break;
     case 'linesCoded':
       console.log('lines coded widget set', value);
+      journalEntry['linesCoded'] = value;
       break;
     default:
       console.log('error, defaulting on widget', value);

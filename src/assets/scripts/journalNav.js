@@ -2,6 +2,7 @@ import { clearLocal, forceCreate, listFiles, createFile, getJournals, selectDate
 import { updateText } from './textEditor.js';
 import { setEmotion } from './emotion-widget.js';
 import { setSleep } from './sleep-widget.js';
+import { setLinesWidgetNumber } from './lines-of-code-script.js';
 
 /**
  * Refreshes the file navigation with current journals in storage.
@@ -35,6 +36,13 @@ export function loadButtons() {
         setSleep(listJournals[journal]['sleep']);
       } else {
         setSleep('Fair');
+      }
+      if (listJournals[journal]['linesCoded']) {
+        console.log('HAS LINES CODED ALR')
+        setLinesWidgetNumber(listJournals[journal]['linesCoded']);
+      } else {
+        console.log('SETTING DEFAULT')
+        setLinesWidgetNumber(5);
       }
     }
 

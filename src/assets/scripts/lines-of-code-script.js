@@ -1,3 +1,5 @@
+import { updateChecked } from "./widgets.js";
+
 function adjustFontSize() {
   const numberElement = document.getElementById('number');
   let digits = numberElement.value.toString().length;
@@ -32,6 +34,8 @@ function increment() {
       count++;
   }
   numberElement.value = count;
+
+  updateChecked('linesCoded', count);
   adjustFontSize();
 }
 
@@ -41,6 +45,8 @@ function decrement() {
   count--;
   count = count < 0 ? 0 : count;
   numberElement.value = count;
+
+  updateChecked('linesCoded', count);
   adjustFontSize();
 }
 
@@ -52,48 +58,33 @@ function updateNumber() {
       inputValue = parseInt(inputValue.toString().substring(0, 5), 10);
   }
   numberElement.value = inputValue;
+
+  updateChecked('linesCoded', inputValue);
   adjustFontSize();
 }
-function confirm() {
-    const widgetElement = document.querySelector('.lines-widget-content');
-    widgetElement.innerHTML = `
-        <canvas id="confetti-canvas"></canvas>
-        <div class="confirmation-message">
-            <h3>Great Work</h3>
-            <h3>Today!!</h3>
-            <div class="emoji">😆</div>
-        </div>
-    `;
-    launchConfetti();
+
+export function linesOfCodeListeners() {
+    const decButton = document.getElementById('lines-decrement');
+    const incButton = document.getElementById('lines-increment');
+    const numInput = document.getElementById('number');
+    console.log(decButton, incButton, numInput);
+
+    console.log('VALUE', numInput.value);
+
+    decButton.addEventListener('click', () => {
+        decrement();
+    })
+
+    incButton.addEventListener('click', () => {
+        increment();
+    })
+
+    numInput.addEventListener('input', () => {
+        updateNumber();
+    })
 }
 
-function launchConfetti() {
-    const canvas = document.getElementById('confetti-canvas');
-    const confettiInstance = confetti.create(canvas, {
-        resize: true,
-        useWorker: true
-    });
-    const duration = 2 * 1000;
-    const end = Date.now() + duration;
-    const colors = ['#0000ff', '#1e90ff', '#00bfff'];
-
-    (function frame() {
-        confettiInstance({
-            particleCount: 7,
-            angle: 90,
-            spread: 70,
-            origin: { x: 0.5, y: 0 },
-            colors: colors,
-            shapes: ['circle'],
-            scalar: 1.2,
-            drift: 0,
-            ticks: 200
-        });
-
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
-    }());
+export function setLinesWidgetNumber(value) {
+    const numInput = document.getElementById('number');
+    numInput.value = value;
 }
-
-module.exports = {increment, decrement, updateNumber, adjustFontSize, confirm };
