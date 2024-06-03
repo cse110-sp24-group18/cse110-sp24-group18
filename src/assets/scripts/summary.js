@@ -1,4 +1,4 @@
-import { getJournals } from "./fileSys.js";
+import { getJournals } from './fileSys.js';
 
 export function summaryInit() {
   document.querySelector('.dropbtn').addEventListener('click', function() { // Add a click event listener to the dropdown button
@@ -9,15 +9,15 @@ export function summaryInit() {
   });
 
   window.onclick = function(event) {     // Close the dropdown if the user clicks outside of it
-      if (!event.target.matches('.dropbtn')) {
-          var dropdowns = document.getElementsByClassName("dropdown-content"); // Loop through all dropdown contents and remove the 'show' class if it's present
-          for (var i = 0; i < dropdowns.length; i++) {
-              var openDropdown = dropdowns[i];
-              if (openDropdown.classList.contains('show')) {
-                  openDropdown.classList.remove('show');
-              }
-          }
+    if (!event.target.matches('.dropbtn')) {
+      const dropdowns = document.getElementsByClassName('dropdown-content'); // Loop through all dropdown contents and remove the 'show' class if it's present
+      for (let i = 0; i < dropdowns.length; i++) {
+        const openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
       }
+    }
   };
 
   // Apply the gradient to all bars
@@ -55,7 +55,7 @@ function arrayToBarGraph(arr, widget, max) {
       const barOnGraph = document.createElement('div');
       barOnGraph.className = 'bar';
       if (barVal > max) {
-        barVal = max
+        barVal = max;
       }
       const percentage = barVal / max * 100;
       barOnGraph.style = `height: ${percentage}%;`;
@@ -66,7 +66,7 @@ function arrayToBarGraph(arr, widget, max) {
   }
   if (!max) {
     for (let i = 0; i < noElements; i++) {
-      let barVal = arr[i];
+      const barVal = arr[i];
       const barOnGraph = document.createElement('div');
       barOnGraph.className = 'bar';
       const percentage = barVal / maxVal * 100;
@@ -80,7 +80,7 @@ function arrayToBarGraph(arr, widget, max) {
 
 function getMostRecent(amount) {
   const journals = getJournals();
-  let arrayJournals = [];
+  const arrayJournals = [];
   let count = 0;
   const datesSorted = getSortedDates(journals);
   for (const date in datesSorted) {
@@ -102,7 +102,7 @@ function getSortedDates(dictionary) {
 }
 
 function getLinesCodedArray(dict) {
-  let arr = [];
+  const arr = [];
   for (const journal in dict) {
     let lines = dict[journal]['linesCoded'];
     if (!lines) {
@@ -115,7 +115,7 @@ function getLinesCodedArray(dict) {
 }
 
 function getSleepArray(dict) {
-  let arr = [];
+  const arr = [];
   for (const journal in dict) {
     let lines = sleepToValue(dict[journal]['sleep']);
     if (!lines) {
@@ -145,7 +145,7 @@ function sleepToValue(val) {
 }
 
 function journalsToEmotions(arrDicts) {
-  let arrEmotions = [];
+  const arrEmotions = [];
   for (let i = 0; i < arrDicts.length; i++) {
     arrEmotions.push([arrDicts[i]['date'], arrDicts[i]['mood']]);
   }

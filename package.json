@@ -9,7 +9,6 @@
     "docs": "git fetch; git checkout documentation; jsdoc src/ -d jsdocsgenerated; git config --local user.email 'action@github.com'; git config --local user.name 'Github Action'; git add -A; git commit -m 'Generated JSDocs'; git push",
     "serve": "echo 'TODO: Add your serve command here",
     "start": "npm run serve",
-    "build": "mkdir -p build && cp src/*.js build # TODO: Replace with your build command",
     "preversion": "git fetch --tags && npm run lint:check && npm test",
     "version": "npm run build",
     "postversion": "git push --follow-tags"

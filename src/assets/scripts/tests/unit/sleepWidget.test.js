@@ -1,4 +1,4 @@
-import { sleepToValue, computePercentage, setSleep } from '../../sleep-widget.js'
+import { sleepToValue, computePercentage } from '../../sleep-widget.js';
 
 test('Checks correct sleep returned', () => {
   expect(sleepToValue('Excellent')).toStrictEqual(5);

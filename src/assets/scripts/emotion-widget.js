@@ -1,4 +1,4 @@
-import { updateChecked } from "./widgets.js";
+import { updateChecked } from './widgets.js';
 
 export function emotionWidgetListeners() {
   const gauge = document.getElementById('gauge'); // get the gauge element
@@ -87,10 +87,9 @@ export function emotionWidgetListeners() {
       }
     } 
   });
+
+  return { currspeed, emotion };
 }
-
-
-
 
 
 export function setEmotion (currentEmotion) {

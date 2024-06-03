@@ -38,10 +38,10 @@ export function loadButtons() {
         setSleep('Fair');
       }
       if (listJournals[journal]['linesCoded']) {
-        console.log('HAS LINES CODED ALR')
+        console.log('HAS LINES CODED ALR');
         setLinesWidgetNumber(listJournals[journal]['linesCoded']);
       } else {
-        console.log('SETTING DEFAULT')
+        console.log('SETTING DEFAULT');
         setLinesWidgetNumber(5);
       }
     }
@@ -122,7 +122,7 @@ export function buttonListeners() {
   journalEntries.forEach(journalEntryDiv => { // go through all journal buttons
     const journalButton = journalEntryDiv.querySelector('button');
     const id = journalButton.id; // take the current date of journal
-    journalButton.addEventListener('click', function(event) {
+    journalButton.addEventListener('click', function() {
       changeText(id); // change the text of text field based on data in queried data
       selectDate(id); // keep current journal selected
       loadButtons();
@@ -130,7 +130,7 @@ export function buttonListeners() {
     });
 
     const deleteButton = journalEntryDiv.querySelector('delButton').querySelector('span');
-    deleteButton.addEventListener('click', function(event) {
+    deleteButton.addEventListener('click', function() {
       const journals = getJournals();
       const deleteid = deleteButton.parentElement.parentElement.parentElement.id;
       deleteFile(deleteid);
@@ -193,23 +193,23 @@ export function filterButtons() {
   sortByDateCreated(1); // call sort with param 1 (descending)
   buttonListeners(); // re-attatch event listeners
 
-  latestButton.addEventListener('click', function(event) {
+  latestButton.addEventListener('click', function() {
     sortByDateCreated(1); // call sort with param 1 (descending)
     buttonListeners(); // re-attatch event listeners
   });
 
-  earliestButton.addEventListener('click', function(event) {
+  earliestButton.addEventListener('click', function() {
     sortByDateCreated(-1); // call sort with param not 1 (ascending)
     buttonListeners(); // re-attatch event listeners
   });
 
-  yearSelect.addEventListener('change', function(event) {
+  yearSelect.addEventListener('change', function() {
     filterDate(yearSelect.value, letterMonthToNumber(monthSelect.value));
     loadButtons();
     buttonListeners();
   });
 
-  monthSelect.addEventListener('change', function(event) {
+  monthSelect.addEventListener('change', function() {
     filterDate(yearSelect.value, letterMonthToNumber(monthSelect.value));
     loadButtons();
     buttonListeners();
@@ -282,6 +282,7 @@ export function generateExample() {
 
   for (const journal in journals) {
     count++;
+    console.log(journals[journal]);
   }
 
   if (count !== 0) {

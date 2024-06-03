@@ -1,7 +1,7 @@
-import { returnChecked, writeFile, readFile } from "./fileSys.js";
+import { returnChecked, writeFile, readFile } from './fileSys.js';
 import { linesOfCodeListeners } from './lines-of-code-script.js';
-import { emotionWidgetListeners } from "./emotion-widget.js";
-import { summaryInit } from "./summary.js";
+import { emotionWidgetListeners } from './emotion-widget.js';
+import { summaryInit } from './summary.js';
 
 export function widgetButtonListeners() {
   const widgetButtons = document.querySelectorAll('.widget-btn');
@@ -17,7 +17,7 @@ export function widgetButtonListeners() {
 
       if (targetWidget) {
         // If widget is closed, open
-        if (targetWidget.style.display == 'none') {
+        if (targetWidget.style.display === 'none') {
           // close all the widgets
           widgetButtons.forEach((i) => {
             const widgetTemp = document.getElementById(i.dataset.target);
@@ -46,10 +46,10 @@ export function widgetButtonListeners() {
 }
 
 export function updateChecked(widget, value, test = false) {
-  if(test) return;
+  if (test) return;
   const journalDate = returnChecked();
   console.log(journalDate);
-  let journalEntry = readFile(journalDate);
+  const journalEntry = readFile(journalDate);
 
   switch (widget) {
     case 'emotion':
