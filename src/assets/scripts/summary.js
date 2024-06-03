@@ -147,8 +147,9 @@ function sleepToValue(val) {
 function journalsToEmotions(arrDicts) {
   let arrEmotions = [];
   for (let i = 0; i < arrDicts.length; i++) {
-    arrEmotions.push(arrDicts[i]['mood']);
+    arrEmotions.push([arrDicts[i]['date'], arrDicts[i]['mood']]);
   }
+  console.log('EMOTIONS:', arrEmotions);
   return arrEmotions;
 }
 
@@ -162,17 +163,32 @@ function setEmotionImages(arr) {
   const moodDiv = document.createElement('div');
   moodDiv.className = 'week';
 
+  const emotionDiv = document.getElementById('sleep-week');
+  const sleepDiv = document.getElementById('lines-week');
+
+  emotionDiv.innerHTML = '';
+  sleepDiv.innerHTML = '';
+
   for (let i = 0; i < arr.length; i++) {
     const moodJournal = document.createElement('div');
     moodJournal.className = 'day';
     const journalDay = document.createElement('p');
-    journalDay.textContent = 'test';
+    const linesDay = document.createElement('p');
+    const sleepDay = document.createElement('p');
+
+    journalDay.textContent = arr[i][0].slice(-5);
+    linesDay.textContent = arr[i][0].slice(-5);
+    sleepDay.textContent = arr[i][0].slice(-5);
+
     const journalIcon = document.createElement('img');
-    journalIcon.src = moodToSrc(arr[i]);
-    journalIcon.alt = arr[i];
+    journalIcon.src = moodToSrc(arr[i][1]);
+    journalIcon.alt = arr[i][1];
     journalIcon.className = 'mood-icon';
 
     moodJournal.appendChild(journalDay);
+    emotionDiv.appendChild(linesDay);
+    sleepDiv.appendChild(sleepDay);
+
     moodJournal.appendChild(journalIcon);
 
     moodDiv.appendChild(moodJournal);
