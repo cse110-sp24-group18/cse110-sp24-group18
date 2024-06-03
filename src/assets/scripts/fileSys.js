@@ -13,7 +13,7 @@ export function createFile(data) {
     'lastMod': dateToday, // date of modification
     'title': defaultTitle, // title for journal
     'filter': true, // whether a journal passes filter
-    'mood': 'neutral', // mood on the day
+    'mood': 'MEH', // mood on the day
     'currentlySelected': false // current selection
   };
 
@@ -42,7 +42,7 @@ export function forceCreate(data, date, title, mood) {
   }
 
   if (!mood) {
-    mood = 'neutral';
+    mood = 'MEH';
   }
 
   const templateJson = {
@@ -259,4 +259,14 @@ export function getCurrentYearAndMonth() {
   const currentYear = currentDate.getFullYear(); // get year of today
   const currentMonth = currentDate.getMonth() + 1; // get month of today
   return { year: currentYear, month: currentMonth }; // return dictionary with year and month
+}
+
+export function returnChecked() {
+  const journals = getJournals();
+  console.log(journals);
+  for (const journal in journals) {
+    if (journals[journal]['currentlySelected']) {
+      return journal;
+    }
+  }
 }

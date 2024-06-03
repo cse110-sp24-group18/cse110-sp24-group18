@@ -1,5 +1,8 @@
 import { clearLocal, forceCreate, listFiles, createFile, getJournals, selectDate, deleteFile, filterDate, writeFile } from './fileSys.js';
 import { updateText } from './textEditor.js';
+import { setEmotion } from './emotion-widget.js';
+import { setSleep } from './sleep-widget.js';
+import { setLinesWidgetNumber } from './lines-of-code-script.js';
 
 /**
  * Refreshes the file navigation with current journals in storage.
@@ -28,6 +31,19 @@ export function loadButtons() {
     button.setAttribute('id', id);
     if (listJournals[journal]['currentlySelected']) {
       button.setAttribute('class', 'currentlySelected');
+      setEmotion(listJournals[journal]['mood']);
+      if (listJournals[journal]['sleep']) {
+        setSleep(listJournals[journal]['sleep']);
+      } else {
+        setSleep('Fair');
+      }
+      if (listJournals[journal]['linesCoded']) {
+        console.log('HAS LINES CODED ALR')
+        setLinesWidgetNumber(listJournals[journal]['linesCoded']);
+      } else {
+        console.log('SETTING DEFAULT')
+        setLinesWidgetNumber(5);
+      }
     }
 
     const text = document.createElement('text');
@@ -260,15 +276,27 @@ export function sortByLastModified(val) {
  * Generates an example.
  */
 export function generateExample() {
+  const journals = getJournals();
+
+  let count = 0;
+
+  for (const journal in journals) {
+    count++;
+  }
+
+  if (count !== 0) {
+    return;
+  }
+
   clearLocal();
-  forceCreate('What is this? Where am I?', '2024-04-14', 'Who are you?', 'angry');
-  forceCreate('I hope this works!', '2024-05-18', 'yay!', 'excited');
-  forceCreate('This is a test!', '2024-04-23', 'This is not a drill', 'happy');
-  forceCreate('Hello there', '2024-05-15', 'Hi', 'sad');
-  forceCreate('Graphic design is my passion', '2024-04-19', 'test', 'excited');
-  forceCreate('Flexpidition', '2024-05-10', '', 'angry');
-  forceCreate('trettggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg', '2024-05-09', 'long word', 'happy');
-  forceCreate('this is a test this is a test this is a test this is a test this is a test', '2024-05-08', 'long sentence', 'neutral');
+  forceCreate('What is this? Where am I?', '2024-04-14', 'Who are you?');
+  forceCreate('I hope this works!', '2024-05-18', 'yay!');
+  forceCreate('This is a test!', '2024-04-23', 'This is not a drill');
+  forceCreate('Hello there', '2024-05-15', 'Hi');
+  forceCreate('Graphic design is my passion', '2024-04-19', 'test');
+  forceCreate('Flexpidition', '2024-05-10', '');
+  forceCreate('trettggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg', '2024-05-09', 'long word');
+  forceCreate('this is a test this is a test this is a test this is a test this is a test', '2024-05-08', 'long sentence');
   loadButtons();
   buttonListeners();
 }

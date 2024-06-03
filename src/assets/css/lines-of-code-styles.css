@@ -17,15 +17,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 2rem; /* Add padding for better spacing */
 }
-
 
 /* Style for the controls container within the widget */
 .lines-widget-content .controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 2rem 0; /* Use rem units for margin */
 }
 
 /* Style for buttons within the widget */
@@ -34,11 +34,11 @@
     color: #195B8B;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: 2.5rem; /* Use rem units */
+    height: 2.5rem; /* Use rem units */
+    font-size: 1.25rem; /* Use rem units */
     cursor: pointer;
-    margin: 0 10px;
+    margin: 0 1rem; /* Use rem units */
     transition: background-color 0.3s;
 }
 
@@ -54,13 +54,13 @@
 
 /* Style for the number input field within the widget */
 .lines-widget-content .number {
-    font-size: 80px;
-    margin: 0 20px;
-    width: 60px; /* Decreased width */
+    font-size: 5rem; /* Use rem units for font size */
+    margin: 0 1rem; /* Use rem units */
+    width: 8rem; /* Use rem units */
     text-align: center;
-    height: 80px;
+    height: 6rem; /* Use rem units */
     border: none;
-    border-radius: 50%;
+    border-radius: 50%; /* Ensure it remains circular */
     color: #FFF;
     background-color: #195B8B;
     
@@ -78,33 +78,28 @@
 /* Style for the confirm button within the widget */
 .lines-widget-content .confirm-btn {
     background-color: #f8f4f3;
-    color: white;
+    color: #195B8B;
     border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
+    border-radius: 10px; /* Slightly rounded corners */
+    width: 200px; /* Width of the button */
+    height: 50px; /* Height of the button */
+    font-size: 20px;
     cursor: pointer;
-    width: 100%;
+    margin: 20px auto; /* Center the button */
+    display: block;
     transition: background-color 0.3s;
+    text-align: center;
+    line-height: 50px; /* Vertically center the text */
 }
 
 /* Style for confirm button hover effect within the widget */
 .lines-widget-content .confirm-btn:hover {
-    background-color: #f8f4f3; /* Darker blue on hover */
+    background-color: #1CB6F0; /* Darker blue on hover */
 }
 
 /* Style for confirm button focus effect within the widget */
 .lines-widget-content .confirm-btn:focus {
     outline: none;
-}
-
-/* Style for the confirmation message container */
-.confirmation-message {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
 }
 
 /* Style for h3 elements within the confirmation message */
