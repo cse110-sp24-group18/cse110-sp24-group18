@@ -330,3 +330,97 @@ time.icon span
 .nav-delete-btn:hover {
     color: #575757;
 }
+
+/* Burger Menu */
+.p-menu1 {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 120;
+}
+
+/* Hamburger */
+.hamburger1 {
+    height: 45px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    cursor: pointer;
+}
+
+.hamburger1 div {
+    background-color: rgb(61, 61, 61);
+    width: 30px;
+    height: 3px;
+    margin-top: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+#toggle1 {
+    display: none;
+}
+
+#toggle1:checked + .hamburger1 .top {
+    transform: rotate(-45deg);
+    margin-top: 10px;
+}
+
+#toggle1:checked + .hamburger1 .meat {
+    transform: rotate(45deg);
+    margin-top: -5px;
+}
+
+#toggle1:checked + .hamburger1 .bottom {
+    transform: scale(0);
+}
+
+#toggle1:checked ~ .burger-menu-container {
+    display: flex;
+}
+
+/* Menu */
+.burger-menu-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    list-style: none;
+    background-color: #02173F;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 150px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 110;
+}
+
+.burger-menu-container .widget-btn {
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.burger-menu-container .widget-btn:hover {
+    animation: vibrate 0.3s linear infinite both;
+}
+
+@keyframes vibrate {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20%, 60% {
+        transform: translateX(-2px);
+    }
+    40%, 80% {
+        transform: translateX(2px);
+    }
+}
+
+.widget {
+    display: none;
+    position: absolute;
+    right: -30em;
+    top: 20px;
+    transition: right 0.5s ease;
+}
