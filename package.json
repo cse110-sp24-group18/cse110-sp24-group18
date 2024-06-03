@@ -4,8 +4,8 @@
   "scripts": {
     "lint:check": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test:unit": "npx jest assets/scripts/tests/unit --env=jsdom",
-    "test:e2e": "npx jest assets/scripts/tests/e2e",
+    "test:unit": "npx jest assets/scripts/tests/unit --env=jsdom -coverage",
+    "test:e2e": "npx jest assets/scripts/tests/e2e -coverage",
     "docs": "git fetch; git checkout documentation; jsdoc src/ -d jsdocsgenerated; git config --local user.email 'action@github.com'; git config --local user.name 'Github Action'; git add -A; git commit -m 'Generated JSDocs'; git push",
     "serve": "echo 'TODO: Add your serve command here",
     "start": "npm run serve",
@@ -24,6 +24,7 @@
     "eslint": "^7.32.0",
     "jest-environment-jsdom": "^29.7.0",
     "jsdoc": "^4.0.3",
+    "nyc": "^15.1.0",
     "puppeteer": "^22.8.0"
   },
   "engines": {
