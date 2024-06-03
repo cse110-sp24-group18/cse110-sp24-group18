@@ -2,6 +2,12 @@ import { updateChecked } from "./widgets.js";
 
 export function emotionWidgetListeners() {
   const gauge = document.getElementById('gauge'); // get the gauge element
+
+  if (!gauge) {
+    console.error('Gauge element not found');
+    return;
+  }
+
   // const gaugeValue = document.getElementById('score'); // get the score element (testing)
   let currSpeed = 150;  // set currSpeed to 150 (centered by default)
   let emotion = 'MEH'; // set emotion to 'MEH' (MEH by default)
@@ -12,6 +18,11 @@ export function emotionWidgetListeners() {
     const faceImg = document.getElementById('face');  // get the face image element
     const emotionText = document.getElementById('emotionText'); // get the emotion text element
     const needle = document.getElementById('needle'); // get the gauge needle element
+
+    if (!faceImg || !emotionText || !needle) {
+      console.error('Required DOM elements not found');
+      return;
+    }
 
     // Grab variables to track mouse location
     const rect = gauge.getBoundingClientRect();
@@ -131,5 +142,12 @@ export function setEmotion (currentEmotion) {
  * @returns String representing selected emotion
  */
 export function getEmotion() {
+  let emotion = '';
+  try {
+    const emotionText = document.getElementById('emotionText');
+    emotion = emotionText.textContent.toUpperCase();
+  } catch {
+    emotion = 'MEH';
+  }
   return emotion;
 }

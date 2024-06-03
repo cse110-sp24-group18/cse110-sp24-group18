@@ -1,4 +1,4 @@
-import { getEmotion } from '../../../emotion-widget/emotion-widget';
+import { getEmotion } from '../../emotion-widget';
 
 // Describe the test suite
 describe('getEmotion', () => {
