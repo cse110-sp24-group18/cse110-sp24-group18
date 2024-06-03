@@ -139,7 +139,7 @@ export function getEmotion() {
     const emotionText = document.getElementById('emotionText');
     emotion = emotionText.textContent.toUpperCase();
   } catch {
-    console.log('defaulting emotion to: ', emotion)
+    console.log('defaulting emotion to: ', emotion);
   }
   console.log('current emotion is: ', emotion);
   return emotion;
