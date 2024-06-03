@@ -9,11 +9,10 @@ body {
 
 .dropbtn { /* Styling for the dropdown button */
   position: relative;
-  margin-left: 50vb;
   background-color: #f9f9f9;/* Light grey background */
   color: black;  /* Black text */
-  padding: 10px 20px; /* Padding for button */
-  font-size: 25px; /* Font size of the button text */
+  padding: 0.5em 1em; /* Padding for button */
+  font-size: 2em; /* Font size of the button text */
   border: none; /* No border */
   cursor: pointer; /* Pointer cursor on hover */
   border-radius: 16px; /* Rounded corners for the button */
@@ -32,8 +31,12 @@ body {
   border-radius: 16px; /* Rounded corners for the dropdown content */
   border: none; /* No border */
   opacity: 0;  /* Invisible by default */
-  transform: translateY(-20px); /* Slightly off position */
+
   transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for appearance */
+  transform: translate(50%);
+  justify-content: center;
+  align-items: center;
+  right: 20%;
 }
 
 .dropdown-content.show { /* Visible dropdown content styling */
