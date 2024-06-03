@@ -151,10 +151,12 @@
 }
 
 #widget-buttons {
+  display: flex;
+  flex-direction: column;
   padding-top: 10.7em;
   padding-right: 8em;
   margin-left: -7em;
-  justify-content: space-between;
+  gap: 5.8em;
 }
 
 .widget-btn { 
@@ -162,8 +164,8 @@
   position: relative;
   background-color: #1A76AE;
   color: black;
-  width: 8.5em;
-  height: 8.5em;
+  width: 10em;
+  height: 10em;
   display: flex;
   justify-content: center;
   align-items: center;
