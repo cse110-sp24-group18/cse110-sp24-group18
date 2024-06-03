@@ -3,7 +3,7 @@ import { updateChecked } from "./widgets.js";
 document.addEventListener('DOMContentLoaded', function() {
   const slider = document.querySelector('.slider');
   slider.oninput = function() {
-    const percentage = (this.value - this.min) / (this.max - this.min) * 100;
+    const percentage = computePercentage(this.value);
     this.style.background = `linear-gradient(to right, #FF5C35 0%, #FF5C35 ${percentage}%, #e5dedb ${percentage}%, #e5dedb 100%)`;
   };
   slider.value = 3;  
@@ -37,7 +37,7 @@ export function setSleep(currentSleep) {
   slider.value = sliderValue;  
 
   //change background color of the slider.
-  var percentage = (sliderValue - 1) * 25;
+  var percentage = computePercentage(sliderValue);
   slider.style.background = `linear-gradient(to right, #FF5C35 0%, #FF5C35 ${percentage}%, #e5dedb ${percentage}%, #e5dedb 100%)`;
 
   //change the selected label color
@@ -51,6 +51,10 @@ export function setSleep(currentSleep) {
   });
   condition_labels[5 -sliderValue].classList.add('highlight-color');
   time_labels[5 - sliderValue].classList.add('highlight-color');
+}
+
+export function computePercentage(sliderValue){
+  return (sliderValue - 1) * 25;
 }
 
 export function sleepToValue(val) {
