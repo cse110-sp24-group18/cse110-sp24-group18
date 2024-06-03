@@ -13,7 +13,21 @@ describe('Lines of Code Widget', () => {
   beforeEach(() => {
     // Read the actual index.html file
     const html = fs.readFileSync(path.resolve(__dirname, '../../../../index.html'), 'utf8');
-    document.documentElement.innerHTML = html.toString();
+
+    // Create a new DOMParser
+    const parser = new DOMParser();
+
+    // Parse the HTML content into a temporary document
+    const tempDocument = parser.parseFromString(html, 'text/html');
+
+    // Safely insert the parsed content into the document
+    while (document.documentElement.firstChild) {
+      document.documentElement.removeChild(document.documentElement.firstChild);
+    }
+
+    Array.from(tempDocument.documentElement.childNodes).forEach((node) => {
+      document.documentElement.appendChild(document.adoptNode(node));
+    });
 
     // Ensure the elements are found
     if (!document.getElementById('number') || !document.querySelector('.lines-widget-content')) {
