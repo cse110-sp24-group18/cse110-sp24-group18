@@ -23,3 +23,26 @@ test('Checks 3　gauge compute percentage returned', () => {
 test('Checks Max　gauge compute percentage returned', () => {
   expect(computePercentage(5)).toStrictEqual(100);
 });
+
+const fs = require('fs');
+const path = require('path');
+const { getByText, fireEvent } = require('@testing-library/dom');
+require('@testing-library/jest-dom');
+
+describe('Lines of Code Widget', () => {
+    let container;
+    beforeEach(() => {
+        const html = fs.readFileSync(path.resolve(__dirname, '../../../../index.html'), 'utf8');
+        document.documentElement.innerHTML = html.toString();
+        container = document.body;
+        if (!document.getElementById('number') || !document.querySelector('.slider-container')) {
+            throw new Error('Elements not found in the DOM');
+        }
+    });
+
+    test('check slider value', () => {
+        const slider = document.querySelector('.slider');
+        setSleep('Good')
+        expect(slider.value).toStrictEqual("4");
+    });
+});
