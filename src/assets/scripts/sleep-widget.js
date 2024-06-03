@@ -53,7 +53,7 @@ export function setSleep(currentSleep) {
   time_labels[5 - sliderValue].classList.add('highlight-color');
 }
 
-function sleepToValue(val) {
+export function sleepToValue(val) {
   switch (val) {
     case 'Excellent':
       return 5;

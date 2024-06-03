@@ -1,5 +1,6 @@
 import { returnChecked, writeFile, readFile } from "./fileSys.js";
 import { linesOfCodeListeners } from './lines-of-code-script.js';
+import { emotionWidgetListeners } from "./emotion-widget.js";
 
 export function widgetButtonListeners() {
   const widgetButtons = document.querySelectorAll('.widget-btn');
@@ -39,6 +40,7 @@ export function widgetButtonListeners() {
   });
 
   linesOfCodeListeners();
+  emotionWidgetListeners();
 }
 
 export function updateChecked(widget, value, test = false) {
