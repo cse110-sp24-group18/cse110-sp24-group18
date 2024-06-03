@@ -41,7 +41,8 @@ export function widgetButtonListeners() {
   linesOfCodeListeners();
 }
 
-export function updateChecked(widget, value) {
+export function updateChecked(widget, value, test = false) {
+  if(test) return;
   const journalDate = returnChecked();
   console.log(journalDate);
   let journalEntry = readFile(journalDate);

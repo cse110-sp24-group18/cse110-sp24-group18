@@ -7,7 +7,7 @@ const path = require('path');
 const { getByText, fireEvent } = require('@testing-library/dom');
 require('@testing-library/jest-dom');
 
-const { increment, decrement, updateNumber, adjustFontSize } = require('../../../lines-of-code-widget/lines-of-code-script');
+const { increment, decrement, updateNumber, adjustFontSize } = require('../../lines-of-code-script');
 
 describe('Lines of Code Widget', () => {
     let container;
@@ -27,70 +27,70 @@ describe('Lines of Code Widget', () => {
     test('increments the count', () => {
         const numberElement = document.getElementById('number');
         numberElement.value = 5;
-        increment();
+        increment(true);
         expect(numberElement.value).toBe("6");
     });
 
     test('decrements the count', () => {
         const numberElement = document.getElementById('number');
         numberElement.value = 5;
-        decrement();
+        decrement(true);
         expect(numberElement.value).toBe("4");
     });
 
     test('does not increment past 99999', () => {
         const numberElement = document.getElementById('number');
         numberElement.value = 99999;
-        increment();
+        increment(true);
         expect(numberElement.value).toBe("99999");
     });
 
     test('does not decrement below 0', () => {
         const numberElement = document.getElementById('number');
         numberElement.value = 0;
-        decrement();
+        decrement(true);
         expect(numberElement.value).toBe("0");
     });
 
     test('updates the number and does not allow negative values', () => {
         const numberElement = document.getElementById('number');
         numberElement.value = -5;
-        updateNumber();
+        updateNumber(true);
         expect(numberElement.value).toBe("0");
     });
 
     test('updates the number and does not allow more than 5 digits', () => {
         const numberElement = document.getElementById('number');
         numberElement.value = 123456;
-        updateNumber();
+        updateNumber(true);
         expect(numberElement.value).toBe("12345");
     });
 
     test('adjusts font size based on number of digits', () => {
         const numberElement = document.getElementById('number');
         numberElement.value = 5;
-        updateNumber();
+        updateNumber(true);
         adjustFontSize();
-        expect(numberElement.style.fontSize).toBe('80px');
+        expect(numberElement.style.fontSize).toBe('5rem');
 
         numberElement.value = 50;
-        updateNumber();
+        updateNumber(true);
         adjustFontSize();
-        expect(numberElement.style.fontSize).toBe('70px');
+        expect(numberElement.style.fontSize).toBe('4.5rem');
 
         numberElement.value = 500;
-        updateNumber();
+        updateNumber(true);
         adjustFontSize();
-        expect(numberElement.style.fontSize).toBe('60px');
+        expect(numberElement.style.fontSize).toBe('4rem');
 
         numberElement.value = 5000;
-        updateNumber();
+        updateNumber(true);
         adjustFontSize();
-        expect(numberElement.style.fontSize).toBe('50px');
+        expect(numberElement.style.fontSize).toBe('3rem');
 
         numberElement.value = 50000;
-        updateNumber();
+        updateNumber(true);
         adjustFontSize();
-        expect(numberElement.style.fontSize).toBe('40px');
+        expect(numberElement.style.fontSize).toBe('2.5rem');
     });
 });

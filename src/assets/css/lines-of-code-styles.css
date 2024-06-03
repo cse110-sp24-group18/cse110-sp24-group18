@@ -17,15 +17,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 2rem; /* Add padding for better spacing */
 }
-
 
 /* Style for the controls container within the widget */
 .lines-widget-content .controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 2rem 0; /* Use rem units for margin */
 }
 
 /* Style for buttons within the widget */
@@ -34,11 +34,11 @@
     color: #195B8B;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: 2.5rem; /* Use rem units */
+    height: 2.5rem; /* Use rem units */
+    font-size: 1.25rem; /* Use rem units */
     cursor: pointer;
-    margin: 0 10px;
+    margin: 0 1rem; /* Use rem units */
     transition: background-color 0.3s;
 }
 
@@ -54,11 +54,11 @@
 
 /* Style for the number input field within the widget */
 .lines-widget-content .number {
-    font-size: 80px; /* Default base font size */
-    margin: 0 20px;
-    width: 140px; /* Increase width to accommodate larger numbers */
+    font-size: 5rem; /* Use rem units for font size */
+    margin: 0 1rem; /* Use rem units */
+    width: 8rem; /* Use rem units */
     text-align: center;
-    height: 100px; /* Increase height for a more proportional look */
+    height: 6rem; /* Use rem units */
     border: none;
     border-radius: 50%; /* Ensure it remains circular */
     color: #FFF;

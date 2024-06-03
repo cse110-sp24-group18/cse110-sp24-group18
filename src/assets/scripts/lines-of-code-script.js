@@ -6,28 +6,28 @@ function adjustFontSize() {
   let fontSize;
 
   switch (digits) {
-      case 1:
-          fontSize = 80;
-          break;
-      case 2:
-          fontSize = 70;
-          break;
-      case 3:
-          fontSize = 60;
-          break;
-      case 4:
-          fontSize = 50;
-          break;
-      default:
-          fontSize = 40;
-          break;
-  }
-
-  fontSize = fontSize < 20 ? 20 : fontSize;
-  numberElement.style.fontSize = fontSize + 'px';
+    case 1:
+        fontSize = 5; // 5 rem
+        break;
+    case 2:
+        fontSize = 4.5; // 4.5 rem
+        break;
+    case 3:
+        fontSize = 4; // 4 rem
+        break;
+    case 4:
+        fontSize = 3; // 3 rem
+        break;
+    default:
+        fontSize = 2.5; // 2.5 rem
+        break;
 }
 
-function increment() {
+fontSize = fontSize < 1.25 ? 1.25 : fontSize; // Minimum font size of 1.25 rem
+numberElement.style.fontSize = fontSize + 'rem';
+}
+
+function increment(test = false) {
   const numberElement = document.getElementById('number');
   let count = parseInt(numberElement.value, 10);
   if (count < 99999) {
@@ -35,22 +35,22 @@ function increment() {
   }
   numberElement.value = count;
 
-  updateChecked('linesCoded', count);
+  updateChecked('linesCoded', count, test);
   adjustFontSize();
 }
 
-function decrement() {
+function decrement(test = false) {
   const numberElement = document.getElementById('number');
   let count = parseInt(numberElement.value, 10);
   count--;
   count = count < 0 ? 0 : count;
   numberElement.value = count;
 
-  updateChecked('linesCoded', count);
+  updateChecked('linesCoded', count, test);
   adjustFontSize();
 }
 
-function updateNumber() {
+function updateNumber(test = false) {
   const numberElement = document.getElementById('number');
   let inputValue = Math.floor(parseFloat(numberElement.value)) || 0;
   inputValue = inputValue < 0 ? 0 : inputValue;
@@ -59,7 +59,7 @@ function updateNumber() {
   }
   numberElement.value = inputValue;
 
-  updateChecked('linesCoded', inputValue);
+  updateChecked('linesCoded', inputValue, test);
   adjustFontSize();
 }
 
@@ -82,9 +82,12 @@ export function linesOfCodeListeners() {
     numInput.addEventListener('input', () => {
         updateNumber();
     })
+
 }
 
 export function setLinesWidgetNumber(value) {
     const numInput = document.getElementById('number');
     numInput.value = value;
 }
+
+export { increment, decrement, updateNumber, adjustFontSize };// exporting to tests file
