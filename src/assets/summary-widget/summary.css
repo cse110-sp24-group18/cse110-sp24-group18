@@ -2,6 +2,9 @@ body {
   font-family: Arial, sans-serif; /* General body styling with a sans-serif font */
 }
 
+h3, p {
+  color: #f1f1f1;
+}
 .dropdown {
   position: relative; /* General body styling with a sans-serif font */
   display: inline-block;
@@ -16,11 +19,13 @@ body {
   border: none; /* No border */
   cursor: pointer; /* Pointer cursor on hover */
   border-radius: 16px; /* Rounded corners for the button */
+  border: solid #195B8B;
 }
 
 .dropbtn:hover, .dropbtn:focus { /* Hover and focus effects for the dropdown button */
   background-color: #1CB6F0; /* Slightly darker grey background on hover/focus */
   color: #f9f9f9;
+  border: solid #195B8B;
 }
 
 .dropdown-content { /* Hidden dropdown content styling */
@@ -46,7 +51,7 @@ body {
 }
 
 .box { /* Styling for a generic box element */
-  background-color: #f1f1f1; /* Light grey background */
+  background-color: #195B8B; /* Light grey background */
   padding: 20px; /* Padding inside the box */
   margin: 5px 0; /* Margin between boxes */
   text-align: center; /* Centered text */
@@ -83,7 +88,7 @@ body {
   border: 1px solid #ccc;  /* Light grey border */
   padding: 0px; /* No padding */
   border-radius: 16px; /* Rounded corners for the bar graph container */
-  background-color: #fff; /* Rounded corners for the bar graph container */
+  background-color: #f1f1f1; /* Rounded corners for the bar graph container */
   align-self: flex-end; /* White background */
   border: none; /* No border */
 }
