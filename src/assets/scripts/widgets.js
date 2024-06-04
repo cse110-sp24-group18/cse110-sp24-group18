@@ -11,7 +11,7 @@ export function widgetButtonListeners() {
 
       if (targetWidget) {
         // If widget is closed, open
-        if (targetWidget.style.display === 'none') {
+        if (targetWidget.style.display == 'none') {
           // close all the widgets
           widgetButtons.forEach((i) => {
             const widgetTemp = document.getElementById(i.dataset.target);
@@ -57,4 +57,34 @@ export function widgetButtonListeners() {
       }
     });
   }
+  linesOfCodeListeners();
+  emotionWidgetListeners();
+  summaryInit();
+}
+
+export function updateChecked(widget, value, test = false) {
+  if (test) return;
+  const journalDate = returnChecked();
+  console.log(journalDate);
+  const journalEntry = readFile(journalDate);
+
+  switch (widget) {
+    case 'emotion':
+      console.log('emotion widget set', value);
+      journalEntry['mood'] = value;
+      break;
+    case 'sleep':
+      console.log('sleep widget set', value);
+      journalEntry['sleep'] = value;
+      break;
+    case 'linesCoded':
+      console.log('lines coded widget set', value);
+      journalEntry['linesCoded'] = value;
+      break;
+    default:
+      console.log('error, defaulting on widget', value);
+      break;
+  }
+
+  writeFile(journalEntry, journalDate);
 }
