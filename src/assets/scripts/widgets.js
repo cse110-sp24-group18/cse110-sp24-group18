@@ -1,3 +1,8 @@
+import { returnChecked, writeFile, readFile } from './fileSys.js';
+import { linesOfCodeListeners } from './lines-of-code-script.js';
+import { emotionWidgetListeners } from './emotion-widget.js';
+import { summaryInit } from './summary.js';
+
 export function widgetButtonListeners() {
   const widgetButtons = document.querySelectorAll('.widget-btn');
 
@@ -8,15 +13,16 @@ export function widgetButtonListeners() {
 
     btn.addEventListener('click', () => {
       const targetWidget = document.getElementById(btn.dataset.target);
+      console.log(targetWidget.id);
 
       if (targetWidget) {
         // If widget is closed, open
-        if (targetWidget.style.display == 'none') {
+        if (targetWidget.style.display === 'none') {
           // close all the widgets
           widgetButtons.forEach((i) => {
             const widgetTemp = document.getElementById(i.dataset.target);
             widgetTemp.style.display = 'none';
-            widgetTemp.style.right = '-30em';
+            widgetTemp.style.right = '-17em';
             i.style.filter = 'brightness(1)';
           });
           targetWidget.style.display = 'flex';
@@ -24,9 +30,10 @@ export function widgetButtonListeners() {
           btn.style.filter = 'brightness(0.9)';
         } else {
           targetWidget.style.display = 'none';
-          targetWidget.style.right = '-30em';
+          targetWidget.style.right = '-17em';
           btn.style.filter = 'brightness(1)';
         }
+
       }
     });
   });
