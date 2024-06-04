@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 export function setSleep(currentSleep) {
-  // for taiki, make this set the sleep gauge state based on sleep input 'currentSleep' which is a string e.g. 'Excellent'
   
   //set slider position
   const slider = document.querySelector('.slider');
@@ -57,6 +56,11 @@ export function computePercentage(sliderValue) {
   return (sliderValue - 1) * 25;
 }
 
+/**
+ * Converts sleep string to a value between 1 and 5
+ * @param {String} val 
+ * @returns associated value between 1 and 5
+ */
 export function sleepToValue(val) {
   switch (val) {
     case 'Excellent':
