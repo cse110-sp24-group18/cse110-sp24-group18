@@ -153,6 +153,29 @@
         </div>
     </div>
 
+    <!-- Burger Menu -->
+    <section class="p-menu1">
+        <nav id="navbar" class="navigation" role="navigation">
+            <input id="toggle1" type="checkbox" />
+            <label class="hamburger1" for="toggle1">
+                <div class="top"></div>
+                <div class="meat"></div>
+                <div class="bottom"></div>
+            </label>
+            <div class="burger-menu-container">
+                <div class="widget-btn" data-target="sleep-toggle">
+                    <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">bedtime</span>
+                </div>
+                <div class="widget-btn" data-target="mood-toggle">
+                    <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">add_reaction</span>
+                </div>
+                <div class="widget-btn" data-target="code-line-toggle">
+                    <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">code</span>
+                </div>
+            </div>
+        </nav>
+    </section>
+
     <div class="wrapper"> <!--Wrapper for entire test-->
 
         <div class="component-wrapper"> <!--Wrapper for the side bar component-->
@@ -251,26 +274,7 @@
             </div>
             <div id="content" contenteditable="true" spellcheck="false"></div> <!--Content box for editing text-->
         </div>
-
-        <!-- Widget Buttons -->
-        <div id="widget-buttons">
-            <div class="widget-btn" data-target="sleep-toggle">
-                <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">
-                    bedtime
-                </span>
-            </div>
-            <div class="widget-btn" data-target="mood-toggle">
-                <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">
-                    add_reaction
-                </span>
-            </div>
-            <div class="widget-btn" data-target="code-line-toggle">
-                <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">
-                    code
-                </span>
-            </div>
-        </div>
-
+      
         <!-- Widget Popouts -->
         <div id="widget-popouts">
             <div id="sleep-toggle" class="widget">
@@ -408,8 +412,6 @@
                             </div>
                             <div class="box">
                                 <h3>Hours of Sleep</h3>
-
-
 
         </div>
 </body>

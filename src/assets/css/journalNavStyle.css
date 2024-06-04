@@ -47,8 +47,9 @@ html, body {
 }
 
 .header {
-    /* padding: 20px; */
+    margin-left: 4vb;
     max-height: 12vh;
+    padding: 20px;
     display: flex;
     flex-direction: row;
     margin-top: 3vh;
@@ -88,7 +89,6 @@ html, body {
     border: 1px #E0E0DF solid
 }
 
-
 .wrapper {
     display: flex;
     color: red;
@@ -99,10 +99,6 @@ html, body {
 body{
     padding-bottom: 5px;
 }
-
-
-
-
 
 #nav-container {
     display: flex;
@@ -124,12 +120,9 @@ body{
     grid-template-columns: auto auto;
     width: 100%;
     align-items: center;
-
-    border: 2px #1A76AE solid;
-    border-radius: 4em;
-    padding: 0.7em;
-    background-color: #fdfdfd;
-
+    border: 2px #195B8B solid;
+    border-radius: 2em;
+    padding: 0.5em;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 0.5em;
 }
@@ -176,8 +169,6 @@ body{
 .currentlySelected {
     filter: brightness(0.95);
 }
-
-
 
 #nav-filter-options {
     padding: 1em 0 1em 0;
@@ -234,13 +225,7 @@ body{
     cursor:grab;
 }
 
-
-
-
-
-
-time.icon
-{
+time.icon {
   font-size: 1em; /* change icon size */
   display: block;
   position: relative;
@@ -252,8 +237,7 @@ time.icon
   overflow: hidden;
 }
 
-time.icon *
-{
+time.icon * {
   display: block;
   width: 100%;
   font-size: 1em;
@@ -262,8 +246,7 @@ time.icon *
   text-align: center;
 }
 
-time.icon strong
-{
+time.icon strong {
   position: absolute;
   top: 0;
   padding: 0.4em 0;
@@ -273,15 +256,13 @@ time.icon strong
   box-shadow: 0 2px 0 #1CB6F0;
 }
 
-time.icon em
-{
+time.icon em {
   position: absolute;
   bottom: 0.3em;
   color: #1CB6F0;
 }
 
-time.icon span
-{
+time.icon span {
   font-size: 2.8em;
   letter-spacing: -0.05em;
   padding-top: 0.8em;
@@ -302,8 +283,7 @@ time.icon span
     'wght' 400,
     'GRAD' 0,
     'opsz' 24
-  }
-
+}
 
 .background {
     position: fixed;
@@ -315,7 +295,6 @@ time.icon span
     overflow: hidden;
     z-index: -10;
     filter: brightness(1.1);
-    /* background: linear-gradient(360deg,#c9f6ff,#fdfdfd); */
     background-size: 120% 120%;
     animation: gradient-animation 2s ease infinite;
 }
@@ -330,8 +309,7 @@ time.icon span
     100% {
       background-position: 0% 50%;
     }
-  }
-
+}
 
 .nav-delete-btn {
     position: absolute;
@@ -345,4 +323,150 @@ time.icon span
 
 .nav-delete-btn:hover {
     color: #575757;
+}
+
+/* Styling for the burger menu */
+.p-menu1 {
+    position: absolute;
+    top: 20%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 120;
+ }
+ 
+
+/* Hamburger */
+.hamburger1 {
+    height: 25px; /* Further reduce height */
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    cursor: pointer;
+}
+
+.hamburger1 div {
+    background-color: rgb(61, 61, 61);
+    width: 25px; /* Further reduce width */
+    height: 3px; /* Further reduce height */
+    margin-top: 4px; /* Further reduce margin */
+    transition: all 0.2s ease-in-out;
+}
+
+#toggle1 {
+    display: none;
+}
+
+#toggle1:checked + .hamburger1 .top {
+    transform: rotate(-45deg);
+    margin-top: 12.5px; /* Adjust margin-top */
+}
+
+#toggle1:checked + .hamburger1 .meat {
+    transform: rotate(45deg);
+    margin-top: -5px;
+}
+
+#toggle1:checked + .hamburger1 .bottom {
+    transform: scale(0);
+}
+
+#toggle1:checked ~ .burger-menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: slideDown 0.3s ease-in-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Burger menu container */
+.burger-menu-container {
+    display: none;
+    position: absolute;
+    top: calc(50% + 25px); /* Adjust to position below the burger menu */
+    right: 20px;
+    width: 100px; /* Further reduce width */
+    background-color: #02173F;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 5px; /* Further reduce padding */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 120;
+}
+
+.burger-menu-container .widget-btn {
+    margin: 5px 0; /* Further reduce margin */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.burger-menu-container .widget-btn:hover {
+    animation: vibrate 0.3s linear infinite both;
+}
+
+.burger-menu-container .widget-btn span.material-symbols-outlined {
+    font-size: 40px; /* Further reduce font size */
+}
+
+@keyframes vibrate {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20%, 60% {
+        transform: translateX(-2px);
+    }
+    40%, 80% {
+        transform: translateX(2px);
+    }
+}
+
+/* Blur effect for the background */
+body.blur-background::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Optional: Adds a semi-transparent overlay */
+    backdrop-filter: blur(10px); /* Apply the blur effect */
+    z-index: 998; /* Ensure it covers everything */
+    pointer-events: none; /* Allows clicks to pass through to elements below */
+}
+
+/* Hide widgets by default */
+#sleep-toggle, #mood-toggle, #code-line-toggle, #summary-toggle {
+    display: none;
+}
+
+/* Blur effect for the background */
+body.blur-background::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: 998;
+    pointer-events: none;
+}
+
+.dropdown-content.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 999;
 }

@@ -24,13 +24,11 @@ export function widgetButtonListeners() {
             widgetTemp.style.display = 'none';
             widgetTemp.style.right = '-17em';
             i.style.filter = 'brightness(1)';
-          }); 
+          });
           targetWidget.style.display = 'flex';
           targetWidget.style.right = '35em';
           btn.style.filter = 'brightness(0.9)';
-        }
-
-        else {
+        } else {
           targetWidget.style.display = 'none';
           targetWidget.style.right = '-17em';
           btn.style.filter = 'brightness(1)';
@@ -40,6 +38,32 @@ export function widgetButtonListeners() {
     });
   });
 
+  // Close widgets when clicking outside
+  window.addEventListener('click', (event) => {
+    if (!event.target.closest('.widget') && !event.target.closest('.widget-btn')) {
+      document.querySelectorAll('.widget').forEach(widget => {
+        widget.style.display = 'none';
+        widget.style.right = '-30em';
+      });
+      document.querySelectorAll('.widget-btn').forEach(btn => {
+        btn.style.filter = 'brightness(1)';
+      });
+    }
+  });
+
+  // Burger menu handling
+  const toggle = document.getElementById('toggle1');
+  const burgerMenu = document.querySelector('.burger-menu-container');
+
+  if (toggle) {
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) {
+        burgerMenu.style.display = 'flex';
+      } else {
+        burgerMenu.style.display = 'none';
+      }
+    });
+  }
   linesOfCodeListeners();
   emotionWidgetListeners();
   summaryInit();
@@ -68,6 +92,6 @@ export function updateChecked(widget, value, test = false) {
       console.log('error, defaulting on widget', value);
       break;
   }
-  
+
   writeFile(journalEntry, journalDate);
 }
