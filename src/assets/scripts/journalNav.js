@@ -24,27 +24,46 @@ export function loadButtons() {
 
     const id = listJournals[journal]['date']; // use the journal date as the key
 
-    const journalEntry = document.createElement('div');
+    const journalEntry = document.createElement('div'); // create a journal entry div to house the rest of the elements
     journalEntry.setAttribute('class', 'journalEntry');
 
-    const button = document.createElement('button');
-    button.setAttribute('id', id);
-    if (listJournals[journal]['currentlySelected']) {
-      button.setAttribute('class', 'currentlySelected');
-      setEmotion(listJournals[journal]['mood']);
-      if (listJournals[journal]['sleep']) {
+    const button = document.createElement('button'); // button for entire journal element on side bar
+    button.setAttribute('id', id); // id to keep track of the date of the entry
+    if (listJournals[journal]['currentlySelected']) { // only one journal will be 'currentlySelected'
+      button.setAttribute('class', 'currentlySelected'); // shade the current selection slightly different
+      setEmotion(listJournals[journal]['mood']); // set the emotion of the widget to the current selected mood
+      if (listJournals[journal]['sleep']) { // set the sleep of the widget to the current selected sleep
         setSleep(listJournals[journal]['sleep']);
       } else {
-        setSleep('Fair');
+        setSleep('Fair'); // default the sleep value to 'Fair'
       }
-      if (listJournals[journal]['linesCoded']) {
-        console.log('HAS LINES CODED ALR');
+      if (listJournals[journal]['linesCoded']) { // set the linesCoded of the widget to the current selected lines
         setLinesWidgetNumber(listJournals[journal]['linesCoded']);
       } else {
-        console.log('SETTING DEFAULT');
-        setLinesWidgetNumber(5);
+        setLinesWidgetNumber(5); // default the linesCoded of the widget to 5
       }
     }
+
+    // construction of HTML label for the journal entries in side nav
+
+    /**
+     * Example of structure:
+     *          <div class="journalEntry">
+     *              <button id="2024-05-25" class="currentlySelected">
+     *                  <text>
+     *                      <span><h1>Title</h1></span>
+     *                      <span><h3>2024-05-25</h3></span>
+     *                  </text>
+     *                  <delButton>
+     *                      <div>
+     *                          <span class="material-symbols-outlined">
+     *                              Delete
+     *                          </span>
+     *                      </div>
+     *                  </delButton>
+     *              </button>
+     *          </div>
+     */
 
     const text = document.createElement('text');
 
@@ -74,44 +93,9 @@ export function loadButtons() {
 
     journalEntry.appendChild(button);
 
-    navContainer.appendChild(journalEntry);
+    navContainer.appendChild(journalEntry); // append the whole thing back to the navigation
   }
 }
-
-export function returnColorForMood(mood) {
-  switch (mood) {
-    case 'neutral':
-      return {'background':'#FFFFFF', 'text':'#195B8B', 'desc':'#1A76AE', 'mod':'#1A76AE', 'icon-top':'#195B8B', 'icon-bot':'#1CB6F0'};
-    case 'angry':
-      return {'background':'#FFFFFF', 'text':'#195B8B', 'desc':'#1A76AE', 'mod':'#1A76AE', 'icon-top':'#195B8B', 'icon-bot':'#1CB6F0'};
-    case 'happy':
-      return {'background':'#FFFFFF', 'text':'#195B8B', 'desc':'#1A76AE', 'mod':'#1A76AE', 'icon-top':'#195B8B', 'icon-bot':'#1CB6F0'};
-    case 'sad':
-      return {'background':'#FFFFFF', 'text':'#195B8B', 'desc':'#1A76AE', 'mod':'#1A76AE', 'icon-top':'#195B8B', 'icon-bot':'#1CB6F0'};
-    case 'excited':
-      return {'background':'#FFFFFF', 'text':'#195B8B', 'desc':'#1A76AE', 'mod':'#1A76AE', 'icon-top':'#195B8B', 'icon-bot':'#1CB6F0'};
-    default:
-      return {'background':'#FFFFFF', 'text':'#195B8B', 'desc':'#1A76AE', 'mod':'#1A76AE', 'icon-top':'#195B8B', 'icon-bot':'#1CB6F0'};
-  }
-}
-
-/**
- * 
- * switch (mood) {
-        case 'neutral':
-            return {'background':'#C9F6FF', 'text':'#84A2A8', 'desc':'#9CBFC6', 'mod':'#70898E', 'icon-top':'#91D0DC', 'icon-bot':'#63BBCC'};
-        case 'angry':
-            return {'background':'#FBC3BC', 'text':'#A27F7A', 'desc':'#C19791', 'mod':'#886A66', 'icon-top':'#E6958B', 'icon-bot':'#D77265'};
-        case 'happy':
-            return {'background':'#C7F9CC', 'text':'#82A285', 'desc':'#9AC19F', 'mod':'#6C8870', 'icon-top':'#93E39B', 'icon-bot':'#63D06E'};
-        case 'sad':
-            return {'background':'#e2c9ff', 'text':'#9584A8', 'desc':'#AF9CC6', 'mod':'#7E708D', 'icon-top':'#B892E4', 'icon-bot':'#925ED0'};
-        case 'excited':
-            return {'background':'#fffec9', 'text':'#A8A784', 'desc':'#C6C49C', 'mod':'#8D8B6F', 'icon-top':'#DFDE8A', 'icon-bot':'#CBC957'};
-        default:
-            return {'background':'#C9F6FF', 'text':'#84A2A8', 'desc':'#9CBFC6', 'mod':'#70898E', 'icon-top':'#91D0DC', 'icon-bot':'#63BBCC'};
-    }
- */
 
 /**
  * Attatches event listeners to all buttons that update text.
@@ -129,20 +113,22 @@ export function buttonListeners() {
       buttonListeners();
     });
 
+    // logic and construction of the delete button
     const deleteButton = journalEntryDiv.querySelector('delButton').querySelector('span');
     deleteButton.addEventListener('click', function() {
       const journals = getJournals();
-      const deleteid = deleteButton.parentElement.parentElement.parentElement.id;
-      deleteFile(deleteid);
-      if (journals[deleteid]['currentlySelected']) {
+      const deleteid = deleteButton.parentElement.parentElement.parentElement.id; // get the id of the overall div containing date
+      deleteFile(deleteid); // deletes file from the current localStorage
+      if (journals[deleteid]['currentlySelected']) { // handle case when deleted file is the currently selected file
         delete journals[deleteid];
         let journalArr = Object.values(journals);
         journalArr = journalArr.reverse();
         for (const journal in journalArr) {
+          // get most recent journal entry and make that the selected one
           if (journalArr[journal]['filter'] && journal != deleteid) {
             const journalDate = journalArr[journal]['date'];
             journals[journalDate]['currentlySelected'] = true;
-            updateText(journalDate);
+            updateText(journalDate); // update the text editor field with most recent journal
             writeFile(journals[journalDate], journalDate);
           }
         }
@@ -167,18 +153,29 @@ function changeText(date) {
  */
 export function filterButtons() {
   const journals = getJournals();
-  const yearsList = [];
+  const yearsList = []; // list to house all years from journal entries
   for (const journal in journals) {
     const dateOf = new Date(journal);
-    yearsList.push(dateOf.getFullYear());
+    yearsList.push(dateOf.getFullYear()); // push every year as YYYY
   }
-  const yearsSet = new Set(yearsList.sort());
+  const yearsSet = new Set(yearsList.sort()); // put into sorted set to get rid of duplicates
 
   const latestButton = document.getElementById('latest'); // button to sort by latest
   const earliestButton = document.getElementById('earliest'); // button to sort by earliest
-  const yearSelect = document.getElementById('years');
-  const monthSelect = document.getElementById('months');
+  const yearSelect = document.getElementById('years'); // button to query by year
+  const monthSelect = document.getElementById('months'); // button to query by month
 
+  // year query construction in HTML
+  /**
+   * Example: replace options with only exisiting years within the journals
+   * <select name="years" id="years">
+   *    <option value="2020">2020</option>
+   *    <option value="2021">2021</option>
+   *    <option value="2022">2022</option>
+   *    <option value="2023">2023</option>
+   *    <option value="2024">2024</option>
+   * </select>
+   */
   yearSelect.innerHTML = '';
   const yearsArr = Array.from(yearsSet);
   for (const year in yearsArr) {
@@ -204,23 +201,28 @@ export function filterButtons() {
   });
 
   yearSelect.addEventListener('change', function() {
-    filterDate(yearSelect.value, letterMonthToNumber(monthSelect.value));
+    filterDate(yearSelect.value, letterMonthToNumber(monthSelect.value)); // on year or month change, filter by month and year
     loadButtons();
     buttonListeners();
   });
 
   monthSelect.addEventListener('change', function() {
-    filterDate(yearSelect.value, letterMonthToNumber(monthSelect.value));
+    filterDate(yearSelect.value, letterMonthToNumber(monthSelect.value)); // on year or month change, filter by month and year
     loadButtons();
     buttonListeners();
   });
 }
 
+/**
+ * Returns the value of a month between 1 to 12 depending on the month string
+ * @param {String} monthStr 
+ * @returns number associated with month string between 1 and 12
+ */
 export function letterMonthToNumber (monthStr) {
   const monthsArr = [1,2,3,4,5,6,7,8,9,10,11,12];
   const monthStrsArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   for (const i in monthsArr) {
-    if (monthStrsArr[i] === monthStr) {
+    if (monthStrsArr[i] === monthStr) { // return value on match
       return monthsArr[i];
     }
   }
@@ -290,18 +292,101 @@ export function generateExample() {
   }
 
   clearLocal();
-  forceCreate('What is this? Where am I?', '2024-04-14', 'Who are you?');
-  forceCreate('I hope this works!', '2024-05-18', 'yay!');
-  forceCreate('This is a test!', '2024-04-23', 'This is not a drill');
-  forceCreate('Hello there', '2024-05-15', 'Hi');
-  forceCreate('Graphic design is my passion', '2024-04-19', 'test');
-  forceCreate('Flexpidition', '2024-05-10', '');
-  forceCreate('trettggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg', '2024-05-09', 'long word');
-  forceCreate('this is a test this is a test this is a test this is a test this is a test', '2024-05-08', 'long sentence');
+  // forceCreate(data, date, title, mood, sleep, linesCoded)
+  forceCreate(
+    'Today was great! I had a lot of sleep, and I did a lot of work! I felt amazing!',
+    '2024-04-14',
+    'My Wonderful Day',
+    'AMAZING',
+    'Excellent',
+    10000);
+  forceCreate(
+    "Feeling overwhelmed with work today. Didn't get much sleep, but managed to push through. Need to find a better balance!",
+    "2024-06-03",
+    "Work Juggle",
+    "SAD",
+    "Fair",
+    250
+  )
+  forceCreate(
+    "Took a long walk in nature today. Feeling refreshed and recharged. Didn't code much, but needed the mental break.",
+    "2024-05-20",
+    "Nature Recharge",
+    "HAPPY",
+    "Excellent",
+    50
+  )
+  forceCreate(
+    "Finally cracked that coding challenge I've been working on! Feeling accomplished and excited to learn more.",
+    "2024-05-12",
+    "Coding Breakthrough",
+    "AMAZING",
+    "Good",
+    800
+  )
+  forceCreate(
+    "Volunteered at a local charity today. Feeling good about giving back to the community.",
+    "2024-04-25",
+    "Giving Back",
+    "HAPPY",
+    "Good",
+    20
+  )
+  forceCreate(
+    "Not feeling well today. Stayed in bed most of the day. Hoping to feel better tomorrow.",
+    "2024-04-01",
+    "Under the Weather",
+    "MISERABLE",
+    "Poor",
+    0
+  )
+  forceCreate(
+    "Woke up to a power outage this morning. Made the best of it with some board games and candles. Kinda fun in a way!",
+    "2024-05-30",
+    "Power Outage Fun",
+    "MEH",
+    "Fair",
+    0
+  )
+  forceCreate(
+    "Had a great dinner party with friends last night. Lots of laughs and good food. Feeling happy and connected.",
+    "2024-05-18",
+    "Friends and Fun",
+    "HAPPY",
+    "Excellent",
+    100
+  )
+  forceCreate(
+    "Feeling inspired today! Wrote a few pages for my new story idea. Excited to see where it takes me.",
+    "2024-06-02",
+    "Creative Spark",
+    "AMAZING",
+    "Good",
+    0
+  )
+  forceCreate(
+    "Finally arrived in Amsterdam! Feeling a bit jet-lagged, but excited to explore this new city.",
+    "2024-05-09",
+    "Travel Day",
+    "MEH",
+    "Fair",
+    50
+  )
+  forceCreate(
+    "Started learning a new language today! Feeling challenged but motivated to keep practicing.",
+    "2024-04-20",
+    "New Language",
+    "HAPPY",
+    "Good",
+    120
+  )
   loadButtons();
   buttonListeners();
 }
 
+/**
+ * Generates the journal for today with a blank title.
+ */
 export function generateToday() {
   createFile('');
 }

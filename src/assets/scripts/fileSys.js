@@ -33,7 +33,7 @@ export function createFile(data) {
  * @param {string} date date created
  * @param {string} title display title
  */
-export function forceCreate(data, date, title, mood) {
+export function forceCreate(data, date, title, mood, sleep, linesCoded) {
   const dateToday = formatToday(); // same as createFile() with ability to set certain fields
   const journals = getJournals();
 
@@ -52,6 +52,8 @@ export function forceCreate(data, date, title, mood) {
     'title': title,
     'filter': true,
     'mood': mood,
+    'sleep': sleep,
+    'linesCoded': linesCoded,
     'currentlySelected': false
   };
 
@@ -261,10 +263,14 @@ export function getCurrentYearAndMonth() {
   return { year: currentYear, month: currentMonth }; // return dictionary with year and month
 }
 
+/**
+ * Returns the current checked journal
+ * @returns dictionary of current journal
+ */
 export function returnChecked() {
-  const journals = getJournals();
+  const journals = getJournals(); // get all current journals
   console.log(journals);
-  for (const journal in journals) {
+  for (const journal in journals) { // loop through journals to get currently selected
     if (journals[journal]['currentlySelected']) {
       return journal;
     }

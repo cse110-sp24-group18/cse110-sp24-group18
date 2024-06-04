@@ -10,6 +10,7 @@ export function emotionWidgetListeners() {
 
   // const gaugeValue = document.getElementById('score'); // get the score element (testing)
   let emotion = 'MEH'; // set emotion to 'MEH' (MEH by default)
+  let currSpeed = 150; // set currSpeed to 150 by default
 
 
   gauge.addEventListener('mousemove', (event) => {
@@ -27,6 +28,7 @@ export function emotionWidgetListeners() {
     const rect = gauge.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
+    
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
@@ -87,7 +89,7 @@ export function emotionWidgetListeners() {
     } 
   });
 
-  return { currspeed, emotion };
+  return { currSpeed, emotion };
 }
 
 
