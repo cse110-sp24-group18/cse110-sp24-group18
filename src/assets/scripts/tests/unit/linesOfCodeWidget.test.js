@@ -35,6 +35,9 @@ describe('Lines of Code Widget', () => {
     }
   });
 
+  /**
+   * Tests to check if increment works properly
+   */
   test('increments the count', () => {
     const numberElement = document.getElementById('number');
     numberElement.value = 5;
@@ -42,6 +45,9 @@ describe('Lines of Code Widget', () => {
     expect(numberElement.value).toBe('6');
   });
 
+  /**
+   * Tests to check if decrement works properly
+   */
   test('decrements the count', () => {
     const numberElement = document.getElementById('number');
     numberElement.value = 5;
@@ -49,6 +55,9 @@ describe('Lines of Code Widget', () => {
     expect(numberElement.value).toBe('4');
   });
 
+  /**
+   * Tests to ensure that value does not exceed 5 digits
+   */
   test('does not increment past 99999', () => {
     const numberElement = document.getElementById('number');
     numberElement.value = 99999;
@@ -56,6 +65,9 @@ describe('Lines of Code Widget', () => {
     expect(numberElement.value).toBe('99999');
   });
 
+  /**
+   * Tests to ensure that we cannot get negative values
+   */
   test('does not decrement below 0', () => {
     const numberElement = document.getElementById('number');
     numberElement.value = 0;
@@ -63,13 +75,22 @@ describe('Lines of Code Widget', () => {
     expect(numberElement.value).toBe('0');
   });
 
-  test('updates the number and does not allow negative values', () => {
+  /**
+   * Tests to make sure input does not allow for non-number/negative values
+   */
+  test('updates the number and does not allow negative values + nonnumbers', () => {
     const numberElement = document.getElementById('number');
     numberElement.value = -5;
     updateNumber(true);
     expect(numberElement.value).toBe('0');
-  });
+    numberElement.value = 'a';
+    updateNumber(true);
+    expect(numberElement.value).toBe('0');
 
+  });
+  /**
+   * Tests to make sure numbers cannot exceed 5 digits when inputted
+   */
   test('updates the number and does not allow more than 5 digits', () => {
     const numberElement = document.getElementById('number');
     numberElement.value = 123456;
@@ -77,6 +98,9 @@ describe('Lines of Code Widget', () => {
     expect(numberElement.value).toBe('12345');
   });
 
+  /**
+   * Tests to make sure the apropriate font size is expected when number of digits changes
+   */
   test('adjusts font size based on number of digits', () => {
     const numberElement = document.getElementById('number');
     numberElement.value = 5;
