@@ -40,12 +40,20 @@
     }
 }
 
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
 .header {
     margin-left: 4vb;
-    height: 12vh;
+    max-height: 12vh;
     padding: 20px;
     display: flex;
     flex-direction: row;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
 }
 
 .header h1 {
@@ -308,7 +316,7 @@ time.icon span {
 /* Styling for the burger menu */
 .p-menu1 {
     position: absolute;
-    top: 30%;
+    top: 20%;
     right: 20px;
     transform: translateY(-50%);
     z-index: 120;
