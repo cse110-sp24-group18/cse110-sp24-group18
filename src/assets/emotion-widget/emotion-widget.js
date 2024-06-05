@@ -42,27 +42,32 @@ export function initGaugeWidget() {
         faceImg.src = 'assets/emotion-widget/media/faceMiserable.png';
         emotionText.textContent = 'Miserable';
         needle.style = '--score:20';
-        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,#9DABF4 36deg,var(--c2) 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);';
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,#9DABF4 36deg,'
+          + 'var(--c2) 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);';
       } else if (speed >= 120 && speed < 140) {
         faceImg.src = 'assets/emotion-widget/media/faceSad.png';
         emotionText.textContent = 'Sad';
         needle.style = '--score:35';
-        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,#E3985C 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);';
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1)36deg,'
+        + '#E3985C 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);';
       } else if (speed >= 140 && speed < 160) {
         faceImg.src = 'assets/emotion-widget/media/faceMeh.png';
         emotionText.textContent = 'Meh';
         needle.style = '--score:50';
-        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,var(--c2) 0 72deg,#D9BCB0 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);';
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,'
+        + 'var(--c2) 0 72deg,#D9BCB0 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);';
       } else if (speed >= 160 && speed < 180) {
         faceImg.src = 'assets/emotion-widget/media/faceGood.png';
         emotionText.textContent = 'Happy';
         needle.style = '--score:65';
-        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,var(--c2) 0 72deg,var(--c3) 0 108deg,#F4D39A 0 144deg,var(--c5) 0 180deg,#0000 0);';
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,'
+        + 'var(--c2) 0 72deg,var(--c3) 0 108deg,#F4D39A 0 144deg,var(--c5) 0 180deg,#0000 0);';
       } else if (speed >= 180 && speed <= 200) {
         faceImg.src = 'assets/emotion-widget/media/faceAmazing.png';
         emotionText.textContent = 'Amazing';
         needle.style = '--score:80';
-        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,var(--c2) 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,#BED68B 0 180deg,#0000 0);';
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,'
+        + 'var(--c2) 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,#BED68B 0 180deg,#0000 0);';
       }
     }
   });

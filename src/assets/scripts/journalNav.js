@@ -125,7 +125,7 @@ export function buttonListeners() {
         journalArr = journalArr.reverse();
         for (const journal in journalArr) {
           // get most recent journal entry and make that the selected one
-          if (journalArr[journal]['filter'] && journal != deleteid) {
+          if (journalArr[journal]['filter'] && journal !== deleteid) {
             const journalDate = journalArr[journal]['date'];
             journals[journalDate]['currentlySelected'] = true;
             updateText(journalDate); // update the text editor field with most recent journal
@@ -301,85 +301,85 @@ export function generateExample() {
     'Excellent',
     10000);
   forceCreate(
-    "Feeling overwhelmed with work today. Didn't get much sleep, but managed to push through. Need to find a better balance!",
-    "2024-06-03",
-    "Work Juggle",
-    "SAD",
-    "Fair",
+    'Feeling overwhelmed with work today. Didn\'t get much sleep, but managed to push through. Need to find a better balance!',
+    '2024-06-03',
+    'Work Juggle',
+    'SAD',
+    'Fair',
     250
-  )
+  );
   forceCreate(
-    "Took a long walk in nature today. Feeling refreshed and recharged. Didn't code much, but needed the mental break.",
-    "2024-05-20",
-    "Nature Recharge",
-    "HAPPY",
-    "Excellent",
+    'Took a long walk in nature today. Feeling refreshed and recharged. Didn\'t code much, but needed the mental break.',
+    '2024-05-20',
+    'Nature Recharge',
+    'HAPPY',
+    'Excellent',
     50
-  )
+  );
   forceCreate(
-    "Finally cracked that coding challenge I've been working on! Feeling accomplished and excited to learn more.",
-    "2024-05-12",
-    "Coding Breakthrough",
-    "AMAZING",
-    "Good",
+    'Finally cracked that coding challenge I\'ve been working on! Feeling accomplished and excited to learn more.',
+    '2024-05-12',
+    'Coding Breakthrough',
+    'AMAZING',
+    'Good',
     800
-  )
+  );
   forceCreate(
-    "Volunteered at a local charity today. Feeling good about giving back to the community.",
-    "2024-04-25",
-    "Giving Back",
-    "HAPPY",
-    "Good",
+    'Volunteered at a local charity today. Feeling good about giving back to the community.',
+    '2024-04-25',
+    'Giving Back',
+    'HAPPY',
+    'Good',
     20
-  )
+  );
   forceCreate(
-    "Not feeling well today. Stayed in bed most of the day. Hoping to feel better tomorrow.",
-    "2024-04-01",
-    "Under the Weather",
-    "MISERABLE",
-    "Poor",
+    'Not feeling well today. Stayed in bed most of the day. Hoping to feel better tomorrow.',
+    '2024-04-01',
+    'Under the Weather',
+    'MISERABLE',
+    'Poor',
     0
-  )
+  );
   forceCreate(
-    "Woke up to a power outage this morning. Made the best of it with some board games and candles. Kinda fun in a way!",
-    "2024-05-30",
-    "Power Outage Fun",
-    "MEH",
-    "Fair",
+    'Woke up to a power outage this morning. Made the best of it with some board games and candles. Kinda fun in a way!',
+    '2024-05-30',
+    'Power Outage Fun',
+    'MEH',
+    'Fair',
     0
-  )
+  );
   forceCreate(
-    "Had a great dinner party with friends last night. Lots of laughs and good food. Feeling happy and connected.",
-    "2024-05-18",
-    "Friends and Fun",
-    "HAPPY",
-    "Excellent",
+    'Had a great dinner party with friends last night. Lots of laughs and good food. Feeling happy and connected.',
+    '2024-05-18',
+    'Friends and Fun',
+    'HAPPY',
+    'Excellent',
     100
-  )
+  );
   forceCreate(
-    "Feeling inspired today! Wrote a few pages for my new story idea. Excited to see where it takes me.",
-    "2024-06-02",
-    "Creative Spark",
-    "AMAZING",
-    "Good",
+    'Feeling inspired today! Wrote a few pages for my new story idea. Excited to see where it takes me.',
+    '2024-06-02',
+    'Creative Spark',
+    'AMAZING',
+    'Good',
     0
-  )
+  );
   forceCreate(
-    "Finally arrived in Amsterdam! Feeling a bit jet-lagged, but excited to explore this new city.",
-    "2024-05-09",
-    "Travel Day",
-    "MEH",
-    "Fair",
+    'Finally arrived in Amsterdam! Feeling a bit jet-lagged, but excited to explore this new city.',
+    '2024-05-09',
+    'Travel Day',
+    'MEH',
+    'Fair',
     50
-  )
+  );
   forceCreate(
-    "Started learning a new language today! Feeling challenged but motivated to keep practicing.",
-    "2024-04-20",
-    "New Language",
-    "HAPPY",
-    "Good",
+    'Started learning a new language today! Feeling challenged but motivated to keep practicing.',
+    '2024-04-20',
+    'New Language',
+    'HAPPY',
+    'Good',
     120
-  )
+  );
   loadButtons();
   buttonListeners();
 }

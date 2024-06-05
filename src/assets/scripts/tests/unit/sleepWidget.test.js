@@ -22,22 +22,22 @@ test('Checks defult compute percentage returned', () => {
 });
 
 /**
- * Tests to check if 2nd　gauge percentage returned
+ * Tests to check if 2nd gauge percentage returned
  */
-test('Checks 2nd　gauge compute percentage returned', () => {
+test('Checks 2nd gauge compute percentage returned', () => {
   expect(computePercentage(2)).toStrictEqual(25);
 });
 
 /**
- * Tests to check if 3rd　gauge percentage returned
+ * Tests to check if 3rd gauge percentage returned
  */
-test('Checks 3　gauge compute percentage returned', () => {
+test('Checks 3 gauge compute percentage returned', () => {
   expect(computePercentage(3)).toStrictEqual(50);
 });
 
 /**
- * Tests to check if Max　gauge percentage returned.
+ * Tests to check if Max gauge percentage returned.
  */
-test('Checks Max　gauge compute percentage returned', () => {
+test('Checks Max gauge compute percentage returned', () => {
   expect(computePercentage(5)).toStrictEqual(100);
 });
