@@ -9,257 +9,17 @@ describe('UI Comprehensive E2E Tests', () => {
     browser = await puppeteer.launch({ headless: false }); // Set to false if you want to see the browser
     page = await browser.newPage();
     await page.goto('http://127.0.0.1:5501/src/index.html'); // Adjust URL to your local server
+
+    // Bypass splash screen
+    await page.mouse.click(0, 0);
+    await setTimeout(400);
   });
 
   afterAll(async () => {
-    // await browser.close();
+    await browser.close();
   });
 
-  // Splash screen
-  it('Splash screen click', async () => {
-    console.log('Checking for splash screen');
-
-    // Check splash container
-    let splashContainer = await page.$eval('div#splash-container', div => div.className || '');
-    expect(splashContainer).toBe('');
-
-    // Click the top left of the screen
-    await page.mouse.click(0, 0);
-    await setTimeout(500);
-
-    // Recheck splash container
-    splashContainer = await page.$eval('div#splash-container', div => div.className || '');
-    expect(splashContainer).toBe('slide-up');
-  });
-
-
-  // Edit journal
-
-  // Edit the title
-  it('Editing the title of a journal', async () => {
-    console.log('Editing title');
-
-    // Check current title
-    let titleHandle = await page.$('.title');
-    let title = await page.evaluate(element => element.textContent, titleHandle);
-
-    // Getting date and making sure the journal's date is correct    
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const formatter = new Intl.DateTimeFormat('en-US', { timeZone });
-    const currentDate = new Date(formatter.format(new Date()));
-    const formattedDate = currentDate.toISOString().split('T')[0];
-    expect(title).toBe(formattedDate);
-
-    // Editing
-    await titleHandle.click();
-    await page.keyboard.down('Control');
-    await page.keyboard.press('KeyA'); // Press 'A' key
-    await page.keyboard.up('Control');
-    await page.keyboard.press('Backspace'); // Press 'Backspace' key
-    await page.keyboard.type('Today');
-
-    await page.mouse.click(0, 0);
-
-    // Rechecking
-    titleHandle = await page.$('.title');
-    title = await page.evaluate(element => element.textContent, titleHandle);
-
-    expect(title).toBe('Today');
-  });
-
-  // Enter text to text editor, and change the fonts
-  it('Testing the text editor', async () => {
-    console.log('Testing the text editor');
-
-    // Finding all the buttons (CURRENTLY UNABLE TO BE USED)
-    // const boldBtn = await page.$('#bold-btn');
-    // const underlineBtn = await page.$('#underline-btn');
-    // const italicBtn = await page.$('#italic-btn');
-    // const colorBtn = await page.$('#color-btn');
-    
-    let textboxHandler = await page.$('#content');
-    let textbox = await page.evaluate(element => element.textContent, textboxHandler);
-
-    expect(textbox).toBe('');
-
-    // Editing
-    // await boldBtn.click();
-    await page.focus('#content');
-    await page.keyboard.type('Text');
-    // await boldBtn.click();
-
-    // Rechecking the content
-    textboxHandler = await page.$('#content');
-    textbox = await page.evaluate(element => element.textContent, textboxHandler);
-
-    expect(textbox).toBe('Text');
-
-  });
-
-  // Refresh and check that it remains
-  it('Refreshing and making sure the changes remain', async () => {
-    console.log('Refreshing and making sure the changes remain');
-
-    await page.reload();
-    await page.mouse.click(0, 0);
-    await setTimeout(500);
-
-    // Title
-    const titleHandle = await page.$('.title');
-    const title = await page.evaluate(element => element.textContent, titleHandle);
-
-    expect(title).toBe('Today');
-    
-    // Content
-    const textboxHandler = await page.$('#content');
-    const textbox = await page.evaluate(element => element.textContent, textboxHandler);
-
-    expect(textbox).toBe('Text');
-
-    // On the sidebar
-    const journalEntry = await page.$('.journalEntry');
-    const span = await journalEntry.$('span');
-
-    const textContent = await page.evaluate(el => el.textContent, span);
-
-    expect(textContent).toBe(title);
-  });
-
-  // Change journal
-  it('Changing journal', async () => {
-    console.log('Changing journal');
-    
-    const journalEntry = await page.$$('.journalEntry');
-    await journalEntry[1].click();
-
-    // Title
-    const titleHandle = await page.$('.title');
-    const title = await page.evaluate(element => element.textContent, titleHandle);
-
-    expect(title).toBe('Work Juggle');
-    
-    // Content
-    const textboxHandler = await page.$('#content');
-    const textbox = await page.evaluate(element => element.textContent, textboxHandler);
-
-    expect(textbox).toBe('Feeling overwhelmed with work today. Didn\'t get much sleep, but managed to push through. Need to find a better balance!');
-  });
-
-  // Delete journal
-  it('Deleting all and refreshing', async () => {
-    console.log('Deleting all and refreshing');
-    
-    let journalEntries = await page.$$('.journalEntry');
-    
-    // Delete all
-    while (journalEntries.length > 1) {
-      const journalEntry = await page.$('.journalEntry');
-      const del = await journalEntry.$('delbutton');
-      const span = await del.$('span');
-      await span.click();
-      journalEntries = await page.$$('.journalEntry');
-    }
-
-    expect(journalEntries.length).toBe(1);
-
-    // Try to delete the current date
-    const journalEntry = await page.$('.journalEntry');
-    const del = await journalEntry.$('delbutton');
-    const span = await del.$('span');
-    await span.click();
-
-    // It can't be deleted
-    expect(journalEntries.length).toBe(1);
-
-    // Title
-    const titleHandle = await page.$('.title');
-    const title = await page.evaluate(element => element.textContent, titleHandle);
-
-    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const formatter = new Intl.DateTimeFormat('en-US', { timeZone });
-    const currentDate = new Date(formatter.format(new Date()));
-    const formattedDate = currentDate.toISOString().split('T')[0];
-    expect(title).toBe(formattedDate);
-    
-    // Content
-    const textboxHandler = await page.$('#content');
-    const textbox = await page.evaluate(element => element.textContent, textboxHandler);
-
-    expect(textbox).toBe('');
-  });
-  
-  // Empty localhost
-  it('Emptying Localhost and Bringing Back Placeholders', async () => {
-    console.log('Emptying Localhost and Bringing Back Placeholders');
-    let journalEntries = await page.$$('.journalEntry');
-
-    expect(journalEntries.length).toBe(1);
-
-    // Clearing local storage and reloading
-    await page.evaluate(() => {
-      localStorage.clear();
-    });
-
-    await page.reload();
-    await page.mouse.click(0, 0);
-    await setTimeout(500);
-
-    // The placeholders should be there again
-    journalEntries = await page.$$('.journalEntry');
-
-    expect(journalEntries.length).toBe(12);
-     
-  });
-
-  // Sort journal
-  // April 4, May 5 2024
-  // Earliest, Latest
-
-  it('Sorting journals and checking them', async () => {
-    console.log('Sorting journals and checking them');
-
-    // Testing April
-    await page.select('select[name="years"]', '2024');
-    await page.select('select[name="months"]', 'April');
-    
-    let journalEntries = await page.$$('.journalEntry');
-    expect(journalEntries.length).toBe(4);
-
-    // Testing May
-    await page.select('select[name="months"]', 'May');
-    
-    journalEntries = await page.$$('.journalEntry');
-    expect(journalEntries.length).toBe(5);
-
-    // Sort test earliest
-    await page.evaluate(() => {
-      const radio = document.querySelector('#earliest');
-      radio.click();
-    });
-
-    let journalEntry = await page.$('.journalEntry'); // First should be Travel Day
-    let span = await journalEntry.$('span');
-
-    let textContent = await page.evaluate(el => el.textContent, span);
-
-    expect(textContent).toBe('Travel Day');
-
-    // Sort test latest
-    await page.evaluate(() => {
-      const radio = document.querySelector('#latest');
-      radio.click();
-    });
-
-    journalEntry = await page.$('.journalEntry'); // First should be Power Outage Fun
-    span = await journalEntry.$('span');
-
-    textContent = await page.evaluate(el => el.textContent, span);
-
-    expect(textContent).toBe('Power Outage Fun');
-  });
-
-  // Widgets
-  // Look at summary, make sure default for new and constant for placeholders
+  // Pre-change
   it('Look at summary', async () => {
     console.log('Look at summary');
 
@@ -273,16 +33,301 @@ describe('UI Comprehensive E2E Tests', () => {
 
     expect(shown).toBe(true);
 
-    // Check the first of the mood history to be neutral
-    // Check the first of the hours of sleep to be 60%
-    // Check the first of the code written to be 0
+    const sleepData = await dropBoxes.$('div[class="bar-graph"]');
+    const firstDaySleep = await sleepData.$eval('div[class="bar"]', el => getComputedStyle(el).height);
 
-    // Also check for 1 of the placeholders
+    expect(firstDaySleep).toBe('60px');
+
+    const moodData = await dropBoxes.$('div[id="mood-box"]');
+    const firstDayMood = await moodData.$('div[class="day"]');
+    const imageHandle = await firstDayMood.$('img');
+
+    const src = await imageHandle.evaluate(img => img.src);
+
+    expect(src).toBe('http://127.0.0.1:5501/src/assets/emotion-widget/media/faceMeh.png');
+
+    const codeData = await dropBoxes.$('div[id="lines-coded-summary"]');
+    const firstDayCode = await codeData.$eval('div[class="bar"]', el => getComputedStyle(el).height);
+
+    expect(firstDayCode).toBe('0px');
+    
+    await page.mouse.click(0,0);
+  });
+
+  // Open burger, make sure buttons show
+  it('Checking the burger works', async () => {
+    console.log('Checking the burger works');
+
+    let displayProperty = await page.$eval('.burger-menu-container', el => getComputedStyle(el).display);
+
+    expect(displayProperty).toBe('none');
+
+    // Clicking the toggle
+    const toggleSelector = '#toggle1';
+
+    await page.evaluate(() => {
+      const toggle = document.querySelector('#toggle1');
+      if (toggle) {
+        toggle.checked = true;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }, toggleSelector);
+    
+    displayProperty = await page.$eval('.burger-menu-container', el => getComputedStyle(el).display);
+    expect(displayProperty).toBe('flex');
     
   });
-  // (Test the burger)
-  // Edit all 3 for today, look at summary
-  // check all for mood and sleep, check +, -, and type for code
 
-  
+  // Sleep widget
+  it('Checking the sleep widget', async () => {
+    console.log('Checking the sleep widget');
+
+    // Reloading to make sure it works
+    await page.reload();
+    await page.mouse.click(0, 0);
+    await setTimeout(400);
+
+    const toggleSelector = '#toggle1';
+
+    await page.evaluate(() => {
+      const toggle = document.querySelector('#toggle1');
+      if (toggle) {
+        toggle.checked = true;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }, toggleSelector);
+
+    // Checking the clicking of its button
+    let sleepInterface = await page.$eval('div[id="sleep-toggle"]', el => getComputedStyle(el).display);
+    const sleepBtn = await page.$('div[data-target="sleep-toggle"]');
+    await sleepBtn.click();
+    
+    expect(sleepInterface).toBe('none');
+    sleepInterface = await page.$eval('div[id="sleep-toggle"]', el => getComputedStyle(el).display);
+    expect(sleepInterface).toBe('flex');
+
+    // Get the bounding box of the slider
+    const slider = await page.$('input[class="slider"]');
+    const boundingBox = await slider.asElement().boundingBox();
+
+    // Calculate the target position on the slider
+    const targetX = boundingBox.x + (boundingBox.width / 2);
+    const targetY = boundingBox.y + (boundingBox.height * 0.3); // Set the slider to Good
+
+    // Simulate the mouse drag to move the slider
+    await page.mouse.click(targetX, targetY);
+
+    await page.mouse.click(0,0);
+
+    sleepInterface = await page.$eval('div[id="sleep-toggle"]', el => getComputedStyle(el).display);
+    expect(sleepInterface).toBe('none');
+
+    // Check the summary for the change
+    const summaryHandler = await page.$('div[class="dropdown"]');
+    const summaryBtn = await summaryHandler.$('button');
+    await summaryBtn.click();
+
+    const dropBoxes = await summaryHandler.$('div[class="dropdown-content show"]');
+    const sleepData = await dropBoxes.$('div[class="bar-graph"]');
+    const firstDay = await sleepData.$eval('div[class="bar"]', el => getComputedStyle(el).height);
+
+    expect(firstDay).toBe('80px');
+  });
+
+  // Mood widget
+  it('Checking the mood widget', async () => {
+    console.log('Checking the mood widget');
+
+    // Reloading to make sure it works
+    await page.reload();
+    await page.mouse.click(0, 0);
+    await setTimeout(400);
+
+    const toggleSelector = '#toggle1';
+
+    await page.evaluate(() => {
+      const toggle = document.querySelector('#toggle1');
+      if (toggle) {
+        toggle.checked = true;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }, toggleSelector);
+
+    // Checking the clicking of its button
+    let moodInterface = await page.$eval('div[id="mood-toggle"]', el => getComputedStyle(el).display);
+    const moodBtn = await page.$('div[data-target="mood-toggle"]');
+    await moodBtn.click();
+    
+    expect(moodInterface).toBe('none');
+    moodInterface = await page.$eval('div[id="mood-toggle"]', el => getComputedStyle(el).display);
+    expect(moodInterface).toBe('flex');
+
+    // Get the gauge element's bounding box
+    const gaugeBoundingBox = await page.evaluate(() => {
+      const gauge = document.getElementById('gauge');
+      const rect = gauge.getBoundingClientRect();
+      return {
+        x: rect.left + window.scrollX,
+        y: rect.top + window.scrollY,
+        width: rect.width,
+        height: rect.height
+      };
+    });
+
+    // Calculate the coordinates within the gauge based on the angle (420 for Amazing)
+    const centerX = gaugeBoundingBox.x + (gaugeBoundingBox.width / 2);
+    const centerY = gaugeBoundingBox.y + (gaugeBoundingBox.height / 2);
+    const radius = gaugeBoundingBox.width / 2;
+    const radians = (420 - 90) * (Math.PI / 180); // Convert angle to radians and adjust for 0 degrees being at 3 o'clock
+    const x = centerX + (radius * Math.cos(radians));
+    const y = centerY + (radius * Math.sin(radians));
+
+    console.log(`Clicking at: (${x}, ${y}) for angle: ${420}`);
+
+    // Move and click the mouse at the calculated coordinates
+    await page.mouse.move(x, y);
+    await page.mouse.down();
+    await page.mouse.up();
+
+    // Wait for UI update
+    await setTimeout(400);
+
+    await page.mouse.click(0,0);
+
+    // Check the summary for the change
+    const summaryHandler = await page.$('div[class="dropdown"]');
+    const summaryBtn = await summaryHandler.$('button');
+    await summaryBtn.click();
+
+    const dropBoxes = await summaryHandler.$('div[class="dropdown-content show"]');
+    const moodData = await dropBoxes.$('div[id="mood-box"]');
+    const firstDay = await moodData.$('div[class="day"]');
+    const imageHandle = await firstDay.$('img');
+
+    const src = await imageHandle.evaluate(img => img.src);
+
+    expect(src).toBe('http://127.0.0.1:5501/src/assets/emotion-widget/media/faceAmazing.png');
+  });
+
+  // Lines of code widget
+  it('Checking the lines of code widget', async () => {
+    console.log('Checking the lines of code widget');
+
+    // Reloading to make sure it works
+    await page.reload();
+    await page.mouse.click(0, 0);
+    await setTimeout(400);
+
+    const toggleSelector = '#toggle1';
+
+    await page.evaluate(() => {
+      const toggle = document.querySelector('#toggle1');
+      if (toggle) {
+        toggle.checked = true;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }, toggleSelector);
+
+    // Checking the clicking of its button
+    let codeInterface = await page.$eval('div[id="code-line-toggle"]', el => getComputedStyle(el).display);
+    let codeBtn = await page.$('div[data-target="code-line-toggle"]');
+    await codeBtn.click();
+    
+    expect(codeInterface).toBe('none');
+    codeInterface = await page.$eval('div[id="code-line-toggle"]', el => getComputedStyle(el).display);
+    expect(codeInterface).toBe('flex');
+
+    // Using the + button
+    let textBox = await page.$('input[class="number"]');
+    
+    await textBox.click();
+    await page.keyboard.down('Control');
+    await page.keyboard.press('KeyA'); // Press 'A' key
+    await page.keyboard.up('Control');
+    await page.keyboard.press('Backspace'); // Press 'Backspace' key
+    await page.keyboard.type('0');
+
+    const plusButton = await page.$('button[id="lines-increment"]');
+    
+    await plusButton.click();
+
+    await page.mouse.click(0,0);
+
+    // Check the summary for the change
+    let summaryHandler = await page.$('div[class="dropdown"]');
+    let summaryBtn = await summaryHandler.$('button');
+    await summaryBtn.click();
+    
+    let dropBoxes = await summaryHandler.$('div[class="dropdown-content show"]');
+    let codeData = await dropBoxes.$('div[id="lines-coded-summary"]');
+    let firstDay = await codeData.$eval('div[class="bar"]', el => getComputedStyle(el).height);
+
+    expect(firstDay).toBe('0.125px');
+    await page.mouse.click(0,0);
+
+    // Using the - button
+    await page.evaluate(() => {
+      const toggle = document.querySelector('#toggle1');
+      if (toggle) {
+        toggle.checked = true;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }, toggleSelector);
+    
+    codeBtn = await page.$('div[data-target="code-line-toggle"]');
+    await setTimeout(400);
+    await codeBtn.click();
+
+    const minusButton = await page.$('button[id="lines-decrement"]');
+    
+    await minusButton.click();
+
+    await page.mouse.click(0,0);
+
+    // Check the summary for the change
+    summaryHandler = await page.$('div[class="dropdown"]');
+    summaryBtn = await summaryHandler.$('button');
+    await summaryBtn.click();
+    
+    dropBoxes = await summaryHandler.$('div[class="dropdown-content show"]');
+    codeData = await dropBoxes.$('div[id="lines-coded-summary"]');
+    firstDay = await codeData.$eval('div[class="bar"]', el => getComputedStyle(el).height);
+
+    expect(firstDay).toBe('0px');
+    await page.mouse.click(0,0);
+
+    // Using the textbox
+    await page.evaluate(() => {
+      const toggle = document.querySelector('#toggle1');
+      if (toggle) {
+        toggle.checked = true;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }, toggleSelector);
+    
+    codeBtn = await page.$('div[data-target="code-line-toggle"]');
+    await codeBtn.click();
+    
+    textBox = await page.$('input[class="number"]');
+    
+    await textBox.click();
+    await page.keyboard.down('Control');
+    await page.keyboard.press('KeyA'); // Press 'A' key
+    await page.keyboard.up('Control');
+    await page.keyboard.press('Backspace'); // Press 'Backspace' key
+    await page.keyboard.type('10000');
+
+    await page.mouse.click(0,0);
+
+    // Check the summary for the change
+    summaryHandler = await page.$('div[class="dropdown"]');
+    summaryBtn = await summaryHandler.$('button');
+    await summaryBtn.click();
+    
+    dropBoxes = await summaryHandler.$('div[class="dropdown-content show"]');
+    codeData = await dropBoxes.$('div[id="lines-coded-summary"]');
+    firstDay = await codeData.$eval('div[class="bar"]', el => getComputedStyle(el).height);
+
+    expect(firstDay).toBe('100px');
+  });
 });

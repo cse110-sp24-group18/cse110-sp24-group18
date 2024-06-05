@@ -6,7 +6,5 @@ export function attatchSplashListener() {
 
   splashScreen.addEventListener('click', function() {
     splashScreen.classList.add('slide-up');
-    const style = document.getElementById('splashScreenLock');
-    style.disabled = true;
   });
 }
