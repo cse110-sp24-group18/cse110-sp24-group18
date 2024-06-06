@@ -113,20 +113,28 @@
   border-color: white;
   background-color: white;
 }
+
 .material-symbols-outlined{
   color: #195B8B;
   text-align: center;
   align-items: center;
 }
+/* Styles for control buttons (Separated from HTML) */ 
+.control-btn-container .btn {
+  width: 3.5em;
+  height: 3.5em;
+}
 
-/* .control-btn-container input {
-  height: 1.6em;
-  width: 1.6em;
-} */
+.control-btn-container .material-symbols-outlined {
+  color: #195B8B;
+  font-size: 34px;
+}
 
-/* #bold-btn, #italic-btn {
-  transform: translateY(-15%);
-} */
+/* Styles for widget buttons */
+.widget-btn .material-symbols-outlined {
+  color: #ffff;
+  font-size: 70px;
+}
 
 #filename-input {
   margin-left: 10px;

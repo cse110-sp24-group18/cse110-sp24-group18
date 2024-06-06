@@ -1,4 +1,4 @@
-import { getJournals } from './fileSys.js';
+import { getJournals } from "./fileSys.js";
 
 export function summaryInit() {
   document.querySelector('.dropbtn').addEventListener('click', function() { // Add a click event listener to the dropdown button
@@ -9,15 +9,15 @@ export function summaryInit() {
   });
 
   window.onclick = function(event) {     // Close the dropdown if the user clicks outside of it
-    if (!event.target.matches('.dropbtn')) {
-      const dropdowns = document.getElementsByClassName('dropdown-content'); // Loop through all dropdown contents and remove the 'show' class if it's present
-      for (let i = 0; i < dropdowns.length; i++) {
-        const openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
+      if (!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content"); // Loop through all dropdown contents and remove the 'show' class if it's present
+          for (var i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                  openDropdown.classList.remove('show');
+              }
+          }
       }
-    }
   };
 
   // Apply the gradient to all bars
@@ -26,10 +26,6 @@ export function summaryInit() {
   });
 }
 
-/**
- * 
- * @param {*} bar 
- */
 function setBarGradient(bar) {    // Function to set the gradient background of a bar based on its height percentage
   const heightPercentage = parseInt(bar.style.height);
   let color;
@@ -45,41 +41,22 @@ function setBarGradient(bar) {    // Function to set the gradient background of 
   bar.style.backgroundImage = color;  // Apply the color gradient to the bar
 }
 
-/**
- * Converts an a given array into a bar graph structure in HTML
- * @param {Array} arr Array of numbers to turn into bar graph
- * @param {String} widget Widget tag to generate class of
- * @param {number} max Maximum value of numbers
- */
 function arrayToBarGraph(arr, widget, max) {
-
-  // generate widget based on parameter
   const barGraph = document.getElementById(widget);
   barGraph.innerHTML = '';
-
-  const noElements = arr.length; // number of total elements, bar for each
+  const noElements = arr.length;
   let maxVal = 0;
-
-  // either get the max value of all bar values or 
   for (let i = 0; i < noElements; i++) {
     let barVal = arr[i];
-
-    // set the max bar value for percentage purposes
     if (barVal > maxVal) {
       maxVal = barVal;
     }
-
-    // check for a max parameter to set percentages
     if (max) {
       const barOnGraph = document.createElement('div');
       barOnGraph.className = 'bar';
-
-      // ceiling the values to the max param
       if (barVal > max) {
-        barVal = max;
+        barVal = max
       }
-
-      // set the percentage to the height of the bar visual
       const percentage = barVal / max * 100;
       barOnGraph.style = `height: ${percentage}%;`;
       setBarGradient(barOnGraph);
@@ -87,11 +64,9 @@ function arrayToBarGraph(arr, widget, max) {
       barGraph.appendChild(barOnGraph);
     }
   }
-
-  // if there is no max param, use the largest value as the max param
   if (!max) {
     for (let i = 0; i < noElements; i++) {
-      const barVal = arr[i];
+      let barVal = arr[i];
       const barOnGraph = document.createElement('div');
       barOnGraph.className = 'bar';
       const percentage = barVal / maxVal * 100;
@@ -103,18 +78,11 @@ function arrayToBarGraph(arr, widget, max) {
   }
 }
 
-/**
- * Gets the most recent
- * @param {number} amount Amount of journals to get
- * @returns Array of recent journals
- */
 function getMostRecent(amount) {
   const journals = getJournals();
-  const arrayJournals = [];
+  let arrayJournals = [];
   let count = 0;
   const datesSorted = getSortedDates(journals);
-
-  // loop through journals and get all the most recent dates, break loop once limit reached
   for (const date in datesSorted) {
     if (count === amount) {
       break;
@@ -125,11 +93,6 @@ function getMostRecent(amount) {
   return arrayJournals;
 }
 
-/**
- * Sorts a dictionary based on date
- * @param {dict} dictionary dictionary of journals
- * @returns sorted dictionary
- */
 function getSortedDates(dictionary) {
   const dates = Object.keys(dictionary);
   
@@ -138,13 +101,8 @@ function getSortedDates(dictionary) {
   return dates;
 }
 
-/**
- * Get lines coded values from dict
- * @param {dict} dict dictionary of journals
- * @returns array of lines coded values
- */
 function getLinesCodedArray(dict) {
-  const arr = [];
+  let arr = [];
   for (const journal in dict) {
     let lines = dict[journal]['linesCoded'];
     if (!lines) {
@@ -152,16 +110,12 @@ function getLinesCodedArray(dict) {
     }
     arr.push(lines);
   }
+  console.log('Lines ARR: ', arr);
   return arr;
 }
 
-/**
- * Get sleep values from dict
- * @param {dict} dict dictionary of journals
- * @returns array of sleep values
- */
 function getSleepArray(dict) {
-  const arr = [];
+  let arr = [];
   for (const journal in dict) {
     let lines = sleepToValue(dict[journal]['sleep']);
     if (!lines) {
@@ -169,14 +123,10 @@ function getSleepArray(dict) {
     }
     arr.push(lines);
   }
+  console.log('Sleep ARR: ', arr);
   return arr;
 }
 
-/**
- * Returns a sleep number based on the string
- * @param {String} val 
- * @returns number associated with sleep string
- */
 function sleepToValue(val) {
   switch (val) {
     case 'Excellent':
@@ -194,23 +144,15 @@ function sleepToValue(val) {
   }
 }
 
-/**
- * Get emotions from journals
- * @param {dict} arrDicts array of journals
- * @returns array of ['date', 'mood'] arrays
- */
 function journalsToEmotions(arrDicts) {
-  const arrEmotions = [];
+  let arrEmotions = [];
   for (let i = 0; i < arrDicts.length; i++) {
     arrEmotions.push([arrDicts[i]['date'], arrDicts[i]['mood']]);
   }
+  console.log('EMOTIONS:', arrEmotions);
   return arrEmotions;
 }
 
-/**
- * Set the emotion images based on array of emotion strings
- * @param {Array} arr array of ['date', 'mood'] arrays
- */
 function setEmotionImages(arr) {
   const moodBox = document.getElementById('mood-box');
   moodBox.innerHTML = '';
@@ -227,7 +169,6 @@ function setEmotionImages(arr) {
   emotionDiv.innerHTML = '';
   sleepDiv.innerHTML = '';
 
-  // loop through array and create HTML elements with associated date and emotion image
   for (let i = 0; i < arr.length; i++) {
     const moodJournal = document.createElement('div');
     moodJournal.className = 'day';
@@ -256,11 +197,6 @@ function setEmotionImages(arr) {
   moodBox.appendChild(moodDiv);
 }
 
-/**
- * Get the image source depending on the emotion string
- * @param {String} mood 
- * @returns source of image for emotion
- */
 function moodToSrc(mood) {
   switch (mood) {
     case 'AMAZING':

@@ -63,12 +63,12 @@ describe('Emotion Widget E2E Tests', () => {
     });
 
     // Calculate the coordinates within the gauge based on the angle
-    const centerX = gaugeBoundingBox.x + (gaugeBoundingBox.width / 2);
-    const centerY = gaugeBoundingBox.y + (gaugeBoundingBox.height / 2);
+    const centerX = gaugeBoundingBox.x + gaugeBoundingBox.width / 2;
+    const centerY = gaugeBoundingBox.y + gaugeBoundingBox.height / 2;
     const radius = gaugeBoundingBox.width / 2;
     const radians = (angle - 90) * (Math.PI / 180); // Convert angle to radians and adjust for 0 degrees being at 3 o'clock
-    const x = centerX + (radius * Math.cos(radians));
-    const y = centerY + (radius * Math.sin(radians));
+    const x = centerX + radius * Math.cos(radians);
+    const y = centerY + radius * Math.sin(radians);
 
     console.log(`Clicking at: (${x}, ${y}) for angle: ${angle}`);
 

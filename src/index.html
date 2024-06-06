@@ -24,12 +24,17 @@
     <script src="assets/scripts/fileSys.js" type="module"></script>
     <script src="assets/scripts/journalNav.js" type="module"></script>
     <script src="assets/scripts/textEditor.js" type="module"></script>
+    <!-- <script src="assets/scripts/splashScreen.js" type="module"></script> -->
     <script src="assets/scripts/widgets.js" type="module"></script>
     <script src="assets/scripts/emotion-widget.js" type="module"></script>
     <script src="assets/scripts/sleep-widget.js" type="module"></script>
     <script src="assets/scripts/lines-of-code-script.js" type="module"></script>
     <script src="assets/scripts/summary.js" type="module"></script>
-    
+
+    <!-- Lock scroll during splash screen -->
+    <!-- <style id="splashScreenLock">
+        html, body {margin: 0; height: 100%; overflow: hidden}
+    </style> -->
 </head>
 <body>
     <div id="splash-container"><p class="tracking-in-expand" id="splashtext">{ DevDiary }</p></div>
@@ -148,29 +153,6 @@
         </div>
     </div>
 
-    <!-- Burger Menu -->
-    <section class="p-menu1">
-        <nav id="navbar" class="navigation" role="navigation">
-            <input id="toggle1" type="checkbox" />
-            <label class="hamburger1" for="toggle1">
-                <div class="top"></div>
-                <div class="meat"></div>
-                <div class="bottom"></div>
-            </label>
-            <div class="burger-menu-container">
-                <div class="widget-btn" data-target="sleep-toggle">
-                    <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">bedtime</span>
-                </div>
-                <div class="widget-btn" data-target="mood-toggle">
-                    <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">add_reaction</span>
-                </div>
-                <div class="widget-btn" data-target="code-line-toggle">
-                    <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">code</span>
-                </div>
-            </div>
-        </nav>
-    </section>
-
     <div class="wrapper"> <!--Wrapper for entire test-->
 
         <div class="component-wrapper"> <!--Wrapper for the side bar component-->
@@ -248,18 +230,18 @@
             <div class="controls"> <!--Container for title and control button containers-->
                 
                 <div class="control-btn-container"> <!--Container for control buttons-->
-                    <button id="bold-btn" class="btn btn-dark control-btn" style="width: 3.5em; height: 3.5em;"> <!--Button to bold text-->
-                        <span class="material-symbols-outlined" style="color: #195B8B; font-size: 34px;">
+                    <button id="bold-btn" class="btn btn-dark control-btn"> <!--Button to bold text-->
+                        <span class="material-symbols-outlined">
                             format_bold
                         </span>
                     </button>
-                    <button id="underline-btn" class="btn btn-dark control-btn" style="width: 3.5em; height: 3.5em;"> <!--Button to underline text-->
-                        <span class="material-symbols-outlined" style="color: #195B8B ; font-size: 34px;">
+                    <button id="underline-btn" class="btn btn-dark control-btn"> <!--Button to underline text-->
+                        <span class="material-symbols-outlined">
                             format_underlined
                         </span>
                     </button>
-                    <button id="italic-btn" class="btn btn-dark control-btn" style="width: 3.5em; height: 3.5em;"> <!--Button to italicize text-->
-                        <span class="material-symbols-outlined" style="color: #195B8B ; font-size: 34px;">
+                    <button id="italic-btn" class="btn btn-dark control-btn"> <!--Button to italicize text-->
+                        <span class="material-symbols-outlined">
                             format_italic
                         </span>
                     </button>
@@ -269,7 +251,26 @@
             </div>
             <div id="content" contenteditable="true" spellcheck="false"></div> <!--Content box for editing text-->
         </div>
-      
+
+        <!-- Widget Buttons -->
+        <div id="widget-buttons">
+            <div class="widget-btn" data-target="sleep-toggle">
+                <span class="material-symbols-outlined">
+                    bedtime
+                </span>
+            </div>
+            <div class="widget-btn" data-target="mood-toggle">
+                <span class="material-symbols-outlined">
+                    add_reaction
+                </span>
+            </div>
+            <div class="widget-btn" data-target="code-line-toggle">
+                <span class="material-symbols-outlined">
+                    code
+                </span>
+            </div>
+        </div>
+
         <!-- Widget Popouts -->
         <div id="widget-popouts">
             <div id="sleep-toggle" class="widget">
@@ -407,6 +408,8 @@
                             </div>
                             <div class="box">
                                 <h3>Hours of Sleep</h3>
+
+
 
         </div>
 </body>
