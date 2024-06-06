@@ -11,101 +11,105 @@
 }
 
 /* Ensures that the content of the widget is properly centered */
-.lines-widget-content {
+.container-widget-text .lines-widget-content {
     z-index: 1; /* Ensure content appears above the canvas */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem; /* Add padding for better spacing */
 }
 
+
 /* Style for the controls container within the widget */
-.lines-widget-content .controls {
+.container-widget-text .controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2rem 0; /* Use rem units for margin */
+    margin: 20px 0;
 }
 
 /* Style for buttons within the widget */
-.lines-widget-content button {
-    background-color: #f8f4f3;
-    color: #195B8B;
+.container-widget-text button {
+    background-color: #195B8B;
+    color: white;
     border: none;
     border-radius: 50%;
-    width: 2.5rem; /* Use rem units */
-    height: 2.5rem; /* Use rem units */
-    font-size: 1.25rem; /* Use rem units */
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
     cursor: pointer;
-    margin: 0 1rem; /* Use rem units */
+    margin: 0 10px;
     transition: background-color 0.3s;
 }
 
 /* Style for button hover effect within the widget */
-.lines-widget-content button:hover {
-    background-color: #1CB6F0; /* Darker blue on hover */
+.container-widget-text button:hover {
+    background-color: #195B8B; /* Darker blue on hover */
 }
 
 /* Style for button focus effect within the widget */
-.lines-widget-content button:focus {
+.container-widget-text button:focus {
     outline: none;
 }
 
 /* Style for the number input field within the widget */
-.lines-widget-content .number {
-    font-size: 5rem; /* Use rem units for font size */
-    margin: 0 1rem; /* Use rem units */
-    width: 8rem; /* Use rem units */
+.container-widget-text .number {
+    font-size: 60px;
+    margin: 0 20px;
+    width: 60px; /* Decreased width */
     text-align: center;
-    height: 6rem; /* Use rem units */
+    height: 60px;
     border: none;
-    border-radius: 50%; /* Ensure it remains circular */
-    color: #FFF;
-    background-color: #195B8B;
+    background-color: #f8f4f3;
+    color: #195B8B;
     
     /* Hide the spinners */
     -moz-appearance: textfield;
 }
 
 /* Remove arrows from number input field in WebKit browsers */
-.lines-widget-content .number::-webkit-outer-spin-button,
-.lines-widget-content .number::-webkit-inner-spin-button {
+.container-widget-text .number::-webkit-outer-spin-button,
+.container-widget-text .number::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
 /* Style for the confirm button within the widget */
-.lines-widget-content .confirm-btn {
-    background-color: #f8f4f3;
-    color: #195B8B;
+.container-widget-text .confirm-btn {
+    background-color: #195B8B;
+    color: white;
     border: none;
-    border-radius: 10px; /* Slightly rounded corners */
-    width: 200px; /* Width of the button */
-    height: 50px; /* Height of the button */
-    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
     cursor: pointer;
-    margin: 20px auto; /* Center the button */
-    display: block;
+    width: 100%;
     transition: background-color 0.3s;
-    text-align: center;
-    line-height: 50px; /* Vertically center the text */
 }
 
 /* Style for confirm button hover effect within the widget */
-.lines-widget-content .confirm-btn:hover {
-    background-color: #1CB6F0; /* Darker blue on hover */
+.container-widget-text .confirm-btn:hover {
+    background-color: #195B8B; /* Darker blue on hover */
 }
 
 /* Style for confirm button focus effect within the widget */
-.lines-widget-content .confirm-btn:focus {
+.container-widget-text .confirm-btn:focus {
     outline: none;
+}
+
+/* Style for the confirmation message container */
+.confirmation-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 /* Style for h3 elements within the confirmation message */
 .confirmation-message h3 {
     margin: 5px 0; /* Reduced spacing between text */
-    color: #f8f4f3;
+    color: #195B8B;
     font-size: 24px; /* Increased font size */
 }
 
