@@ -16,6 +16,14 @@ describe('Emotion Widget E2E Tests', () => {
 
     await setTimeout(1000);
 
+    // Wait for the burger menu to be available in the DOM
+    await page.waitForSelector('.hamburger1');
+
+    // Click the burger menu button
+    await page.click('.hamburger1');
+
+    await setTimeout(1000);
+
     // Wait for the widget button to be available in the DOM
     await page.waitForSelector('.widget-btn');
 
@@ -33,7 +41,7 @@ describe('Emotion Widget E2E Tests', () => {
   });
 
   const gaugePositions = {
-    MISERABLE: { angle: 280 }, // Adjusted for more precision
+    MISERABLE: { angle: 300 }, // Adjusted for more precision
     SAD: { angle: 320 },
     MEH: { angle: 360 },
     HAPPY: { angle: 380 },
