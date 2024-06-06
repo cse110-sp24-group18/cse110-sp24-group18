@@ -22,8 +22,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests with coverage
-        run: npm test
+      - name: Run Unit Tests with coverage
+        run: npm run test:unit
+      - name: Run E2E Tests with coverage
+        run: npm run test:e2e
 
       - name: Download Codacy Coverage Reporter
         run: |

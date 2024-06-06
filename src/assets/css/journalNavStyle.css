@@ -40,16 +40,19 @@
     }
 }
 
-
-
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
 
 .header {
-    margin-left: 4vb;
-    height: 12vh;
-    padding: 20px;
-
+    /* padding: 20px; */
+    max-height: 12vh;
     display: flex;
     flex-direction: row;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
 }
 
 .header h1 {
@@ -57,8 +60,15 @@
     font-weight: 600;
     word-wrap: break-word;
     padding-top: 10px;
-    width: 11em;
+    width: 7.5em;
     font-size: 3em;
+    margin-left: 8vb;
+}
+
+.header-title {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
 }
 
 .component-wrapper {
@@ -66,7 +76,7 @@
     margin-top: 2vh;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; 
     border-radius: 30px; 
-    border: 1px #E0E0DF solid
+    border: 1px #E0E0DF solid;
 }
 
 #text-container {
@@ -82,7 +92,7 @@
 .wrapper {
     display: flex;
     color: red;
-    max-height: 100vh;
+    max-height: 88vh;
     overflow: hidden;
 }
 
@@ -100,9 +110,9 @@ body{
     padding: 0.5em;
     font-family: "Poppins";
     overflow: hidden;
-    max-height: 90vh;
+    max-height: 76vh;
     scrollbar-gutter: stable both-edges;
-    height: 90%;
+    height: 76vh;
 }
 
 #nav-container:hover {
@@ -115,19 +125,23 @@ body{
     width: 100%;
     align-items: center;
 
-    border: 2px #195B8B solid;
-    border-radius: 2em;
-    padding: 0.5em;
+    border: 2px #1A76AE solid;
+    border-radius: 4em;
+    padding: 0.7em;
+    background-color: #fdfdfd;
 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 0.5em;
 }
 
 .journalEntry button:hover {
-    filter: brightness(0.9);
+    /*filter: brightness(0.9);*/
+    background-color: #1CB6F0;
+    border-color: #1CB6F0;
 }
 
 .journalEntry text {
+    
     display: flex;
     flex-direction: column;
     padding-left: 0.5em;
@@ -201,7 +215,9 @@ body{
 }
 
 .nav-filter-buttons label:hover{
-    filter: brightness(0.9);
+    /*filter: brightness(0.9);*/
+    background-color: #1CB6F0;
+    border-color: #1CB6F0;
 }
 
 .nav-filter-buttons input[type="radio"]:checked + label {

@@ -11,23 +11,30 @@
     <link rel="stylesheet" href="assets/css/splashStyle.css">
     <link rel="stylesheet" href="assets/emotion-widget/emotion-widget.css">
     <link rel="stylesheet" href="assets/lines-of-code-widget/lines-of-code-styles.css">
+    <link rel="stylesheet" href="assets/summary-widget/summary.css">
+    <link rel="stylesheet" href="assets/css/lines-of-code-styles.css">
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
             crossorigin="anonymous"
         />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!--ADDED 5/27/24 Changing font color icon-->
     <script src="assets/scripts/main.js" type="module"></script>
     <script src="assets/scripts/fileSys.js" type="module"></script>
     <script src="assets/scripts/journalNav.js" type="module"></script>
     <script src="assets/scripts/textEditor.js" type="module"></script>
-    <script src="assets/scripts/splashScreen.js" type="module"></script>
+    <!-- <script src="assets/scripts/splashScreen.js" type="module"></script> -->
     <script src="assets/scripts/widgets.js" type="module"></script>
+    <script src="assets/scripts/emotion-widget.js" type="module"></script>
+    <script src="assets/scripts/sleep-widget.js" type="module"></script>
+    <script src="assets/scripts/lines-of-code-script.js" type="module"></script>
+    <script src="assets/scripts/summary.js" type="module"></script>
 
     <!-- Lock scroll during splash screen -->
-    <style id="splashScreenLock">
+    <!-- <style id="splashScreenLock">
         html, body {margin: 0; height: 100%; overflow: hidden}
-    </style>
+    </style> -->
 </head>
 <body>
     <div id="splash-container"><p class="tracking-in-expand" id="splashtext">{ DevDiary }</p></div>
@@ -36,12 +43,113 @@
     </div>
 
     <div class="header"> <!--Wrapper for entire header -->
-        <h1> Hi, User! </h1>
-        <div class="title-container"> <!--Container for title text-->
-            <h4 class="title" id="date">Today's Entry</h4>
-            <span class="material-symbols-outlined">
-                edit
-            </span>
+        <div class="header-title">
+            <h1> Hi, User! </h1>
+            <div class="title-container"> <!--Container for title text-->
+                <h4 class="title" id="date">Today's Entry</h4>
+                <span class="material-symbols-outlined">
+                    edit
+                </span>
+            </div>
+        </div>
+        <!--Summary Dropdown-->
+        <div class="dropdown">
+            <button class="dropbtn">Weekly Summary</button>
+            <div class="dropdown-content">
+                <div class="box">
+                    <div class="box" id="mood-box">
+                        <h3>Mood History</h3>
+                        <div class="week">
+                            <div class="day">
+                                <p>Mon</p>
+                                <img src="/summary-widget/media/faceAmazing.png" alt="smiley" class="mood-icon">
+                            </div>
+                            <div class="day">
+                                <p>Tue</p>
+                                <img src="/summary-widget/media/faceGood.png" alt="smiley" class="mood-icon">
+                            </div>
+                            <div class="day">
+                                <p>Wed</p>
+                                <img src="/summary-widget/media/faceMeh.png" alt="smiley" class="mood-icon">
+                            </div>
+                            <div class="day">
+                                <p>Thu</p>
+                                <img src="/summary-widget/media/faceMiserable.png" alt="smiley" class="mood-icon">
+                            </div>
+                            <div class="day">
+                                <p>Fri</p>
+                                <img src="/summary-widget/media/faceSad.png" alt="smiley" class="mood-icon">
+                            </div>
+                            <div class="day">
+                                <p>Sat</p>
+                                <img src="/summary-widget/media/faceAmazing.png" alt="smiley" class="mood-icon">
+                            </div>
+                            <div class="day">
+                                <p>Sun</p>
+                                <img src="/summary-widget/media/faceGood.png" alt="smiley" class="mood-icon">
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <h3>Hours of Sleep</h3>
+                    <div class="week" id="sleep-week">
+                        <div class="day">
+                            <p>Mon</p>
+                        </div>
+                        <div class="day">
+                            <p>Tue</p>
+                        </div>
+                        <div class="day">
+                            <p>Wed</p>
+                        </div>
+                        <div class="day">
+                            <p>Thu</p>
+                        </div>
+                        <div class="day">
+                            <p>Fri</p>
+                        </div>
+                        <div class="day">
+                            <p>Sat</p>
+                        </div>
+                        <div class="day">
+                            <p>Sun</p>
+                        </div>
+                    </div>
+                    <div id="sleep-summary" class="bar-graph">
+                    </div>
+    
+                </div>
+                <div class="box">
+                    <h3>Lines Coded</h3>
+                    <div class="week" id="lines-week">
+                        <div class="day">
+                            <p>Mon</p>
+                        </div>
+                        <div class="day">
+                            <p>Tue</p>
+                        </div>
+                        <div class="day">
+                            <p>Wed</p>
+                        </div>
+                        <div class="day">
+                            <p>Thu</p>
+                        </div>
+                        <div class="day">
+                            <p>Fri</p>
+                        </div>
+                        <div class="day">
+                            <p>Sat</p>
+                        </div>
+                        <div class="day">
+                            <p>Sun</p>
+                        </div>
+                    </div>
+                    <div id="lines-coded-summary" class="bar-graph">
+                   </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -122,22 +230,23 @@
             <div class="controls"> <!--Container for title and control button containers-->
                 
                 <div class="control-btn-container"> <!--Container for control buttons-->
-                    <button id="bold-btn" class="btn btn-dark control-btn" style="width: 3.5em; height: 3.5em;"> <!--Button to bold text-->
-                        <span class="material-symbols-outlined" style="color: #195B8B; font-size: 34px;">
+                    <button id="bold-btn" class="btn btn-dark control-btn"> <!--Button to bold text-->
+                        <span class="material-symbols-outlined">
                             format_bold
                         </span>
                     </button>
-                    <button id="underline-btn" class="btn btn-dark control-btn" style="width: 3.5em; height: 3.5em;"> <!--Button to underline text-->
-                        <span class="material-symbols-outlined" style="color: #195B8B ; font-size: 34px;">
+                    <button id="underline-btn" class="btn btn-dark control-btn"> <!--Button to underline text-->
+                        <span class="material-symbols-outlined">
                             format_underlined
                         </span>
                     </button>
-                    <button id="italic-btn" class="btn btn-dark control-btn" style="width: 3.5em; height: 3.5em;"> <!--Button to italicize text-->
-                        <span class="material-symbols-outlined" style="color: #195B8B ; font-size: 34px;">
+                    <button id="italic-btn" class="btn btn-dark control-btn"> <!--Button to italicize text-->
+                        <span class="material-symbols-outlined">
                             format_italic
                         </span>
                     </button>
-                    <input id="color-btn" type="color" class="control-btn" /> <!--Button to color text-->
+                    <input id="color-btn" type="color" class="control-btn"/> <!--Button to color text-->
+                    
                 </div>
             </div>
             <div id="content" contenteditable="true" spellcheck="false"></div> <!--Content box for editing text-->
@@ -146,23 +255,18 @@
         <!-- Widget Buttons -->
         <div id="widget-buttons">
             <div class="widget-btn" data-target="sleep-toggle">
-                <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">
+                <span class="material-symbols-outlined">
                     bedtime
                 </span>
             </div>
             <div class="widget-btn" data-target="mood-toggle">
-                <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">
+                <span class="material-symbols-outlined">
                     add_reaction
                 </span>
             </div>
             <div class="widget-btn" data-target="code-line-toggle">
-                <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">
+                <span class="material-symbols-outlined">
                     code
-                </span>
-            </div>
-            <div class="widget-btn" data-target="summary-toggle">
-                <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">
-                    summarize
                 </span>
             </div>
         </div>
@@ -171,55 +275,53 @@
         <div id="widget-popouts">
             <div id="sleep-toggle" class="widget">
                 <div id="sleep-widget">
-                    <!-- <div class="container-sleep-widget"> -->
-                        <h3> How would you rate your sleep quality?</h3>
-                        <div class="slider-container">
-                           <div class="labels-container">
-                              <div class="label">
-                                 <p>Excellent</p>
-                                 <div class="time">
-                                    <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
-                                    <span>7-9 HOURS</span>
-                                 </div>
-                              </div>
-                              <div class="label">
-                                 <p>Good</p>
-                                 <div class="time">
-                                    <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
-                                    <span>6-7 HOURS</span>
-                                 </div>
-                              </div>
-                              <div class="label">
-                                 <p>Fair</p>
-                                 <div class="time">
-                                    <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
-                                    <span>5 HOURS</span>
-                                 </div>
-                              </div>
-                              <div class="label">
-                                 <p>Poor</p>
-                                 <div class="time">
-                                    <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
-                                    <span>3-4 HOURS</span>
-                                 </div>
-                              </div>
-                              <div class="label">
-                                 <p>Worst</p>
-                                 <div class="time">
-                                    <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
-                                    <span>&lt; 3 HOURS</span>
-                                 </div>
-                              </div>
-                           </div>
-                            <input class="slider" type="range" min="1" max="5" value="3">    
-                            <div class="emojis-container">
-                              <img src="assets/sleep-widget/media/excellent.png" alt="Excellent" width="70px">
-                              <img src="assets/sleep-widget/media/good.png" alt="Good" width="70px">
-                              <img src="assets/sleep-widget/media/fair.png" alt="Fair" width="70px">
-                              <img src="assets/sleep-widget/media/poor.png" alt="Poor" width="70px">
-                              <img src="assets/sleep-widget/media/worst.png" alt="Worst" width="70px">
-                            </div>   
-                        <!-- </div> -->
+                    <h3> How would you rate your sleep quality?</h3>
+                    <div class="slider-container">
+                        <div class="labels-container">
+                            <div class="label">
+                                <p>Excellent</p>
+                                <div class="time">
+                                <img src="assets/sleep-widget/media/clock.png" alt="Best" width="15px">
+                                <span>7-9 HOURS</span>
+                                </div>
+                            </div>
+                            <div class="label">
+                                <p>Good</p>
+                                <div class="time">
+                                <img src="assets/sleep-widget/media/clock.png" alt="Good" width="15px">
+                                <span>6-7 HOURS</span>
+                                </div>
+                            </div>
+                            <div class="label">
+                                <p>Fair</p>
+                                <div class="time">
+                                <img src="assets/sleep-widget/media/clock.png" alt="Middle" width="15px">
+                                <span>5 HOURS</span>
+                                </div>
+                            </div>
+                            <div class="label">
+                                <p>Poor</p>
+                                <div class="time">
+                                <img src="assets/sleep-widget/media/clock.png" alt="Bad" width="15px">
+                                <span>3-4 HOURS</span>
+                                </div>
+                            </div>
+                            <div class="label">
+                                <p>Worst</p>
+                                <div class="time">
+                                <img src="assets/sleep-widget/media/clock.png" alt="Worst" width="15px">
+                                <span>&lt; 3 HOURS</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input class="slider" type="range" min="1" max="5" value="3">    
+                        <div class="emojis-container">
+                            <img src="assets/sleep-widget/media/faceAmazing.png" alt="Excellent">
+                            <img src="assets/sleep-widget/media/faceGood.png" alt="Good">
+                            <img src="assets/sleep-widget/media/faceMeh.png" alt="Fair">
+                            <img src="assets/sleep-widget/media/faceSad.png" alt="Poor">
+                            <img src="assets/sleep-widget/media/faceMiserable.png" alt="Worst">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -227,19 +329,12 @@
 
 
             <!-- MOOD WIDGET -->
-
-
             <div id="mood-toggle" class="widget">
                 <!--Container for icon-->
-                <div class="widget-header-icon">
-                    <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">
-                        add_reaction
-                    </span>
-                </div>
                 
                 <div class="container-widget-text"> <!--Container for entire widget-->
                     <div class="widget-header-text">
-                        How would you describe your mood today?
+                        <h3>How would you describe your mood today?</h3>
                     </div>
                     <div class="containerFace"> <!--Container for the face emotion image-->
                         <img src="assets/emotion-widget/media/faceMeh.png" id="face"> <!--Image for the selected face emotion-->
@@ -255,36 +350,67 @@
 
             <!-- LINES OF CODE WIDGET -->
 
-
             <div id="code-line-toggle" class="widget">
-                <div class="widget-header-icon">
-                    <span class="material-symbols-outlined" style="color: #ffff; font-size: 70px;">
-                        code
-                    </span>
-                </div>
-                <div class="container-widget-text">
-                    <div class="lines-widget-content">                      
-                        <div class="widget-header-text">
-                            How many lines have you coded today?
-                        </div>
-                        <div class="controls">
-                            <!-- Buttons to increment and decrement the count, and an input field to display and change the count -->
-                            <button onclick="decrement()">-</button>
-                            <input type="number" id="number" class="number" value="5" oninput="updateNumber()">
-                            <button onclick="increment()">+</button>
-                        </div>                       
+                <div class="lines-widget-content">
+                    <div>
+                        <h3>How many lines have you coded today?</h3>
+                    </div>
+                    <div class="controls">
+                        <!-- Buttons to increment and decrement the count, and an input field to display and change the count -->
+                        <button id="lines-decrement">-</button>
+                        <input type="number" id="number" class="number">
+                        <button id="lines-increment">+</button>
                     </div>
                 </div>
             </div>
 
 
+            <!-- SUMMARY WIDGET -->
             <div id="summary-toggle" class="widget">
-                <div id="summary-widget">
-                    this is the summary widget
-                </div>
-            </div>
+                <div class="summary-widget" id="summary-widget">
+                    <div class="dropdown">
+                        <div class="dropdown-content">
+                            <div class="box">
+                                <div class="widget-header-text">
+                                    Mood History 
+                                </div>
+                                
+                                <div class="week">
+                                    <div class="day">
+                                        <p>Mon</p>
+                                        <img src="assets/summary-widget/media/faceAmazing.png" alt="smiley" class="mood-icon">
+                                    </div>
+                                    <div class="day">
+                                        <p>Tue</p>
+                                        <img src="assets/summary-widget/media/faceGood.png" alt="smiley" class="mood-icon">
+                                    </div>
+                                    <div class="day">
+                                        <p>Wed</p>
+                                        <img src="assets/summary-widget/media/faceMeh.png" alt="smiley" class="mood-icon">
+                                    </div>
+                                    <div class="day">
+                                        <p>Thu</p>
+                                        <img src="assets/summary-widget/media/faceMiserable.png" alt="smiley" class="mood-icon">
+                                    </div>
+                                    <div class="day">
+                                        <p>Fri</p>
+                                        <img src="assets/summary-widget/media/faceSad.png" alt="smiley" class="mood-icon">
+                                    </div>
+                                    <div class="day">
+                                        <p>Sat</p>
+                                        <img src="assets/summary-widget/media/faceAmazing.png" alt="smiley" class="mood-icon">
+                                    </div>
+                                    <div class="day">
+                                        <p>Sun</p>
+                                        <img src="assets/summary-widget/media/faceGood.png" alt="smiley" class="mood-icon">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <h3>Hours of Sleep</h3>
+
+
 
         </div>
-        <script src="assets/emotion-widget/emotion-widget.js"></script>
 </body>
 </html>
