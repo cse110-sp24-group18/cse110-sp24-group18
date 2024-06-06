@@ -8,7 +8,6 @@ export function emotionWidgetListeners() {
     return;
   }
 
-  // const gaugeValue = document.getElementById('score'); // get the score element (testing)
   let emotion = 'MEH'; // set emotion to 'MEH' (MEH by default)
   let currSpeed = 150; // set currSpeed to 150 by default
 
@@ -44,7 +43,6 @@ export function emotionWidgetListeners() {
     if (angle >= 180 && angle <= 360) {
       const speed = (angle / 180) * 100;
       currSpeed = speed;
-      // gaugeValue.textContent = `${Math.round(speed) - 100}`;
 
       if (speed >= 100 && speed < 120) {  // if mouse is in MISERABLE section
         faceImg.src = 'assets/emotion-widget/media/faceMiserable.png';  // change the face image to MISERABLE
@@ -97,7 +95,10 @@ export function emotionWidgetListeners() {
   return { currSpeed, emotion };
 }
 
-
+/**
+ * Changes the needle rotation, face image, and emotion text to the currentEmotions
+ * @param {String} currentEmotion 
+ */
 export function setEmotion (currentEmotion) {
   const gauge = document.getElementById('gauge'); // get the gauge element
   const faceImg = document.getElementById('face');  // get the face image element
