@@ -7,7 +7,6 @@ on:
     - '**/*.md'
     - 'jsdocsgenerated/**'
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [ "main" ]
   schedule:
     - cron: '24 15 * * 0'
@@ -33,5 +32,7 @@ jobs:
         run: npm install
       - name: Set up Xvfb
         uses: GabrielBB/xvfb-action@v1.6
-      - name: Unit Test
+      - name: Start Local Server
+        run: npx http-server -p 8080 &
+      - name: Run Tests
         run: npm test
