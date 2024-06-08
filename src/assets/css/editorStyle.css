@@ -16,24 +16,40 @@
 }
 
 .container-widget-text {
-  margin-top: 11.5em;
   width: 26em;
-  height: 30em;
+  height: 42em;
   position: absolute;
   display: flex;
-  background-color: #f8f4f3;
+  background-color: #195B8B;
+  border-radius: 10px;
 }
 
+.containerFace #emotionText {
+  color: #f8f4f3;
+  align-items: center;
+}
+
+.containerFace {
+  margin-top: 10%;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .widget-header-text {
   padding: 1em;
   text-align: center;
-  color: #195B8B;
+  color: #f8f4f3;
   font-size: 24px;
   align-items: center;
 }
 
-
+.lines-widget-content .widget-header-text {
+  padding: 1em;
+  text-align: center;
+  color: #f8f4f3;
+  font-size: 24px;
+  align-items: center;
+}
 
 
 
@@ -53,7 +69,6 @@
   padding: 0 0 0 0;
   margin: 0 0 0 0;
   padding-left: 2em;
-  min-height: 3em;
   display: flex;
   align-items: center;
   color: black;
@@ -136,9 +151,12 @@
 }
 
 #widget-buttons {
-  padding-top: 8em;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10.7em;
   padding-right: 8em;
   margin-left: -7em;
+  gap: 5.8em;
 }
 
 .widget-btn { 
@@ -166,9 +184,12 @@
 #widget-popouts {
   position: relative;
   right: -20em;
-  width: 25em;
+  width: 25vh;
   margin-top: 8em;
-  margin-left: -27em;
+  margin-left: -17em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .widget {
@@ -180,12 +201,13 @@
   padding: 2em 2em 2em 2em;
   
   right: -45em;
-  height: 46em;
-  width: 30em;
+  height: 70vh;
+  width: 55vh;
   /* z-index: -1; */
   color: white;
   display: none;
 }
+
 
 .widget#sleep-toggle {
   background-color: #195B8B;
@@ -204,18 +226,14 @@
 }
 
 
+/* Sleep Widget */
 
-
-
-
-
-
-
-
-
-
-.container-sleep-widget {
-  width: 80%;
+h3 {
+  padding-bottom: 10%;
+  text-align: center;
+}
+.sleep-widget {
+  width: 25vh;
   padding: 20px;
   margin: auto;
   text-align: center;
@@ -227,21 +245,21 @@
 .slider-container {
   justify-content: center;
   display: flex;
-  height: 450px; 
+  height: 50vh; 
 }
 
 .slider {
   appearance: none; 
-  margin-left: -155px;
-  margin-right: -120px;
-  width: 450px;
-  height: 18px;
+  margin-left: -20vh;
+  margin-right: -20vh;
+  width: 50vh;
+  height: 4vh;
   background: #1CB6F0;
   outline: none; 
-  border-radius: 50px; 
-  margin-top: 225px; /*half size of width*/
+  border-radius: 50vh; 
+  margin-top: 23vh;
   transform: rotate(270deg); 
-  box-shadow: 4px 4px rgba(0, 0, 0, 0.25)
+  box-shadow: 1px 1px 90px rgba(188, 188, 188, 0.25);
 }
 
 .slider:hover {
@@ -250,8 +268,8 @@
 
 .slider::-webkit-slider-thumb {
   appearance: none; 
-  width: 55px; 
-  height: 55px; 
+  width: 5em; 
+  height: 5em; 
   border-radius: 50%; 
   background: #1CB6F0;
   cursor: pointer;
@@ -262,10 +280,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
-  font-size: 15px;
-  color: #929298;
+  font-size: auto;
+  color: hsl(0, 1%, 67%);
   font-weight: 900;
+  position: relative;
+  right: 8vh;
 }
 
 .labels-container div {
@@ -277,10 +296,18 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  position: relative;
+  left: 8vh;
+}
+
+.emojis-container img{
+  width: 9vh;
+  height: auto;
+  object-fit: contain;
 }
 
 .time img {
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 
 .time span {
@@ -289,5 +316,96 @@
 }
 
 .highlight-color {
-  color: #4f4b49;  
+  color: #ededed; 
+}
+
+
+/* Summary widget */
+
+/* Dropdown container */
+.dropdown {
+  position: relative; 
+  display: inline-block;
+}
+
+
+/* Hover and focus effects for dropdown button */
+.dropbtn:hover, .dropbtn:focus { 
+  background-color: #f1f1f1; 
+}
+
+/* Hidden dropdown content styling */
+.dropdown-content { 
+  visibility: hidden; 
+  position: absolute; 
+  z-index: 1; 
+  padding: 10px; 
+  border-radius: 16px; 
+  border: none; 
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease; 
+}
+
+/* Visible dropdown content styling */
+.dropdown-content.show { 
+  visibility: visible; 
+  opacity: 1;  
+  transform: translateY(0); 
+}
+
+/* Box styling */
+.box { 
+  background-color: #f1f1f1; 
+  padding: 20px; 
+  margin: 5px 0; 
+  text-align: center; 
+  border-radius: 16px; 
+  border: none; 
+}
+
+/* Flexbox container for week display */
+.week { 
+  display: flex;
+}
+
+/* Individual day styling */
+.day { 
+  text-align: center; 
+  margin: 0 10px; 
+}
+
+/* Paragraph styling within a day */
+.day p { 
+  margin: 5px 0; 
+  font-weight: bold;  
+}
+
+/* Mood icon styling */
+.mood-icon { 
+  width: 40px;  
+  height: 40px;  
+  margin-top: 10px; 
+}
+
+/* Bar graph container styling */
+.bar-graph { 
+  display: flex; 
+  justify-content: space-around;  
+  align-items: flex-end; 
+  height: 100px; 
+  border: 1px solid #ccc;  
+  padding: 0px; 
+  border-radius: 16px; 
+  background-color: #fff; 
+  align-self: flex-end; 
+  border: none; 
+}
+
+/* Individual bar styling */
+.bar { 
+  width: 40px; 
+  background-color: #4CAF50;  
+  border-radius: 5px 5px 0 0; 
+  height: 100%; 
+  background-image: linear-gradient(to top, #4CAF50, #FFC107); 
 }

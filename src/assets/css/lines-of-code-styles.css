@@ -1,0 +1,75 @@
+/* Confetti that stays within the box */
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow clicks through the canvas */
+}
+
+/* Ensures that the content of the widget is properly centered */
+.lines-widget-content {
+    z-index: 1; /* Ensure content appears above the canvas */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem; /* Add padding for better spacing */
+}
+
+/* Style for the controls container within the widget */
+.lines-widget-content .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0; /* Use rem units for margin */
+}
+
+/* Style for buttons within the widget */
+.lines-widget-content button {
+    background-color: #f8f4f3;
+    color: #195B8B;
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem; /* Use rem units */
+    height: 2.5rem; /* Use rem units */
+    font-size: 1.25rem; /* Use rem units */
+    cursor: pointer;
+    margin: 0 1rem; /* Use rem units */
+    transition: background-color 0.3s;
+}
+
+/* Style for button hover effect within the widget */
+.lines-widget-content button:hover {
+    background-color: #1CB6F0; /* Darker blue on hover */
+}
+
+/* Style for button focus effect within the widget */
+.lines-widget-content button:focus {
+    outline: none;
+}
+
+/* Style for the number input field within the widget */
+.lines-widget-content .number {
+    font-size: 5rem; /* Use rem units for font size */
+    margin: 0 1rem; /* Use rem units */
+    width: 8rem; /* Use rem units */
+    text-align: center;
+    height: 6rem; /* Use rem units */
+    border: none;
+    border-radius: 50%; /* Ensure it remains circular */
+    color: #FFF;
+    background-color: #195B8B;
+    
+    /* Hide the spinners */
+    -moz-appearance: textfield;
+}
+
+/* Remove arrows from number input field in WebKit browsers */
+.lines-widget-content .number::-webkit-outer-spin-button,
+.lines-widget-content .number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
