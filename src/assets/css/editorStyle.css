@@ -16,40 +16,24 @@
 }
 
 .container-widget-text {
+  margin-top: 11.5em;
   width: 26em;
-  height: 42em;
+  height: 30em;
   position: absolute;
   display: flex;
-  background-color: #195B8B;
-  border-radius: 10px;
+  background-color: #f8f4f3;
 }
 
-.containerFace #emotionText {
-  color: #f8f4f3;
-  align-items: center;
-}
-
-.containerFace {
-  margin-top: 10%;
-  align-items: center;
-  justify-content: space-between;
-}
 
 .widget-header-text {
   padding: 1em;
   text-align: center;
-  color: #f8f4f3;
+  color: #195B8B;
   font-size: 24px;
   align-items: center;
 }
 
-.lines-widget-content .widget-header-text {
-  padding: 1em;
-  text-align: center;
-  color: #f8f4f3;
-  font-size: 24px;
-  align-items: center;
-}
+
 
 
 
@@ -69,6 +53,7 @@
   padding: 0 0 0 0;
   margin: 0 0 0 0;
   padding-left: 2em;
+  min-height: 3em;
   display: flex;
   align-items: center;
   color: black;
@@ -151,12 +136,9 @@
 }
 
 #widget-buttons {
-  display: flex;
-  flex-direction: column;
-  padding-top: 10.7em;
+  padding-top: 8em;
   padding-right: 8em;
   margin-left: -7em;
-  gap: 5.8em;
 }
 
 .widget-btn { 
@@ -184,12 +166,9 @@
 #widget-popouts {
   position: relative;
   right: -20em;
-  width: 25vh;
+  width: 25em;
   margin-top: 8em;
-  margin-left: -17em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-left: -27em;
 }
 
 .widget {
@@ -201,13 +180,12 @@
   padding: 2em 2em 2em 2em;
   
   right: -45em;
-  height: 70vh;
-  width: 55vh;
+  height: 46em;
+  width: 30em;
   /* z-index: -1; */
   color: white;
   display: none;
 }
-
 
 .widget#sleep-toggle {
   background-color: #195B8B;
@@ -226,14 +204,18 @@
 }
 
 
-/* Sleep Widget */
 
-h3 {
-  padding-bottom: 10%;
-  text-align: center;
-}
-.sleep-widget {
-  width: 25vh;
+
+
+
+
+
+
+
+
+
+.container-sleep-widget {
+  width: 80%;
   padding: 20px;
   margin: auto;
   text-align: center;
@@ -245,21 +227,21 @@ h3 {
 .slider-container {
   justify-content: center;
   display: flex;
-  height: 50vh; 
+  height: 450px; 
 }
 
 .slider {
   appearance: none; 
-  margin-left: -20vh;
-  margin-right: -20vh;
-  width: 50vh;
-  height: 4vh;
+  margin-left: -155px;
+  margin-right: -120px;
+  width: 450px;
+  height: 18px;
   background: #1CB6F0;
   outline: none; 
-  border-radius: 50vh; 
-  margin-top: 23vh;
+  border-radius: 50px; 
+  margin-top: 225px; /*half size of width*/
   transform: rotate(270deg); 
-  box-shadow: 1px 1px 90px rgba(188, 188, 188, 0.25);
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.25)
 }
 
 .slider:hover {
@@ -268,8 +250,8 @@ h3 {
 
 .slider::-webkit-slider-thumb {
   appearance: none; 
-  width: 5em; 
-  height: 5em; 
+  width: 55px; 
+  height: 55px; 
   border-radius: 50%; 
   background: #1CB6F0;
   cursor: pointer;
@@ -280,11 +262,10 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: auto;
-  color: hsl(0, 1%, 67%);
+  height: 100%;
+  font-size: 15px;
+  color: #929298;
   font-weight: 900;
-  position: relative;
-  right: 8vh;
 }
 
 .labels-container div {
@@ -296,18 +277,10 @@ h3 {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  position: relative;
-  left: 8vh;
-}
-
-.emojis-container img{
-  width: 9vh;
-  height: auto;
-  object-fit: contain;
 }
 
 .time img {
-  vertical-align: middle;
+  vertical-align: middle; 
 }
 
 .time span {
@@ -316,96 +289,5 @@ h3 {
 }
 
 .highlight-color {
-  color: #ededed; 
-}
-
-
-/* Summary widget */
-
-/* Dropdown container */
-.dropdown {
-  position: relative; 
-  display: inline-block;
-}
-
-
-/* Hover and focus effects for dropdown button */
-.dropbtn:hover, .dropbtn:focus { 
-  background-color: #f1f1f1; 
-}
-
-/* Hidden dropdown content styling */
-.dropdown-content { 
-  visibility: hidden; 
-  position: absolute; 
-  z-index: 1; 
-  padding: 10px; 
-  border-radius: 16px; 
-  border: none; 
-  opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease; 
-}
-
-/* Visible dropdown content styling */
-.dropdown-content.show { 
-  visibility: visible; 
-  opacity: 1;  
-  transform: translateY(0); 
-}
-
-/* Box styling */
-.box { 
-  background-color: #f1f1f1; 
-  padding: 20px; 
-  margin: 5px 0; 
-  text-align: center; 
-  border-radius: 16px; 
-  border: none; 
-}
-
-/* Flexbox container for week display */
-.week { 
-  display: flex;
-}
-
-/* Individual day styling */
-.day { 
-  text-align: center; 
-  margin: 0 10px; 
-}
-
-/* Paragraph styling within a day */
-.day p { 
-  margin: 5px 0; 
-  font-weight: bold;  
-}
-
-/* Mood icon styling */
-.mood-icon { 
-  width: 40px;  
-  height: 40px;  
-  margin-top: 10px; 
-}
-
-/* Bar graph container styling */
-.bar-graph { 
-  display: flex; 
-  justify-content: space-around;  
-  align-items: flex-end; 
-  height: 100px; 
-  border: 1px solid #ccc;  
-  padding: 0px; 
-  border-radius: 16px; 
-  background-color: #fff; 
-  align-self: flex-end; 
-  border: none; 
-}
-
-/* Individual bar styling */
-.bar { 
-  width: 40px; 
-  background-color: #4CAF50;  
-  border-radius: 5px 5px 0 0; 
-  height: 100%; 
-  background-image: linear-gradient(to top, #4CAF50, #FFC107); 
+  color: #4f4b49;  
 }
