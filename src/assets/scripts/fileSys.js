@@ -13,7 +13,7 @@ export function createFile(data) {
     'lastMod': dateToday, // date of modification
     'title': defaultTitle, // title for journal
     'filter': true, // whether a journal passes filter
-    'mood': 'MEH', // mood on the day
+    'mood': 'neutral', // mood on the day
     'currentlySelected': false // current selection
   };
 
@@ -33,7 +33,7 @@ export function createFile(data) {
  * @param {string} date date created
  * @param {string} title display title
  */
-export function forceCreate(data, date, title, mood, sleep, linesCoded) {
+export function forceCreate(data, date, title, mood) {
   const dateToday = formatToday(); // same as createFile() with ability to set certain fields
   const journals = getJournals();
 
@@ -42,7 +42,7 @@ export function forceCreate(data, date, title, mood, sleep, linesCoded) {
   }
 
   if (!mood) {
-    mood = 'MEH';
+    mood = 'neutral';
   }
 
   const templateJson = {
@@ -52,8 +52,6 @@ export function forceCreate(data, date, title, mood, sleep, linesCoded) {
     'title': title,
     'filter': true,
     'mood': mood,
-    'sleep': sleep,
-    'linesCoded': linesCoded,
     'currentlySelected': false
   };
 
@@ -261,18 +259,4 @@ export function getCurrentYearAndMonth() {
   const currentYear = currentDate.getFullYear(); // get year of today
   const currentMonth = currentDate.getMonth() + 1; // get month of today
   return { year: currentYear, month: currentMonth }; // return dictionary with year and month
-}
-
-/**
- * Returns the current checked journal
- * @returns dictionary of current journal
- */
-export function returnChecked() {
-  const journals = getJournals(); // get all current journals
-  console.log(journals);
-  for (const journal in journals) { // loop through journals to get currently selected
-    if (journals[journal]['currentlySelected']) {
-      return journal;
-    }
-  }
 }
