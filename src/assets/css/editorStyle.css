@@ -64,6 +64,8 @@
   flex-direction: row;
 }
 
+
+
 .title-container {
   display: flex;
   padding: 0 0 0 0;
@@ -118,6 +120,8 @@
   text-align: center;
   align-items: center;
 }
+
+
 
 /* .control-btn-container input {
   height: 1.6em;

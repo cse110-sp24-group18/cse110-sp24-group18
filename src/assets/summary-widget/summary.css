@@ -57,6 +57,19 @@ h3, p {
   text-align: center; /* Centered text */
   border-radius: 16px; /* Rounded corners for each box */
   border: none; /* No border */
+  height: 215px;
+}
+
+#mood-box {
+  transform: translateY(-25px)
+}
+
+#sleep-week {
+  transform: translateY(-20px);
+}
+
+#lines-week {
+  transform: translateY(-20px);
 }
 
 .week { /* Flexbox container for week display */
@@ -91,6 +104,7 @@ h3, p {
   background-color: #f1f1f1; /* Rounded corners for the bar graph container */
   align-self: flex-end; /* White background */
   border: none; /* No border */
+  transform: translateY(-25px);
 }
 
 .bar { /* Individual bar styling */
