@@ -6,9 +6,9 @@ describe('Emotion Widget E2E Tests', () => {
   let page;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch({ headless: false }); // Set to false if you want to see the browser
+    browser = await puppeteer.launch();
     page = await browser.newPage();
-    await page.goto('http://127.0.0.1:5501/src/index.html'); // Adjust URL to your local server
+    await page.goto('http://localhost:8080/src/index.html'); // Adjust URL to your local server
 
     // Bypass splash screen
     await page.waitForSelector('#splash-container'); // Adjust to your splash screen's button or interaction point
