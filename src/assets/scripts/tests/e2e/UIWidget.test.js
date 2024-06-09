@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 const puppeteer = require('puppeteer');
 
 describe('UI Widget E2E Tests', () => {

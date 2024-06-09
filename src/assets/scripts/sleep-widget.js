@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { updateChecked } from './widgets.js';
 
 /**
