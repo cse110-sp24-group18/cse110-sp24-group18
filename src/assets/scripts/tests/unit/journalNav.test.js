@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { returnColorForMood, letterMonthToNumber } from '../../journalNav';
 
 test('Checks correct colors are returned from mood: Neutral', () => {
