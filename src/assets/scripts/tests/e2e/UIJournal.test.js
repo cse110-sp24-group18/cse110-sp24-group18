@@ -1,4 +1,3 @@
-import { setTimeout } from 'node:timers/promises';
 const puppeteer = require('puppeteer');
 
 describe('UI Comprehensive E2E Tests', () => {
@@ -15,6 +14,15 @@ describe('UI Comprehensive E2E Tests', () => {
     await browser.close();
   });
 
+  // Helper function to wait for a timeout
+  const waitForTimeout = async (timeout) => {
+    await page.evaluate((timeout) => {
+      return new Promise((resolve) => {
+        setTimeout(resolve, timeout);
+      });
+    }, timeout);
+  };
+
   // Splash screen
   it('Splash screen click', async () => {
     console.log('Checking for splash screen');
@@ -25,13 +33,12 @@ describe('UI Comprehensive E2E Tests', () => {
 
     // Click the top left of the screen
     await page.mouse.click(0, 0);
-    await setTimeout(400);
+    await waitForTimeout(400);
 
     // Recheck splash container
     splashContainer = await page.$eval('div#splash-container', div => div.className || '');
     expect(splashContainer).toBe('slide-up');
   });
-
 
   // Edit journal
 
@@ -71,29 +78,20 @@ describe('UI Comprehensive E2E Tests', () => {
   it('Testing the text editor', async () => {
     console.log('Testing the text editor');
 
-    // TODO: Finding all the buttons (CURRENTLY UNABLE TO BE DONE)
-    // const boldBtn = await page.$('#bold-btn');
-    // const underlineBtn = await page.$('#underline-btn');
-    // const italicBtn = await page.$('#italic-btn');
-    // const colorBtn = await page.$('#color-btn');
-    
     let textboxHandler = await page.$('#content');
     let textbox = await page.evaluate(element => element.textContent, textboxHandler);
 
     expect(textbox).toBe('');
 
     // Editing
-    // await boldBtn.click();
     await page.focus('#content');
     await page.keyboard.type('Text');
-    // await boldBtn.click();
 
     // Rechecking the content
     textboxHandler = await page.$('#content');
     textbox = await page.evaluate(element => element.textContent, textboxHandler);
 
     expect(textbox).toBe('Text');
-
   });
 
   // Refresh and check that it remains
@@ -102,7 +100,7 @@ describe('UI Comprehensive E2E Tests', () => {
 
     await page.reload();
     await page.mouse.click(0, 0);
-    await setTimeout(400);
+    await waitForTimeout(400);
 
     // Title
     const titleHandle = await page.$('.title');
@@ -129,8 +127,8 @@ describe('UI Comprehensive E2E Tests', () => {
   it('Changing journal', async () => {
     console.log('Changing journal');
     
-    const journalEntry = await page.$$('.journalEntry');
-    await journalEntry[1].click();
+    const journalEntries = await page.$$('.journalEntry');
+    await journalEntries[1].click();
 
     // Title
     const titleHandle = await page.$('.title');
@@ -187,7 +185,7 @@ describe('UI Comprehensive E2E Tests', () => {
 
     expect(textbox).toBe('');
   });
-  
+
   // Empty localhost
   it('Emptying Localhost and Bringing Back Placeholders', async () => {
     console.log('Emptying Localhost and Bringing Back Placeholders');
@@ -202,13 +200,12 @@ describe('UI Comprehensive E2E Tests', () => {
 
     await page.reload();
     await page.mouse.click(0, 0);
-    await setTimeout(400);
+    await waitForTimeout(400);
 
     // The placeholders should be there again
     journalEntries = await page.$$('.journalEntry');
 
     expect(journalEntries.length).toBe(12);
-     
   });
 
   // Sort journal

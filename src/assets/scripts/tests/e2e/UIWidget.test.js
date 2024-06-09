@@ -1,9 +1,17 @@
-import { setTimeout } from 'node:timers/promises';
 const puppeteer = require('puppeteer');
 
 describe('UI Widget E2E Tests', () => {
   let browser;
   let page;
+
+  // Helper function to wait for a timeout
+  const waitForTimeout = async (timeout) => {
+    await page.evaluate((timeout) => {
+      return new Promise((resolve) => {
+        setTimeout(resolve, timeout);
+      });
+    }, timeout);
+  };
 
   beforeAll(async () => {
     browser = await puppeteer.launch();
@@ -12,7 +20,7 @@ describe('UI Widget E2E Tests', () => {
 
     // Bypass splash screen
     await page.mouse.click(0, 0);
-    await setTimeout(400);
+    await waitForTimeout(400);
   });
 
   afterAll(async () => {
@@ -85,7 +93,7 @@ describe('UI Widget E2E Tests', () => {
     // Reloading to make sure it works
     await page.reload();
     await page.mouse.click(0, 0);
-    await setTimeout(400);
+    await waitForTimeout(400);
 
     const toggleSelector = '#toggle1';
 
@@ -141,7 +149,7 @@ describe('UI Widget E2E Tests', () => {
     // Reloading to make sure it works
     await page.reload();
     await page.mouse.click(0, 0);
-    await setTimeout(400);
+    await waitForTimeout(400);
 
     const toggleSelector = '#toggle1';
 
@@ -190,7 +198,7 @@ describe('UI Widget E2E Tests', () => {
     await page.mouse.up();
 
     // Wait for UI update
-    await setTimeout(400);
+    await waitForTimeout(400);
 
     await page.mouse.click(0,0);
 
@@ -216,7 +224,7 @@ describe('UI Widget E2E Tests', () => {
     // Reloading to make sure it works
     await page.reload();
     await page.mouse.click(0, 0);
-    await setTimeout(400);
+    await waitForTimeout(400);
 
     const toggleSelector = '#toggle1';
 
@@ -275,7 +283,7 @@ describe('UI Widget E2E Tests', () => {
     }, toggleSelector);
     
     codeBtn = await page.$('div[data-target="code-line-toggle"]');
-    await setTimeout(400);
+    await waitForTimeout(400);
     await codeBtn.click();
 
     const minusButton = await page.$('button[id="lines-decrement"]');

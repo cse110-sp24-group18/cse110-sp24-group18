@@ -1,9 +1,17 @@
-import { setTimeout } from 'node:timers/promises';
 const puppeteer = require('puppeteer');
 
 describe('Emotion Widget E2E Tests', () => {
   let browser;
   let page;
+
+  // Helper function to wait for a timeout
+  const waitForTimeout = async (timeout) => {
+    await page.evaluate((timeout) => {
+      return new Promise((resolve) => {
+        setTimeout(resolve, timeout);
+      });
+    }, timeout);
+  };
 
   beforeAll(async () => {
     browser = await puppeteer.launch();
@@ -14,7 +22,7 @@ describe('Emotion Widget E2E Tests', () => {
     await page.waitForSelector('#splash-container'); // Adjust to your splash screen's button or interaction point
     await page.click('#splash-container');
 
-    await setTimeout(1000);
+    await waitForTimeout(1000);
 
     // Wait for the burger menu to be available in the DOM
     await page.waitForSelector('.hamburger1');
@@ -22,7 +30,7 @@ describe('Emotion Widget E2E Tests', () => {
     // Click the burger menu button
     await page.click('.hamburger1');
 
-    await setTimeout(1000);
+    await waitForTimeout(1000);
 
     // Wait for the widget button to be available in the DOM
     await page.waitForSelector('.widget-btn');
@@ -30,7 +38,7 @@ describe('Emotion Widget E2E Tests', () => {
     // Click the widget button
     await page.click('div.widget-btn[data-target="mood-toggle"]');
 
-    await setTimeout(1000);
+    await waitForTimeout(1000);
 
     // Ensure the getEmotion function is available
     await page.waitForFunction(() => typeof window.getEmotion === 'function');
@@ -86,7 +94,7 @@ describe('Emotion Widget E2E Tests', () => {
     await page.mouse.up();
 
     // Wait for UI update
-    await setTimeout(1000);
+    await waitForTimeout(1000);
 
     // Check the emotion
     const emotion = await page.evaluate(() => window.getEmotion());
