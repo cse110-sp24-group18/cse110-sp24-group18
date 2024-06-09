@@ -16,11 +16,12 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
-        # with:
-        #   node-version: '14'
 
       - name: Install dependencies
         run: npm install
+
+      - name: Start Local Server
+        run: npx http-server -p 8080 &
 
       - name: Run tests with coverage
         run: npm test
