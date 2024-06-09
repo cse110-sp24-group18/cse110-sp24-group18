@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const puppeteer = require('puppeteer');
 
 describe('Emotion Widget E2E Tests', () => {

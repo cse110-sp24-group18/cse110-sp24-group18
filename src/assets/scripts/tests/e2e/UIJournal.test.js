@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const puppeteer = require('puppeteer');
 
 describe('UI Comprehensive E2E Tests', () => {

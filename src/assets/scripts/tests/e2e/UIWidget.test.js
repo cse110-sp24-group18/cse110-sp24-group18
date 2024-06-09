@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const puppeteer = require('puppeteer');
 
 describe('UI Widget E2E Tests', () => {
@@ -52,7 +56,7 @@ describe('UI Widget E2E Tests', () => {
 
     const src = await imageHandle.evaluate(img => img.src);
 
-    expect(src).toBe('http://127.0.0.1:8080/src/assets/emotion-widget/media/faceMeh.png');
+    expect(src).toBe('http://localhost:8080/src/assets/emotion-widget/media/faceMeh.png');
 
     const codeData = await dropBoxes.$('div[id="lines-coded-summary"]');
     const firstDayCode = await codeData.$eval('div[class="bar"]', el => getComputedStyle(el).height);
@@ -214,7 +218,7 @@ describe('UI Widget E2E Tests', () => {
 
     const src = await imageHandle.evaluate(img => img.src);
 
-    expect(src).toBe('http://127.0.0.1:8080/src/assets/emotion-widget/media/faceAmazing.png');
+    expect(src).toBe('http://localhost:8080/src/assets/emotion-widget/media/faceAmazing.png');
   });
 
   // Lines of code widget
