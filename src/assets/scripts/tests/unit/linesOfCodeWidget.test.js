@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 const fs = require('fs');
 const path = require('path');
 require('@testing-library/jest-dom');
