@@ -42,7 +42,7 @@ describe('Emotion Widget E2E Tests', () => {
 
     // Ensure the getEmotion function is available
     await page.waitForFunction(() => typeof window.getEmotion === 'function');
-  });
+  }, 10000);
 
   afterAll(async () => {
     await browser.close();

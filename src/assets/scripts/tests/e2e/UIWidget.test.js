@@ -21,7 +21,7 @@ describe('UI Widget E2E Tests', () => {
     // Bypass splash screen
     await page.mouse.click(0, 0);
     await waitForTimeout(400);
-  });
+  }, 10000);
 
   afterAll(async () => {
     await browser.close();

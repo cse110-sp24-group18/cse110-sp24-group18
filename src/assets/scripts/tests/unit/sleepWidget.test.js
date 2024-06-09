@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { sleepToValue, computePercentage } from '../../sleep-widget.js';
 
 /**

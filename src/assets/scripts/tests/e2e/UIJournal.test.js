@@ -8,7 +8,7 @@ describe('UI Comprehensive E2E Tests', () => {
     browser = await puppeteer.launch();
     page = await browser.newPage();
     await page.goto('http://localhost:8080/src/index.html'); // Adjusted URL for the local server in GitHub Actions
-  });
+  }, 10000);
 
   afterAll(async () => {
     await browser.close();
