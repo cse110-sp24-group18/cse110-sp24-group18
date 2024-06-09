@@ -35,11 +35,13 @@
     "url": "https://github.com/cse110-sp24-group18/cse110-sp24-group18"
   },
   "dependencies": {
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
   },
   "jest": {
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
-    }
+    },
+    "testEnvironment": "jest-environment-jsdom"
   }
 }
