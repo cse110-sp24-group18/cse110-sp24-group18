@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Sleep Quality Slider</title>
+      <link rel="stylesheet" href="sleep-widget.css">
+   </head>
+   <body>
+    <div class="container">
+      <h3> <br>How would you <br> rate your sleep quality?</h3>
+      <div class="slider-container">
+         <div class="labels-container">
+            <div class="label">
+               <p>Excellent</p>
+               <div class="time">
+                  <img src="media/clock.png" alt="Worst" width="15px">
+                  <span>7-9 HOURS</span>
+               </div>
+            </div>
+            <div class="label">
+               <p>Good</p>
+               <div class="time">
+                  <img src="media/clock.png" alt="Worst" width="15px">
+                  <span>6-7 HOURS</span>
+               </div>
+            </div>
+            <div class="label">
+               <p>Fair</p>
+               <div class="time">
+                  <img src="media/clock.png" alt="Worst" width="15px">
+                  <span>5 HOURS</span>
+               </div>
+            </div>
+            <div class="label">
+               <p>Poor</p>
+               <div class="time">
+                  <img src="media/clock.png" alt="Worst" width="15px">
+                  <span>3-4 HOURS</span>
+               </div>
+            </div>
+            <div class="label">
+               <p>Worst</p>
+               <div class="time">
+                  <img src="media/clock.png" alt="Worst" width="15px">
+                  <span>&lt; 3 HOURS</span>
+               </div>
+            </div>
+         </div>
+          <input class="slider" type="range" min="1" max="5" value="3">    
+          <div class="emojis-container">
+            <img src="media/excellent.png" alt="Excellent" width="70px">
+            <img src="media/good.png" alt="Good" width="70px">
+            <img src="media/fair.png" alt="Fair" width="70px">
+            <img src="media/poor.png" alt="Poor" width="70px">
+            <img src="media/worst.png" alt="Worst" width="70px">
+          </div>   
+      </div>
+      <script src="sleep-widget.js"></script>
+    </div>
+   </body>
+</html>

@@ -1,13 +1,5 @@
 # Retrospective 1
 
-## Notes for what to add
-Retrospective is about quality control for the team, how it's structured, run, and not about the project itself.
-- Any thing about the structure and how the tasks are split?
-- Any thing about the process (meeting, assigning of tasks, submissions, communications, etc)?
-- Any other thing to note?
-
-From these, put in your input in all of the sections, if you have any. This can be informal, or something specific like "I wished we did more meeting" or anything of sort.
-
 ## Attendance
 - Bernico Jansen Chandra
 - Minsang Kim

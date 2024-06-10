@@ -1,0 +1,85 @@
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f4f3;
+  }
+  
+  .container {
+    width: 80%;
+    padding: 20px;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    background-color: #f8f4f3;
+  }
+  
+  .slider-container {
+    justify-content: center;
+    display: flex;
+    height: 450px; 
+    padding-top: 40px; /*space between the header and slider*/
+  }
+  
+  .slider {
+    appearance: none; 
+    margin-left: -155px;
+    margin-right: -120px;
+    width: 450px;
+    height: 18px;
+    background: #ec6d35;
+    outline: none; 
+    border-radius: 50px; 
+    margin-top: 225px; /*half size of width*/
+    transform: rotate(270deg); 
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    appearance: none; 
+    width: 55px; 
+    height: 55px; 
+    border-radius: 50%; 
+    background: #ee8757;
+    cursor: pointer;
+    box-shadow: 0 0 0 4px #edb699;
+  }
+  
+  .labels-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    font-size: 15px;
+    color: #929298;
+    font-weight: 900;
+  }
+  
+  .labels-container div {
+    text-align: right;
+  }
+  
+  .emojis-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .time img {
+    vertical-align: middle; 
+  }
+  
+  .time span {
+    vertical-align: middle; 
+    font-size: 12px;
+  }
+  
+  .highlight-color {
+    color: #4f4b49;  
+  }

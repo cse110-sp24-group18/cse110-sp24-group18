@@ -1,0 +1,472 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+@media all {
+    html {
+        font-size: 0.55em;
+    }
+}
+@media (max-width: 1350px) {
+    html {
+        font-size: 0.65em;
+    }
+    .nav-delete-btn {
+        font-size: 0.98em;
+        margin-top: 1em;
+    }
+}
+@media (min-width: 1200px) {
+    html {
+        font-size: 0.65em;
+    }
+}
+@media (min-width: 1350px) {
+    html {
+        font-size: 0.75em;
+    }
+}
+@media (min-width: 1500px) {
+    html {
+        font-size: 0.8em;
+    }
+}
+@media (min-width: 1650px) {
+    html {
+        font-size: 0.9em;
+    }
+}
+@media screen and (min-width: 1800px) {
+    html {
+        font-size: 1em;
+    }
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.header {
+    margin-left: 4vb;
+    max-height: 12vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+}
+
+.header h1 {
+    color: #195B8B;
+    font-weight: 600;
+    word-wrap: break-word;
+    padding-top: 10px;
+    width: 7.5em;
+    font-size: 3em;
+    margin-left: 8vb;
+}
+
+.header-title {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+}
+
+.component-wrapper {
+    margin-left: 4vb;
+    margin-top: 2vh;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; 
+    border-radius: 30px; 
+    border: 1px #E0E0DF solid;
+}
+
+#text-container {
+    margin-left: 2vb;
+    margin-top: 2vh;
+    margin-right: 2vb;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; 
+    border-radius: 30px; 
+    border: 1px #E0E0DF solid
+}
+
+.wrapper {
+    display: flex;
+    color: red;
+    max-height: 88vh;
+    overflow: hidden;
+}
+
+body{
+    padding-bottom: 5px;
+}
+
+#nav-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    font-family: "Poppins";
+    overflow: hidden;
+    max-height: 76vh;
+    scrollbar-gutter: stable both-edges;
+    height: 76vh;
+}
+
+#nav-container:hover {
+    overflow:auto;
+}
+
+.journalEntry button {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+    align-items: center;
+    border: 2px #195B8B solid;
+    border-radius: 2em;
+    padding: 0.5em;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 0.5em;
+}
+
+.journalEntry button:hover {
+    /*filter: brightness(0.9);*/
+    background-color: #1CB6F0;
+    border-color: #1CB6F0;
+}
+
+.journalEntry text {
+    
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.5em;
+}
+
+.journalEntry text h1 {
+    font-size: 1.3em;
+    font-weight: 500;
+    margin: 0 0 0 0;
+    float: left;
+    color: #195B8B;
+}
+
+.journalEntry text h3 {
+    font-size: 0.8em;
+    font-weight: 200;
+    margin: 0 0 0 0;
+    float: left;
+    color: #195B8B;
+}
+
+.journalEntry delButton span{
+    font-size: 1.8em;
+    float: right;
+    padding-right: 0.2em;
+}
+
+.journalEntry delButton div:hover {
+    color: red;
+}
+
+.currentlySelected {
+    filter: brightness(0.95);
+}
+
+#nav-filter-options {
+    padding: 1em 0 1em 0;
+    font-family: 'Poppins';
+    color: #8E8E8E;
+}
+
+.nav-filter-buttons {
+    list-style-type: none;
+    margin: 0 0 0 0;
+    padding: 1em 1em 1em 1em;
+    display: flex;
+    flex-direction: row;
+    list-style-position: inside;
+    scrollbar-gutter: stable both-edges;
+}
+
+.nav-filter-buttons li {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 0.1em;
+}
+
+.nav-filter-buttons input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.nav-filter-buttons label, .nav-filter-buttons select {
+    background: #FDFDFD;
+    padding: 0.5em;
+    border-radius: 0.8em;
+    border: 2px solid #F4F2F0;
+}
+
+.nav-filter-buttons label:hover{
+    /*filter: brightness(0.9);*/
+    background-color: #1CB6F0;
+    border-color: #1CB6F0;
+}
+
+.nav-filter-buttons input[type="radio"]:checked + label {
+    background: #F4F2F0;
+    color: #141415;
+}
+
+.nav-filter-buttons input[type="radio"] + label {
+    background: #F4F2F0;
+    color: #8E8E8E;
+}
+
+.nav-filter-buttons label:hover, .nav-filter-buttons input:hover {
+    cursor:grab;
+}
+
+time.icon {
+  font-size: 1em; /* change icon size */
+  display: block;
+  position: relative;
+  width: 7em;
+  height: 7em;
+  background-color: #fff;
+  border-radius: 0.6em;
+  box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;
+  overflow: hidden;
+}
+
+time.icon * {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+}
+
+time.icon strong {
+  position: absolute;
+  top: 0;
+  padding: 0.4em 0;
+  color: #fff;
+  background-color: #1CB6F0;
+  border-bottom: 1px dashed #195B8B;
+  box-shadow: 0 2px 0 #1CB6F0;
+}
+
+time.icon em {
+  position: absolute;
+  bottom: 0.3em;
+  color: #1CB6F0;
+}
+
+time.icon span {
+  font-size: 2.8em;
+  letter-spacing: -0.05em;
+  padding-top: 0.8em;
+  color: #195B8B;
+}
+
+.calendar-icon {
+    font-size:0.5em;
+    padding-top: 1.5em;
+    padding-left: 1.5em;
+    position: relative;
+    z-index: 100;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #fdfdfd;
+    overflow: hidden;
+    z-index: -10;
+    filter: brightness(1.1);
+    background-size: 120% 120%;
+    animation: gradient-animation 2s ease infinite;
+}
+  
+@keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+}
+
+.nav-delete-btn {
+    position: absolute;
+    z-index: 101;
+    margin-left: 18em;
+    transform: translateY(-230%);
+    background: none;
+    border: none;
+    color: #8E8E8E;
+}
+
+.nav-delete-btn:hover {
+    color: #575757;
+}
+
+/* Styling for the burger menu */
+.p-menu1 {
+    position: absolute;
+    top: 20%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 120;
+ }
+ 
+
+/* Hamburger */
+.hamburger1 {
+    height: 25px; /* Further reduce height */
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+    cursor: pointer;
+}
+
+.hamburger1 div {
+    background-color: rgb(61, 61, 61);
+    width: 25px; /* Further reduce width */
+    height: 3px; /* Further reduce height */
+    margin-top: 4px; /* Further reduce margin */
+    transition: all 0.2s ease-in-out;
+}
+
+#toggle1 {
+    display: none;
+}
+
+#toggle1:checked + .hamburger1 .top {
+    transform: rotate(-45deg);
+    margin-top: 12.5px; /* Adjust margin-top */
+}
+
+#toggle1:checked + .hamburger1 .meat {
+    transform: rotate(45deg);
+    margin-top: -5px;
+}
+
+#toggle1:checked + .hamburger1 .bottom {
+    transform: scale(0);
+}
+
+#toggle1:checked ~ .burger-menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: slideDown 0.3s ease-in-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Burger menu container */
+.burger-menu-container {
+    display: none;
+    position: absolute;
+    top: calc(50% + 25px); /* Adjust to position below the burger menu */
+    right: 20px;
+    width: 100px; /* Further reduce width */
+    background-color: #02173F;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 5px; /* Further reduce padding */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 120;
+}
+
+.burger-menu-container .widget-btn {
+    margin: 5px 0; /* Further reduce margin */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.burger-menu-container .widget-btn:hover {
+    animation: vibrate 0.3s linear infinite both;
+}
+
+.burger-menu-container .widget-btn span.material-symbols-outlined {
+    font-size: 40px; /* Further reduce font size */
+}
+
+@keyframes vibrate {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20%, 60% {
+        transform: translateX(-2px);
+    }
+    40%, 80% {
+        transform: translateX(2px);
+    }
+}
+
+/* Blur effect for the background */
+body.blur-background::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Optional: Adds a semi-transparent overlay */
+    backdrop-filter: blur(10px); /* Apply the blur effect */
+    z-index: 998; /* Ensure it covers everything */
+    pointer-events: none; /* Allows clicks to pass through to elements below */
+}
+
+/* Hide widgets by default */
+#sleep-toggle, #mood-toggle, #code-line-toggle, #summary-toggle {
+    display: none;
+}
+
+/* Blur effect for the background */
+body.blur-background::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: 998;
+    pointer-events: none;
+}
+
+.dropdown-content.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 999;
+}

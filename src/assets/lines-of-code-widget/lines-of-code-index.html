@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Lines Widget</title>
+    <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="LinesOfCode-styles.css">
+</head>
+<body>
+    <div class="widget">
+        <!-- Canvas for confetti animation -->
+        <canvas id="confetti-canvas"></canvas>
+        <div class="content">
+            <div class="code-symbol">
+                &lt;/&gt;
+            </div>
+            <div>
+                <h3>How many lines have you coded today?</h3>
+            </div>
+            <div class="controls">
+                <!-- Buttons to increment and decrement the count, and an input field to display and change the count -->
+                <button onclick="decrement()">-</button>
+                <input type="number" id="number" class="number" value="5" oninput="updateNumber()">
+                <button onclick="increment()">+</button>
+            </div>
+            <!-- Confirm button to finalize the count -->
+            <button class="confirm-btn" onclick="confirm()">Confirm</button><!-- can remove if we dont want the other screen and functions-->
+        </div>
+    </div>
+
+    <!-- Include canvas-confetti library for confetti animation -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <!-- Link to the external JavaScript file -->
+    <script src="LinesOfCode-script.js"></script>
+</body>
+</html>

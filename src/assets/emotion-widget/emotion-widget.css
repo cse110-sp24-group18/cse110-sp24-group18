@@ -1,0 +1,119 @@
+.container-widget-text {
+  margin-bottom: 8vh;
+  /* Emotion gauge styling */
+  .gauge {
+    /* Alignment, size properties */
+    width: 18em;
+    height: 18em;
+    padding: 8em;
+    border-radius: 50%;
+    margin-left: 2em;
+
+    /* Background gradient properties (gauge visual) */
+    background:
+    radial-gradient(#f8f4f3 0 0) content-box,
+    conic-gradient(
+      from -90deg,
+      var(--c1) 36deg,
+      var(--c2) 0 72deg,
+      var(--c3) 0 108deg,
+      var(--c4) 0 144deg,
+      var(--c5) 0 180deg,
+      #0000 0
+    );
+
+    /* Alignment properties */
+    align-items: center;
+    position: absolute;
+    left: 2em;
+    bottom: -8em;
+
+    /* Emotion gauge needle styling */
+    .needle {
+      /* Alignment, size properties */
+      position: absolute;
+      width: 14em;  
+      height: 14em;  
+      padding: 5.3em; 
+      left: 2em;  /* Adjusted to center the needle */
+      top: 2em;  /* Adjusted to center the needle */
+      border-radius: 100em;
+
+      /* Background gradient properties (needle visual) */
+      background:
+        conic-gradient(
+          from 175deg at 50% 55%,
+          #ccc 1deg,
+          #46332a 3deg 7deg,
+          #ccc 8deg 10deg,
+          #0000 0
+        ) 0em -8.7em no-repeat, 
+        radial-gradient(
+          #46332a 0 50%,
+          #ccc 51%
+        ) content-box;
+
+      /* Alignment properties */
+      rotate: calc(cos(var(--score) * 180deg / 100) * -90deg);
+    }
+
+    /* Emotion gauge score styling */
+    .score {
+      /* Alignment, font properties */
+      rotate: calc(cos(var(--score) * 180deg / 100) * 90deg);
+      font-size: 1.125em; 
+      font-weight: 800;
+      color: #195B8B;
+    }
+  }
+}
+
+
+
+/* containerFace styling */
+.containerFace {
+  /* Alignment, size properties */
+  height: 23%;
+  border-radius: 0.625em; 
+  position: absolute;
+  top: 8em;
+  left: 1em;
+  right: 1em;
+  align-items: center;
+  align-self: center;
+  
+}
+
+/* <img> tag within containerFace styling */
+.containerFace img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* <p> tag within containerFace styling */
+.containerFace p {
+  /* Alignment properties */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 1em;
+  right: 1em;
+  /* Text properties */
+  text-align: center; /* Centers text horizontally */
+  font-size: 2em;
+  color: #195B8B;
+}
+
+/* Variables for emotion gauge colors */
+* {
+  margin: 0;
+  box-sizing: border-box;
+  --c1: #9d87f4;
+  --c2: #e3815c;
+  --c3: #b79f95;
+  --c4: #f4d376;
+  --c5: #a0b475;
+}

@@ -1,0 +1,37 @@
+name: Codacy Coverage Report
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start Local Server
+        run: npx http-server -p 8080 &
+
+      - name: Run tests with coverage
+        run: npm test
+
+      - name: Download Codacy Coverage Reporter
+        run: |
+          wget -qO- https://github.com/codacy/codacy-coverage-reporter/releases/download/6.0.0/codacy-coverage-reporter-linux | sudo tee /usr/local/bin/codacy-coverage-reporter > /dev/null
+          sudo chmod +x /usr/local/bin/codacy-coverage-reporter
+
+      - name: Upload coverage to Codacy
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage/lcov.info

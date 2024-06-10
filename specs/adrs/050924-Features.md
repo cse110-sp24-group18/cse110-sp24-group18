@@ -6,7 +6,7 @@ title: Removal of Phase 3 (features)
 status: accepoted
 date: 2024-05-09
 
-
+---
 <!-- we need to disable MD025, because we use the different heading "ADR Template" in the homepage (see above) than it is foreseen in the template -->
 <!-- markdownlint-disable-next-line MD025 -->
 # Removal of Phase 3 (features)

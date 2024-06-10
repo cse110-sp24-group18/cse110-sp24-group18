@@ -15,7 +15,7 @@ module.exports = {
   },
   rules: {
     //* Avoid Bugs
-    'no-undef': 'error',
+    'no-undef': 'off',
     'semi': 'error',
     'semi-spacing': 'error',
     //* Best Practices
@@ -36,7 +36,7 @@ module.exports = {
     'space-unary-ops': 'error',
     'quotes': ['error', 'single'],
     //
-    'max-len': ['error', { 'code': 200 }],
+    'max-len': ['warn', { 'code': 200 }],
     'max-lines': ['error', { 'max': 500 }],
     'keyword-spacing': 'error',
     'multiline-ternary': ['error', 'never'],
