@@ -1,4 +1,4 @@
-# Journal Navigation
+# DevDiary
 ## How to use:
 - Clone this repo and live server index.html.
 - OR, open the deployed web's link on README.
