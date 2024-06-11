@@ -16,6 +16,11 @@ General guide to access the functionalities:
 - To edit a journal, just click on the box under the title and the tools. To edit the title, double click on it, and click away to save.
 - To open the widgets menu, click on the burger button found on the right side of the page, and click the widgets you like. All of their summary for the past 7 journals are in the summary menu, accessible to the button on the top right of the page.
 
+How to use the documentation pipeline:
+- Push to / merge branch to documentation branch.
+- The pipeline will generate the files on jsdocsgenerated.
+- Remerge branch to main.
+
 ## Credits
 The list of the team members are on our [team page](https://github.com/cse110-sp24-group18/cse110-sp24-group18/blob/main/admin/team.md).
 
