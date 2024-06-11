@@ -5,7 +5,7 @@
     "lint:check": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "npx jest --coverage",
-    "docs": "git fetch; git checkout documentation; jsdoc src/ -d jsdocsgenerated; git config --local user.email 'action@github.com'; git config --local user.name 'Github Action'; git add -A; git commit -m 'Generated JSDocs'; git push",
+    "docs": "git fetch; git checkout documentation; jsdoc src -r -d jsdocsgenerated; git config --local user.email 'action@github.com'; git config --local user.name 'Github Action'; git add -A; git commit -m 'Generated JSDocs'; git push",
     "serve": "echo 'TODO: Add your serve command here",
     "start": "npm run serve",
     "build": "mkdir -p build && cp src/*.js build # TODO: Replace with your build command",
