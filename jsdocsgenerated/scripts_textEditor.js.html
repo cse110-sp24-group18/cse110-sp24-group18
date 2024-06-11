@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: scripts/textEditor.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: scripts/textEditor.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { formatToday, getJournals, selectDate, writeFile } from './fileSys.js';
+import { loadButtons, buttonListeners, generateToday } from './journalNav.js';
+
+/**
+ * Sets the id of noteTitle element to the current date
+ */
+export function setDate() {
+  const noteTitle = document.querySelector('.title'); // note title element
+  noteTitle.id = formatToday();
+  updateText(formatToday());
+  
+}
+
+function updateJournal(date, contentHTML) {
+  const content = document.querySelector('#content'); // content box element
+  if (content &amp;&amp; content.getAttribute('contenteditable') === 'true') {
+    const journals = getJournals();
+    const journal = journals[date];
+    journal['data'] = contentHTML;
+    writeFile(journal, date);
+  } else {
+    return 'Container not found or not contenteditable';
+  }
+}
+
+
+export function textEditorListeners() {
+  const boldBtn = document.querySelector('#bold-btn'); // old button element
+  const underlineBtn = document.querySelector('#underline-btn'); // underline button element
+  const italicBtn = document.querySelector('#italic-btn'); // italic button element
+  const colorBtn = document.querySelector('#color-btn'); // color button element
+
+  const content = document.querySelector('#content'); // content box element
+  const noteTitle = document.querySelector('.title'); // note title element
+
+  content.addEventListener('input', () => {
+    const currDate = noteTitle.id;
+    const contentHTML = content.innerHTML;
+    updateJournal(currDate, contentHTML);
+    loadButtons();
+    buttonListeners();
+  });
+
+  // Enable editing of the note title on click
+  noteTitle.addEventListener('click', () => {
+    const input = document.createElement('input');  // create new input element
+    input.type = 'text';  // set input element to text box
+    input.value = noteTitle.textContent;  // set current input value to current note title
+    input.className = 'title-input';  // set input element class name
+    noteTitle.replaceWith(input); // replace noteTitle element with input element
+    input.focus();  // focus on input element
+  
+    input.addEventListener('blur', () => {
+      const getId = noteTitle.id;
+      const newTitle = document.createElement('h4');  // create new newTitle element
+            
+      const journals = getJournals();
+      const journal = journals[getId];
+      if (input.value === '') {
+        input.value = 'Untitled';
+      }
+
+      journal['title'] = input.value;
+      writeFile(journal, getId);
+      loadButtons();
+      buttonListeners();
+    
+      newTitle.innerHTML = `&lt;b>${input.value}&lt;/b>`; // set innerHTML content of newTitle to input value
+      newTitle.className = 'title'; // set newTitle element class name
+      input.replaceWith(newTitle);  // replace input element with newTitle element
+      newTitle.addEventListener('click', () => {
+        input.value = newTitle.textContent; // set current input value to newTitle value
+        newTitle.replaceWith(input);  // replace newTitle with input element
+        input.focus();  // focus on input element
+      });
+    });
+  });
+
+  boldBtn.addEventListener('click', () => {
+    document.execCommand('bold');  // make the text bold on button click
+  });
+    
+  underlineBtn.addEventListener('click', () => {
+    document.execCommand('underline'); // make the text underlined on button click
+  });
+    
+  italicBtn.addEventListener('click', () => {
+    document.execCommand('italic');  // make the text italic on button click
+  });
+    
+  colorBtn.addEventListener('input', () => {
+    document.execCommand('forecolor', false, colorBtn.value);  // change the text color on button click
+  });
+}
+
+export function updateText(date) {
+  let journals = getJournals();
+  let currJournal = journals[date];
+  console.log(currJournal);
+  if (!currJournal) {
+    generateToday();
+    journals = getJournals();
+    currJournal = journals[date];
+  }
+
+  console.log(currJournal);
+  const text = currJournal.data;
+  const title = currJournal.title;
+
+  const titleElement = document.getElementsByClassName('title-container');
+  const titleDisplay = titleElement[0].querySelector('h4');
+  const contentElement = document.getElementById('content');
+
+  contentElement.innerHTML = text;
+  titleDisplay.innerHTML = `&lt;b>${title}&lt;/b>`;
+
+  titleDisplay.id = date;
+  selectDate(date);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#adjustFontSize">adjustFontSize</a></li><li><a href="global.html#arrayToBarGraph">arrayToBarGraph</a></li><li><a href="global.html#attatchSplashListener">attatchSplashListener</a></li><li><a href="global.html#buttonListeners">buttonListeners</a></li><li><a href="global.html#changeText">changeText</a></li><li><a href="global.html#clearFilter">clearFilter</a></li><li><a href="global.html#clearLocal">clearLocal</a></li><li><a href="global.html#computePercentage">computePercentage</a></li><li><a href="global.html#createFile">createFile</a></li><li><a href="global.html#decrement">decrement</a></li><li><a href="global.html#deleteFile">deleteFile</a></li><li><a href="global.html#filterButtons">filterButtons</a></li><li><a href="global.html#filterDate">filterDate</a></li><li><a href="global.html#filterWord">filterWord</a></li><li><a href="global.html#forceCreate">forceCreate</a></li><li><a href="global.html#formatToday">formatToday</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#generateExample">generateExample</a></li><li><a href="global.html#generateToday">generateToday</a></li><li><a href="global.html#getCurrentYearAndMonth">getCurrentYearAndMonth</a></li><li><a href="global.html#getEmotion">getEmotion</a></li><li><a href="global.html#getJournals">getJournals</a></li><li><a href="global.html#getLinesCodedArray">getLinesCodedArray</a></li><li><a href="global.html#getMostRecent">getMostRecent</a></li><li><a href="global.html#getSleepArray">getSleepArray</a></li><li><a href="global.html#getSortedDates">getSortedDates</a></li><li><a href="global.html#increment">increment</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initGaugeWidget">initGaugeWidget</a></li><li><a href="global.html#journalsToEmotions">journalsToEmotions</a></li><li><a href="global.html#letterMonthToNumber">letterMonthToNumber</a></li><li><a href="global.html#linesOfCodeListeners">linesOfCodeListeners</a></li><li><a href="global.html#listFiles">listFiles</a></li><li><a href="global.html#loadButtons">loadButtons</a></li><li><a href="global.html#moodToSrc">moodToSrc</a></li><li><a href="global.html#readFile">readFile</a></li><li><a href="global.html#returnChecked">returnChecked</a></li><li><a href="global.html#setBarGradient">setBarGradient</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setEmotion">setEmotion</a></li><li><a href="global.html#setEmotionImages">setEmotionImages</a></li><li><a href="global.html#setLinesWidgetNumber">setLinesWidgetNumber</a></li><li><a href="global.html#setSleep">setSleep</a></li><li><a href="global.html#sleepToValue">sleepToValue</a></li><li><a href="global.html#sortByDateCreated">sortByDateCreated</a></li><li><a href="global.html#sortByLastModified">sortByLastModified</a></li><li><a href="global.html#updateNumber">updateNumber</a></li><li><a href="global.html#writeFile">writeFile</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Jun 11 2024 20:01:45 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

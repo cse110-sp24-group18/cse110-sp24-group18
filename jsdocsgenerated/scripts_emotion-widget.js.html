@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: scripts/emotion-widget.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: scripts/emotion-widget.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { updateChecked } from './widgets.js';
+
+export function emotionWidgetListeners() {
+  const gauge = document.getElementById('gauge'); // get the gauge element
+
+  if (!gauge) {
+    console.error('Gauge element not found');
+    return;
+  }
+
+  let emotion = 'MEH'; // set emotion to 'MEH' (MEH by default)
+  let currSpeed = 150; // set currSpeed to 150 by default
+
+
+  gauge.addEventListener('mousemove', (event) => {
+    
+    const faceImg = document.getElementById('face');  // get the face image element
+    const emotionText = document.getElementById('emotionText'); // get the emotion text element
+    const needle = document.getElementById('needle'); // get the gauge needle element
+
+    if (!faceImg || !emotionText || !needle) {
+      console.error('Required DOM elements not found');
+      return;
+    }
+
+    // Grab variables to track mouse location
+    const rect = gauge.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const deltaX = x - centerX;
+    const deltaY = y - centerY;
+
+    // Calculate the angle from the center to the mouse position
+    let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+    if (angle &lt; 0) angle += 360;
+
+    // Only consider angles between 180 and 360 degrees
+    if (angle >= 180 &amp;&amp; angle &lt;= 360) {
+      const speed = (angle / 180) * 100;
+      currSpeed = speed;
+
+      if (speed >= 100 &amp;&amp; speed &lt; 120) {  // if mouse is in MISERABLE section
+        faceImg.src = 'assets/emotion-widget/media/faceMiserable.png';  // change the face image to MISERABLE
+        emotionText.textContent = 'Miserable';  // change the text below face image to 'Miserable'
+        needle.style = '--score:20'; // change the needle score (points toward MISERABLE section of gauge)
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,#9DABF4 36deg,' 
+        + 'var(--c2) 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);'; // brighten MISERABLE section color on mouse hover
+        emotion = 'MISERABLE';  // set emotion to 'MISERABLE' on click of MISERABLE section
+        updateChecked('emotion', emotion);
+      }
+      else if (speed >= 120 &amp;&amp; speed &lt; 140) { // if mouse is in SAD section
+        faceImg.src = 'assets/emotion-widget/media/faceSad.png';  // change the face image to SAD
+        emotionText.textContent = 'Sad';  // change the text below face image to 'Sad'
+        needle.style = '--score:35'; // change the needle score (points toward SAD section of gauge)
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,' 
+        + '#E3985C 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);'; // brighten SAD section color on mouse hover
+        emotion = 'SAD';  // set emotion to 'SAD' on click of SAD section
+        updateChecked('emotion', emotion);
+      }
+      else if (speed >= 140 &amp;&amp; speed &lt; 160) { // if mouse is in MEH section
+        faceImg.src = 'assets/emotion-widget/media/faceMeh.png';  // change the face image to MEH
+        emotionText.textContent = 'Meh';  // change the text below face image to 'Meh'
+        needle.style = '--score:50'; // change the needle score (points toward MEH section of gauge)
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,' 
+        + 'var(--c2) 0 72deg,#D9BCB0 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);'; // brighten MEH section color on mouse hover
+        emotion = 'MEH';  // set emotion to 'MEH' on click of MEH section
+        updateChecked('emotion', emotion);
+      }
+      else if (speed >= 160 &amp;&amp; speed &lt; 180) { // if mouse is in HAPPY section
+        faceImg.src = 'assets/emotion-widget/media/faceGood.png'; // change the face image to HAPPY
+        emotionText.textContent = 'Happy';  // change the text below face image to 'Happy'
+        needle.style = '--score:65'; // change the needle score (points toward HAPPY section of gauge)
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,' 
+        + 'var(--c2) 0 72deg,var(--c3) 0 108deg,#F4D39A 0 144deg,var(--c5) 0 180deg,#0000 0);'; // brighten HAPPY section color on mouse hover
+        emotion = 'HAPPY';  // set emotion to 'HAPPY' on click of HAPPY section
+        updateChecked('emotion', emotion);
+      }
+      else if (speed >= 180 &amp;&amp; speed &lt;= 200) {  // if mouse is in AMAZING section
+        faceImg.src = 'assets/emotion-widget/media/faceAmazing.png';  // change the face image to AMAZING
+        emotionText.textContent = 'Amazing';  // change the text below face image to 'Amazing'
+        needle.style = '--score:80'; // change the needle score (points toward AMAZING section of gauge)
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,' 
+        + 'var(--c2) 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,#BED68B 0 180deg,#0000 0);'; // brighten AMAZING section color on mouse hover
+        emotion = 'AMAZING';  // set emotion to 'AMAZING' on click of AMAZING section
+        updateChecked('emotion', emotion);
+      }
+    } 
+  });
+
+  return { currSpeed, emotion };
+}
+
+/**
+ * Changes the needle rotation, face image, and emotion text to the currentEmotions
+ * @param {String} currentEmotion 
+ */
+export function setEmotion (currentEmotion) {
+  const gauge = document.getElementById('gauge'); // get the gauge element
+  const faceImg = document.getElementById('face');  // get the face image element
+  const emotionText = document.getElementById('emotionText'); // get the emotion text element
+  const needle = document.getElementById('needle'); // get the gauge needle element
+
+  if (currentEmotion === 'MISERABLE') {  // if mouse is in MISERABLE section
+    faceImg.src = 'assets/emotion-widget/media/faceMiserable.png';  // change the face image to MISERABLE
+    emotionText.textContent = 'Miserable';  // change the text below face image to 'Miserable'
+    needle.style = '--score:20'; // change the needle score (points toward MISERABLE section of gauge)
+    gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,#9DABF4 36deg,' 
+    + 'var(--c2) 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);'; // brighten MISERABLE section color on mouse hover
+  }
+  else if (currentEmotion === 'SAD') { // if mouse is in SAD section
+    faceImg.src = 'assets/emotion-widget/media/faceSad.png';  // change the face image to SAD
+    emotionText.textContent = 'Sad';  // change the text below face image to 'Sad'
+    needle.style = '--score:35'; // change the needle score (points toward SAD section of gauge)
+    gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,' 
+    + '#E3985C 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);'; // brighten SAD section color on mouse hover
+  }
+  else if (currentEmotion === 'MEH') { // if mouse is in MEH section
+    faceImg.src = 'assets/emotion-widget/media/faceMeh.png';  // change the face image to MEH
+    emotionText.textContent = 'Meh';  // change the text below face image to 'Meh'
+    needle.style = '--score:50'; // change the needle score (points toward MEH section of gauge)
+    gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,' 
+    + 'var(--c2) 0 72deg,#D9BCB0 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);'; // brighten MEH section color on mouse hover
+  }
+  else if (currentEmotion === 'HAPPY') { // if mouse is in HAPPY section
+    faceImg.src = 'assets/emotion-widget/media/faceGood.png'; // change the face image to HAPPY
+    emotionText.textContent = 'Happy';  // change the text below face image to 'Happy'
+    needle.style = '--score:65'; // change the needle score (points toward HAPPY section of gauge)
+    gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,' 
+    + 'var(--c2) 0 72deg,var(--c3) 0 108deg,#F4D39A 0 144deg,var(--c5) 0 180deg,#0000 0);'; // brighten HAPPY section color on mouse hover
+  }
+  else if (currentEmotion === 'AMAZING') {  // if mouse is in AMAZING section
+    faceImg.src = 'assets/emotion-widget/media/faceAmazing.png';  // change the face image to AMAZING
+    emotionText.textContent = 'Amazing';  // change the text below face image to 'Amazing'
+    needle.style = '--score:80'; // change the needle score (points toward AMAZING section of gauge)
+    gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,' 
+    + 'var(--c2) 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,#BED68B 0 180deg,#0000 0);'; // brighten AMAZING section color on mouse hover
+  }
+}
+
+/**
+ * Get the User's selected emotion
+ * @returns String representing selected emotion
+ */
+export function getEmotion() {
+  let emotion = 'MEH';
+  try {
+    const emotionText = document.getElementById('emotionText');
+    emotion = emotionText.textContent.toUpperCase();
+  } catch {
+    console.log('defaulting emotion to: ', emotion);
+  }
+  console.log('current emotion is: ', emotion);
+  return emotion;
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#adjustFontSize">adjustFontSize</a></li><li><a href="global.html#arrayToBarGraph">arrayToBarGraph</a></li><li><a href="global.html#attatchSplashListener">attatchSplashListener</a></li><li><a href="global.html#buttonListeners">buttonListeners</a></li><li><a href="global.html#changeText">changeText</a></li><li><a href="global.html#clearFilter">clearFilter</a></li><li><a href="global.html#clearLocal">clearLocal</a></li><li><a href="global.html#computePercentage">computePercentage</a></li><li><a href="global.html#createFile">createFile</a></li><li><a href="global.html#decrement">decrement</a></li><li><a href="global.html#deleteFile">deleteFile</a></li><li><a href="global.html#filterButtons">filterButtons</a></li><li><a href="global.html#filterDate">filterDate</a></li><li><a href="global.html#filterWord">filterWord</a></li><li><a href="global.html#forceCreate">forceCreate</a></li><li><a href="global.html#formatToday">formatToday</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#generateExample">generateExample</a></li><li><a href="global.html#generateToday">generateToday</a></li><li><a href="global.html#getCurrentYearAndMonth">getCurrentYearAndMonth</a></li><li><a href="global.html#getEmotion">getEmotion</a></li><li><a href="global.html#getJournals">getJournals</a></li><li><a href="global.html#getLinesCodedArray">getLinesCodedArray</a></li><li><a href="global.html#getMostRecent">getMostRecent</a></li><li><a href="global.html#getSleepArray">getSleepArray</a></li><li><a href="global.html#getSortedDates">getSortedDates</a></li><li><a href="global.html#increment">increment</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initGaugeWidget">initGaugeWidget</a></li><li><a href="global.html#journalsToEmotions">journalsToEmotions</a></li><li><a href="global.html#letterMonthToNumber">letterMonthToNumber</a></li><li><a href="global.html#linesOfCodeListeners">linesOfCodeListeners</a></li><li><a href="global.html#listFiles">listFiles</a></li><li><a href="global.html#loadButtons">loadButtons</a></li><li><a href="global.html#moodToSrc">moodToSrc</a></li><li><a href="global.html#readFile">readFile</a></li><li><a href="global.html#returnChecked">returnChecked</a></li><li><a href="global.html#setBarGradient">setBarGradient</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setEmotion">setEmotion</a></li><li><a href="global.html#setEmotionImages">setEmotionImages</a></li><li><a href="global.html#setLinesWidgetNumber">setLinesWidgetNumber</a></li><li><a href="global.html#setSleep">setSleep</a></li><li><a href="global.html#sleepToValue">sleepToValue</a></li><li><a href="global.html#sortByDateCreated">sortByDateCreated</a></li><li><a href="global.html#sortByLastModified">sortByLastModified</a></li><li><a href="global.html#updateNumber">updateNumber</a></li><li><a href="global.html#writeFile">writeFile</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Jun 11 2024 20:01:45 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
