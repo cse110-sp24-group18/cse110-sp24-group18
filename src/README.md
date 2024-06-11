@@ -1,16 +1,14 @@
-# Journal Navigation
+# DevDiary
 ## How to use:
-- clone this repo
-- live server index.html
+- Clone this repo and live server index.html.
+- OR, open the deployed web's link on README.
 ## Basic Features:
 - Sort by latest
 - Sort by earliest
 - Filter by current month
-- Filter by string
 - Select journal from list
 - Journal added each day
 - Remove Journal
 - Write to journal
 - Header section ('DevDiary', Title, Date)
-## TODO:
-- Sort by Year/Month
+- Three widgets to accompany each journal: sleep quality, mood tracker, and lines of codes written. 
