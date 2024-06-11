@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: emotion-widget/emotion-widget.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: emotion-widget/emotion-widget.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let currSpeed = 150;  // set currSpeed to 150 (centered by default)
+let emotion = 'MEH'; // set emotion to 'MEH' (MEH by default)
+
+/**
+ * Initializes the gauge widget by setting up event listeners and defining behavior.
+ */
+export function initGaugeWidget() {
+  const gauge = document.getElementById('gauge');
+  if (!gauge) {
+    console.error('Gauge element not found');
+    return;
+  }
+
+  gauge.addEventListener('mousemove', (event) => {
+    const faceImg = document.getElementById('face');
+    const emotionText = document.getElementById('emotionText');
+    const needle = document.getElementById('needle');
+
+    if (!faceImg || !emotionText || !needle) {
+      console.error('Required DOM elements not found');
+      return;
+    }
+
+    const rect = gauge.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const deltaX = x - centerX;
+    const deltaY = y - centerY;
+
+    let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+    if (angle &lt; 0) angle += 360;
+
+    if (angle >= 180 &amp;&amp; angle &lt;= 360) {
+      const speed = (angle / 180) * 100;
+      currSpeed = speed;
+
+      if (speed >= 100 &amp;&amp; speed &lt; 120) {
+        faceImg.src = 'assets/emotion-widget/media/faceMiserable.png';
+        emotionText.textContent = 'Miserable';
+        needle.style = '--score:20';
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,#9DABF4 36deg,'
+          + 'var(--c2) 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);';
+      } else if (speed >= 120 &amp;&amp; speed &lt; 140) {
+        faceImg.src = 'assets/emotion-widget/media/faceSad.png';
+        emotionText.textContent = 'Sad';
+        needle.style = '--score:35';
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1)36deg,'
+        + '#E3985C 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);';
+      } else if (speed >= 140 &amp;&amp; speed &lt; 160) {
+        faceImg.src = 'assets/emotion-widget/media/faceMeh.png';
+        emotionText.textContent = 'Meh';
+        needle.style = '--score:50';
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,'
+        + 'var(--c2) 0 72deg,#D9BCB0 0 108deg,var(--c4) 0 144deg,var(--c5) 0 180deg,#0000 0);';
+      } else if (speed >= 160 &amp;&amp; speed &lt; 180) {
+        faceImg.src = 'assets/emotion-widget/media/faceGood.png';
+        emotionText.textContent = 'Happy';
+        needle.style = '--score:65';
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,'
+        + 'var(--c2) 0 72deg,var(--c3) 0 108deg,#F4D39A 0 144deg,var(--c5) 0 180deg,#0000 0);';
+      } else if (speed >= 180 &amp;&amp; speed &lt;= 200) {
+        faceImg.src = 'assets/emotion-widget/media/faceAmazing.png';
+        emotionText.textContent = 'Amazing';
+        needle.style = '--score:80';
+        gauge.style = 'background: radial-gradient(#f8f4f3 0 0) content-box,conic-gradient(from -90deg,var(--c1) 36deg,'
+        + 'var(--c2) 0 72deg,var(--c3) 0 108deg,var(--c4) 0 144deg,#BED68B 0 180deg,#0000 0);';
+      }
+    }
+  });
+
+  gauge.addEventListener('mouseover', () => {
+    gauge.addEventListener('click', () => {
+      if (currSpeed >= 100 &amp;&amp; currSpeed &lt; 120) {
+        emotion = 'MISERABLE';
+      } else if (currSpeed >= 120 &amp;&amp; currSpeed &lt; 140) {
+        emotion = 'SAD';
+      } else if (currSpeed >= 140 &amp;&amp; currSpeed &lt; 160) {
+        emotion = 'MEH';
+      } else if (currSpeed >= 160 &amp;&amp; currSpeed &lt; 180) {
+        emotion = 'HAPPY';
+      } else if (currSpeed >= 180 &amp;&amp; currSpeed &lt;= 200) {
+        emotion = 'AMAZING';
+      }
+    });
+  });
+}
+
+/**
+ * Get the User's selected emotion
+ * @returns String representing selected emotion
+ */
+export function getEmotion() {
+  return emotion;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#adjustFontSize">adjustFontSize</a></li><li><a href="global.html#arrayToBarGraph">arrayToBarGraph</a></li><li><a href="global.html#attatchSplashListener">attatchSplashListener</a></li><li><a href="global.html#buttonListeners">buttonListeners</a></li><li><a href="global.html#changeText">changeText</a></li><li><a href="global.html#clearFilter">clearFilter</a></li><li><a href="global.html#clearLocal">clearLocal</a></li><li><a href="global.html#computePercentage">computePercentage</a></li><li><a href="global.html#createFile">createFile</a></li><li><a href="global.html#decrement">decrement</a></li><li><a href="global.html#deleteFile">deleteFile</a></li><li><a href="global.html#filterButtons">filterButtons</a></li><li><a href="global.html#filterDate">filterDate</a></li><li><a href="global.html#filterWord">filterWord</a></li><li><a href="global.html#forceCreate">forceCreate</a></li><li><a href="global.html#formatToday">formatToday</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#generateExample">generateExample</a></li><li><a href="global.html#generateToday">generateToday</a></li><li><a href="global.html#getCurrentYearAndMonth">getCurrentYearAndMonth</a></li><li><a href="global.html#getEmotion">getEmotion</a></li><li><a href="global.html#getJournals">getJournals</a></li><li><a href="global.html#getLinesCodedArray">getLinesCodedArray</a></li><li><a href="global.html#getMostRecent">getMostRecent</a></li><li><a href="global.html#getSleepArray">getSleepArray</a></li><li><a href="global.html#getSortedDates">getSortedDates</a></li><li><a href="global.html#increment">increment</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initGaugeWidget">initGaugeWidget</a></li><li><a href="global.html#journalsToEmotions">journalsToEmotions</a></li><li><a href="global.html#letterMonthToNumber">letterMonthToNumber</a></li><li><a href="global.html#linesOfCodeListeners">linesOfCodeListeners</a></li><li><a href="global.html#listFiles">listFiles</a></li><li><a href="global.html#loadButtons">loadButtons</a></li><li><a href="global.html#moodToSrc">moodToSrc</a></li><li><a href="global.html#readFile">readFile</a></li><li><a href="global.html#returnChecked">returnChecked</a></li><li><a href="global.html#setBarGradient">setBarGradient</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setEmotion">setEmotion</a></li><li><a href="global.html#setEmotionImages">setEmotionImages</a></li><li><a href="global.html#setLinesWidgetNumber">setLinesWidgetNumber</a></li><li><a href="global.html#setSleep">setSleep</a></li><li><a href="global.html#sleepToValue">sleepToValue</a></li><li><a href="global.html#sortByDateCreated">sortByDateCreated</a></li><li><a href="global.html#sortByLastModified">sortByLastModified</a></li><li><a href="global.html#updateNumber">updateNumber</a></li><li><a href="global.html#writeFile">writeFile</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Jun 11 2024 20:01:45 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

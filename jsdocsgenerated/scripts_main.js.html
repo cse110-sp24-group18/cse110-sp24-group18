@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: scripts/main.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,44 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: scripts/main.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { generateExample, generateToday, filterButtons } from './journalNav.js';
+import { textEditorListeners, setDate } from './textEditor.js';
+import { attatchSplashListener } from './splashScreen.js';
+import { widgetButtonListeners } from './widgets.js';
+import { getEmotion, initGaugeWidget } from '../emotion-widget/emotion-widget.js';
 
+window.addEventListener('DOMContentLoaded', init); // set init to run on document load
 
-    <h3> </h3>
+/**
+ * Runs this on document load.
+ */
+function init() {
+  generateExample();
+  generateToday();
+  
+  setDate();
 
+  textEditorListeners();
+  filterButtons();
+  attatchSplashListener();
 
+  widgetButtonListeners();
 
+  initGaugeWidget();
+  window.getEmotion = getEmotion;
 
-
-
-
-
-
-
-    
-
-
-
-
-
+}</code></pre>
+        </article>
+    </section>
 
 
 

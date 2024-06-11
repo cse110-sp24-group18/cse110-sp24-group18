@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: scripts/tests/unit/linesOfCodeWidget.test.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: scripts/tests/unit/linesOfCodeWidget.test.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @jest-environment jsdom
+ */
+
+const fs = require('fs');
+const path = require('path');
+require('@testing-library/jest-dom');
+
+const { increment, decrement, updateNumber, adjustFontSize } = require('../../lines-of-code-script');
+
+describe('Lines of Code Widget', () => {
+
+  beforeEach(() => {
+    // Read the actual index.html file
+    const html = fs.readFileSync(path.resolve(__dirname, '../../../../index.html'), 'utf8');
+
+    // Create a new DOMParser
+    const parser = new DOMParser();
+
+    // Parse the HTML content into a temporary document
+    const tempDocument = parser.parseFromString(html, 'text/html');
+
+    // Safely insert the parsed content into the document
+    while (document.documentElement.firstChild) {
+      document.documentElement.removeChild(document.documentElement.firstChild);
+    }
+
+    Array.from(tempDocument.documentElement.childNodes).forEach((node) => {
+      document.documentElement.appendChild(document.adoptNode(node));
+    });
+
+    // Ensure the elements are found
+    if (!document.getElementById('number') || !document.querySelector('.lines-widget-content')) {
+      throw new Error('Elements not found in the DOM');
+    }
+  });
+
+  /**
+   * Tests to check if increment works properly
+   */
+  test('increments the count', () => {
+    const numberElement = document.getElementById('number');
+    numberElement.value = 5;
+    increment(true);
+    expect(numberElement.value).toBe('6');
+  });
+
+  /**
+   * Tests to check if decrement works properly
+   */
+  test('decrements the count', () => {
+    const numberElement = document.getElementById('number');
+    numberElement.value = 5;
+    decrement(true);
+    expect(numberElement.value).toBe('4');
+  });
+
+  /**
+   * Tests to ensure that value does not exceed 5 digits
+   */
+  test('does not increment past 99999', () => {
+    const numberElement = document.getElementById('number');
+    numberElement.value = 99999;
+    increment(true);
+    expect(numberElement.value).toBe('99999');
+  });
+
+  /**
+   * Tests to ensure that we cannot get negative values
+   */
+  test('does not decrement below 0', () => {
+    const numberElement = document.getElementById('number');
+    numberElement.value = 0;
+    decrement(true);
+    expect(numberElement.value).toBe('0');
+  });
+
+  /**
+   * Tests to make sure input does not allow for non-number/negative values
+   */
+  test('updates the number and does not allow negative values + nonnumbers', () => {
+    const numberElement = document.getElementById('number');
+    numberElement.value = -5;
+    updateNumber(true);
+    expect(numberElement.value).toBe('0');
+    numberElement.value = 'a';
+    updateNumber(true);
+    expect(numberElement.value).toBe('0');
+
+  });
+  /**
+   * Tests to make sure numbers cannot exceed 5 digits when inputted
+   */
+  test('updates the number and does not allow more than 5 digits', () => {
+    const numberElement = document.getElementById('number');
+    numberElement.value = 123456;
+    updateNumber(true);
+    expect(numberElement.value).toBe('12345');
+  });
+
+  /**
+   * Tests to make sure the apropriate font size is expected when number of digits changes
+   */
+  test('adjusts font size based on number of digits', () => {
+    const numberElement = document.getElementById('number');
+    numberElement.value = 5;
+    updateNumber(true);
+    adjustFontSize();
+    expect(numberElement.style.fontSize).toBe('5rem');
+
+    numberElement.value = 50;
+    updateNumber(true);
+    adjustFontSize();
+    expect(numberElement.style.fontSize).toBe('4.5rem');
+
+    numberElement.value = 500;
+    updateNumber(true);
+    adjustFontSize();
+    expect(numberElement.style.fontSize).toBe('4rem');
+
+    numberElement.value = 5000;
+    updateNumber(true);
+    adjustFontSize();
+    expect(numberElement.style.fontSize).toBe('3rem');
+
+    numberElement.value = 50000;
+    updateNumber(true);
+    adjustFontSize();
+    expect(numberElement.style.fontSize).toBe('2.5rem');
+  });
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#adjustFontSize">adjustFontSize</a></li><li><a href="global.html#arrayToBarGraph">arrayToBarGraph</a></li><li><a href="global.html#attatchSplashListener">attatchSplashListener</a></li><li><a href="global.html#buttonListeners">buttonListeners</a></li><li><a href="global.html#changeText">changeText</a></li><li><a href="global.html#clearFilter">clearFilter</a></li><li><a href="global.html#clearLocal">clearLocal</a></li><li><a href="global.html#computePercentage">computePercentage</a></li><li><a href="global.html#createFile">createFile</a></li><li><a href="global.html#decrement">decrement</a></li><li><a href="global.html#deleteFile">deleteFile</a></li><li><a href="global.html#filterButtons">filterButtons</a></li><li><a href="global.html#filterDate">filterDate</a></li><li><a href="global.html#filterWord">filterWord</a></li><li><a href="global.html#forceCreate">forceCreate</a></li><li><a href="global.html#formatToday">formatToday</a></li><li><a href="global.html#fs">fs</a></li><li><a href="global.html#generateExample">generateExample</a></li><li><a href="global.html#generateToday">generateToday</a></li><li><a href="global.html#getCurrentYearAndMonth">getCurrentYearAndMonth</a></li><li><a href="global.html#getEmotion">getEmotion</a></li><li><a href="global.html#getJournals">getJournals</a></li><li><a href="global.html#getLinesCodedArray">getLinesCodedArray</a></li><li><a href="global.html#getMostRecent">getMostRecent</a></li><li><a href="global.html#getSleepArray">getSleepArray</a></li><li><a href="global.html#getSortedDates">getSortedDates</a></li><li><a href="global.html#increment">increment</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initGaugeWidget">initGaugeWidget</a></li><li><a href="global.html#journalsToEmotions">journalsToEmotions</a></li><li><a href="global.html#letterMonthToNumber">letterMonthToNumber</a></li><li><a href="global.html#linesOfCodeListeners">linesOfCodeListeners</a></li><li><a href="global.html#listFiles">listFiles</a></li><li><a href="global.html#loadButtons">loadButtons</a></li><li><a href="global.html#moodToSrc">moodToSrc</a></li><li><a href="global.html#readFile">readFile</a></li><li><a href="global.html#returnChecked">returnChecked</a></li><li><a href="global.html#setBarGradient">setBarGradient</a></li><li><a href="global.html#setDate">setDate</a></li><li><a href="global.html#setEmotion">setEmotion</a></li><li><a href="global.html#setEmotionImages">setEmotionImages</a></li><li><a href="global.html#setLinesWidgetNumber">setLinesWidgetNumber</a></li><li><a href="global.html#setSleep">setSleep</a></li><li><a href="global.html#sleepToValue">sleepToValue</a></li><li><a href="global.html#sortByDateCreated">sortByDateCreated</a></li><li><a href="global.html#sortByLastModified">sortByLastModified</a></li><li><a href="global.html#updateNumber">updateNumber</a></li><li><a href="global.html#writeFile">writeFile</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Jun 11 2024 20:01:45 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
