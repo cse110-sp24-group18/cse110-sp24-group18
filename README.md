@@ -33,3 +33,6 @@ Released under [MIT](./LICENSE).
 [Team Page URL](https://github.com/cse110-sp24-group18/cse110-sp24-group18/blob/main/admin/team.md)
 
 [Application URL](https://cse110-sp24-group18.github.io/cse110-sp24-group18/src/index.html)
+
+[Public Video URL](https://youtu.be/QLTRIVysNbw)
+
